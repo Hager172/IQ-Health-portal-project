@@ -1,0 +1,6 @@
+@IQ_Health_portal_HostAddress = http://localhost:5187
+
+GET {{IQ_Health_portal_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

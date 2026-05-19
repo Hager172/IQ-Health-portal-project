@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="IQ-Health-portal/IQ-Health-portal.API.csproj" />
+  <Project Path="IQHealthPortal.Application/IQHealthPortal.Application.csproj" />
+  <Project Path="IQHealthPortal.Domain/IQHealthPortal.Domain.csproj" />
+  <Project Path="IQHealthPortal.Infrastructure/IQHealthPortal.Infrastructure.csproj" />
+</Solution>
