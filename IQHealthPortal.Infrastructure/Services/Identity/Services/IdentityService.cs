@@ -18,7 +18,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-namespace IQHealthPortal.Infrastructure.Identity.Services
+namespace IQHealthPortal.Infrastructure.Services.Identity.Services
     {
     public class IdentityService : IIdentityService
         {

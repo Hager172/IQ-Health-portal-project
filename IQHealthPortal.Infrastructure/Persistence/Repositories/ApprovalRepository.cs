@@ -3,7 +3,7 @@ using IQHealthPortal.Application.DTOs.ApprovalDtos;
 using IQHealthPortal.Application.Interfaces.Repositories;
 using IQHealthPortal.Infrastructure.Data;
 using IQHealthPortal.Infrastructure.Data.Models;
-using IQHealthPortal.Infrastructure.Identity.Services;
+using IQHealthPortal.Infrastructure.Services.Identity.Services;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
