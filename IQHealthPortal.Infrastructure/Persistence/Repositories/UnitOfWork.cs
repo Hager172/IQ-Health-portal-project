@@ -3,7 +3,7 @@ using IQHealthPortal.Application.Interfaces.Repositories;
 using IQHealthPortal.Domain.Identity.Entities;
 using IQHealthPortal.Infrastructure.Data;
 using IQHealthPortal.Infrastructure.Data.Models;
-using IQHealthPortal.Infrastructure.Identity.Services;
+using IQHealthPortal.Infrastructure.Services.Identity.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;

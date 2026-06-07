@@ -11,7 +11,7 @@ using Microsoft.VisualBasic;
 using System.Data;
 using System.Text;
 
-namespace IQHealthPortal.Infrastructure.Claims
+namespace IQHealthPortal.Infrastructure.Services.Claim
 {
     public class ClaimService:IClaimService
     {

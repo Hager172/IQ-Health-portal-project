@@ -1,5 +1,4 @@
-﻿
-using IQHealthPortal.Infrastructure.Data;
+﻿using IQHealthPortal.Infrastructure.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IQHealthPortal.Infrastructure.Identity.Services
+namespace IQHealthPortal.Infrastructure.Services.Identity.Services
 {
     public class DbContextFactory : IDbContextFactory
     {

@@ -802,6 +802,8 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<WithContractedPrice> WithContractedPrices { get; set; }
 
+    public DbSet<ChatMessage> ChatMessages => Set<ChatMessage>();
+
     [DbFunction("f_member_status_at_date", "dbo")]
     public static string MemberStatusAtDate(string memberId, DateTime date)
     {

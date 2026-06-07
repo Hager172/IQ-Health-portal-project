@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IQHealthPortal.Infrastructure.Identity.Services
+namespace IQHealthPortal.Infrastructure.Services.Identity.Services
 {
     public class ClientConnectionOptions : Dictionary<string, string> { }
 

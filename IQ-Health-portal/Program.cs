@@ -3,29 +3,20 @@
 
 using ACMS_ONLINE_APPLICATION;
 using ACMS_ONLINE_INFRASTRUCTURE.Data;
-using AutoMapper;
-using IQHealthPortal.Application.Features.Authentication.Commands.Login;
 using IQHealthPortal.Application.Interfaces.Auth;
 using IQHealthPortal.Application.Interfaces.Repositories;
 using IQHealthPortal.Application.Interfaces.services;
-using IQHealthPortal.Application.mapping;
 using IQHealthPortal.Domain.Identity.Entities;
-using IQHealthPortal.Infrastructure.Claims;
-using IQHealthPortal.Infrastructure.Identity.Services;
+using IQHealthPortal.Infrastructure.Hubs;
 using IQHealthPortal.Infrastructure.MeddleWare;
 using IQHealthPortal.Infrastructure.Persistence.Repositories;
-using MediatR;
+using IQHealthPortal.Infrastructure.Services.Claim;
+using IQHealthPortal.Infrastructure.Services.Identity.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Reflection;
 using System.Text;
 
 
@@ -117,7 +108,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
-
+builder.Services.AddSignalR();
 
 // Source - https://stackoverflow.com/a/79835686
 // Posted by Nermin, modified by community. See post 'Timeline' for change history
@@ -161,15 +152,18 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowFrontend", policy =>
+    options.AddPolicy("AllowAll", policy =>
     {
         policy
         //.WithOrigins("http://localhost:4200", "http://150.200.12.4:4200") // adjust based on real deployment        
         .AllowAnyOrigin()
         .AllowAnyHeader()
               .AllowAnyMethod()
-              //.AllowCredentials()
-              ;
+               .AllowCredentials()
+                .SetIsOriginAllowed(_ => true);
+        //.AllowCredentials()
+       
+
     });
 });
 
@@ -181,12 +175,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.MapHub<ChatHub>("/chatHub");
 app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
-app.UseCors("AllowFrontend");
+app.UseCors("AllowAll");
 
 app.UseAuthentication();
 
