@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IQHealthPortal.Infrastructure.Data.Models;
 
@@ -93,6 +94,7 @@ public partial class Member
 
     public bool? ShowMobProfile { get; set; }
 
+    [NotMapped]
     public bool? HasSanda { get; set; }
 
     public virtual ICollection<ApprovalRating> ApprovalRatings { get; set; } = new List<ApprovalRating>();

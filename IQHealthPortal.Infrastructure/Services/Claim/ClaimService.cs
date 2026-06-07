@@ -51,14 +51,14 @@ namespace IQHealthPortal.Infrastructure.Services.Claim
                 }
 
             // 3. Product validation
-            if (claim.Product == null || claim.Product.Length == 0 || claim.Product[0] == null)
+            if (claim.Services == null || claim.Services.Count == 0 || claim.Services[0] == null)
                 {
                 claim.MsgHolder = "No services Found!";
                 return false;
                 }
 
-            string gp = user.VType == "Ph" ? "directGrace" : "lr_directGrace";
-
+            //string gp = user.VType == "Ph" ? "directGrace" : "lr_directGrace";
+            string gp = "lr_directGrace";
             // 4. Get status using mapped function
             //var status = await _context.Set<Member>()
             //    .Where(m => m.MemberId == claim.MembId)
@@ -260,7 +260,8 @@ namespace IQHealthPortal.Infrastructure.Services.Claim
                     LastUpdateBy = currentUser.UserName,
                     LastUpdateDate = DateTime.Now,
                     LastUpdateFrom = "Online System",
-                    VendorId = currentUser.Vendor,
+                    //VendorId = currentUser.Vendor,
+                    VendorId = "Ph0334",
                     ApStatus = "N",
                     ApType = aType,
                     Coinsurance = 0,
@@ -288,28 +289,71 @@ namespace IQHealthPortal.Infrastructure.Services.Claim
                 // 6. Services
                 var services = new List<ApprovalServiceDto>();
 
-                for (int i = 0; i < claim.Product.Length; i++)
-                {
-                    var qty = claim.Qty;
+                //for (int i = 0; i < claim.Product.Length; i++)
+                //{
+                //    var qty = claim.Qty;
 
+                //    services.Add(new ApprovalServiceDto
+                //    {
+                //        ItemSerial = i + 1,
+                //        ApprovalId = claim.ApprovalCode,
+                //        ServiceId = claim.Product[i],
+                //        ApQty = qty,
+                //        Price = claim.Price[i],
+                //        Days = 1,
+                //        LastUpdateDate = DateTime.Now,
+                //        LastUpdateBy = currentUser.UserName,
+                //        LastUpdateFrom = "OnlineSystem",
+                //        Qty = qty,
+                //        DoseUnits = claim.Units[i] == 0 ? 1 : claim.Units[i],
+                //        DoseRepeat = claim.Rep[i] == 0 ? 1 : claim.Rep[i],
+                //        DoseDuration = claim.Duration[i] == 0 ? 1 : claim.Duration[i],
+                //        DoseDurType = 1,
+                //        MedItem = medItem,
+                //        Coinsurance = coinsRatio
+                //    });
+                //}
+                foreach (var service in claim.Services)
+                {
                     services.Add(new ApprovalServiceDto
                     {
-                        ItemSerial = i + 1,
                         ApprovalId = claim.ApprovalCode,
-                        ServiceId = claim.Product[i],
-                        ApQty = qty,
-                        Price = claim.Price[i],
+
+                        ServiceId = service.ProductId,
+
+                        ApQty = service.Qty,
+
+                        Qty = service.Qty,
+
+                        Price = service.Price,
+
+                        DoseUnits = service.Units == 0
+                            ? 1
+                            : service.Units,
+
+                        DoseRepeat = service.Rep == 0
+                            ? 1
+                            : service.Rep,
+
+                        DoseDuration = service.Duration == 0
+                            ? 1
+                            : service.Duration,
+
                         Days = 1,
-                        LastUpdateDate = DateTime.Now,
-                        LastUpdateBy = currentUser.UserName,
-                        LastUpdateFrom = "OnlineSystem",
-                        Qty = qty,
-                        DoseUnits = claim.Units[i] == 0 ? 1 : claim.Units[i],
-                        DoseRepeat = claim.Rep[i] == 0 ? 1 : claim.Rep[i],
-                        DoseDuration = claim.Duration[i] == 0 ? 1 : claim.Duration[i],
+
                         DoseDurType = 1,
+
                         MedItem = medItem,
-                        Coinsurance = coinsRatio
+
+                        Coinsurance = coinsRatio,
+
+                        ItemSerial = services.Count + 1,
+
+                        LastUpdateBy = currentUser.UserName,
+
+                        LastUpdateDate = DateTime.Now,
+
+                        LastUpdateFrom = "OnlineSystem"
                     });
                 }
 
@@ -322,7 +366,7 @@ namespace IQHealthPortal.Infrastructure.Services.Claim
                 var logDto = new ApprovalLogDto
                 {
                     ApprovalId = claim.ApprovalCode,
-                    NumServices = claim.Product.Length,
+                    NumServices = claim.Services.Count,
                     ApprovalDate = approval.ApprovalDate,
                     MemberId = claim.MembId,
                     Notes = claim.Notes,
@@ -346,7 +390,7 @@ namespace IQHealthPortal.Infrastructure.Services.Claim
             }
         }
 
-
+        
         public async Task<ClaimResultDto>
             ValidateClaimAfterAsync(ClaimDto claim)
         {
@@ -478,6 +522,76 @@ namespace IQHealthPortal.Infrastructure.Services.Claim
 
             //// 4. Logging
             //await InsertLog(claim.ApprovalCode, "Canceled", reason);
+        }
+
+
+        public async Task<MemberInfoDto?> GetMemberInfoAsync(
+    string memberId,
+    string type)
+        {
+            var member = await unitOfWork.memberrepository.GetMemberAsync(memberId);
+
+            if (member == null)
+                return null;
+
+            var contractId =
+                await unitOfWork.memberrepository.GetActiveContractAsync(memberId);
+
+            int medItem = type switch
+            {
+                "Ph" => 5,
+                "Rd" => 106,
+                "LR" => 107,
+                "Lb" => 107,
+                "Dt" => 7,
+                "Sc" => 14,
+                _ => 0
+            };
+            decimal coinsurance = 0;
+
+            if (!string.IsNullOrEmpty(contractId) && medItem > 0)
+            {
+                var coinsData =
+                    await unitOfWork.ClaimRepository.GetCoinsuranceDataAsync(
+                        memberId,
+                        contractId,
+                        medItem);
+
+                coinsurance = (decimal)coinsData.Coinsurance;
+            }
+
+            var parentName = "";
+
+            if (!string.IsNullOrEmpty(member.ParentName))
+            {
+                parentName =
+                    await unitOfWork.memberrepository.GetParentNameAsync(
+                        member.ParentName);
+            }
+
+            return new MemberInfoDto
+            {
+                MemberName = member.MemberName,
+                CustomerName = member.CustomerName,
+                Mobile = member.Mobile,
+                BirthDate = member.BirthDate?.ToString(),
+                CardImageUrl = $"/docs/contracts/{contractId}/{memberId}.jpg",
+                Coinsurance = coinsurance,
+                ParentName = parentName,
+                MemberNationalId=member.MemberNationalId
+            };
+        }
+
+
+        public async Task<List<ApprovalDetailDto>> getbranchapproval(string branchId)
+        {
+            if (branchId.Split('.')[1] == "0")
+            {
+
+                return await unitOfWork.ClaimRepository.GetmainBranchApprovalsAsync(branchId.Split('.')[0]);
+            }
+
+            return await unitOfWork.ClaimRepository.GetBranchApprovalsAsync(branchId);
         }
         //private async Task InsertLog(int approvalCode, string action, string message)
         //{

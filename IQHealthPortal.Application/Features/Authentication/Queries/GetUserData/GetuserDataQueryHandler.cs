@@ -85,6 +85,7 @@ namespace IQHealthPortal.Infrastructure.UserService.Queries.GetUserData
                                 .Distinct()
                                 .ToList();
 
+
                 // Construct hierarchical structure for pages
                 //var hierarchicalPages = allPages
                 //    .Where(page => page.PageParentId == null)

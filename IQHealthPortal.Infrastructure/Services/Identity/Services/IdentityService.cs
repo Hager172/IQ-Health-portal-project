@@ -60,7 +60,7 @@ namespace IQHealthPortal.Infrastructure.Services.Identity.Services
         public async Task<JwtTokenDto> CreateJwtTokenAsync(string userid, OnlineUserClient? userClient)
             {
             var user = await _userManager.FindByIdAsync(userid);
-
+            //var userdata= await _unitOfWork.ClaimRepository.GetUserByIdAsync(userid)
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id),
@@ -80,6 +80,7 @@ namespace IQHealthPortal.Infrastructure.Services.Identity.Services
                 claims.Add(new Claim("VendorId", userClient.VendorId));
                 claims.Add(new Claim("BranchId", userClient.BranchId.ToString()));
                 claims.Add(new Claim("ClientId", userClient.ClientId.ToString()));
+                //claims.Add(new Claim("VType",userClient.vty))
                 }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwt.Key));
@@ -169,7 +170,7 @@ namespace IQHealthPortal.Infrastructure.Services.Identity.Services
                     }
 
 
-                var user = await _userManager.FindByNameAsync(username);
+                var user = await _userManager.FindByIdAsync(username);
 
                 var vendorId = claimsPrincipal.FindFirst("VendorId")?.Value;
                 var branchId = claimsPrincipal.FindFirst("BranchId")?.Value;

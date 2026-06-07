@@ -15,7 +15,8 @@ namespace IQHealthPortal.Infrastructure.Persistence.Repositories
         //private readonly UnitOfWork unitOfWork;
         private readonly IConnectionStringProvider connectionStringProvider;
 
-        public MemberRepository(IConnectionStringProvider connectionStringProvider) {
+        public MemberRepository(IConnectionStringProvider connectionStringProvider)
+        {
 
             this.connectionStringProvider = connectionStringProvider;
 
@@ -125,6 +126,117 @@ namespace IQHealthPortal.Infrastructure.Persistence.Repositories
                 .FirstOrDefaultAsync();
 
             return value ?? 0;
+        }
+
+        //    public async Task<MemberInfoDto?> GetMemberInfoAsync(
+        // string memberId,
+        // string type)
+        //    {
+        //        using var context = CreateContext();
+
+        //        var member = await (
+        //            from m in context.Members
+        //            join c in context.Customers
+        //                on m.MemberCustomerId equals c.CustomerId
+        //            where m.MemberId == memberId
+        //            select new
+        //            {
+        //                m.MemberId,
+        //                m.MemberName,
+        //                m.MemberTele,
+        //                m.MemberBirthday,
+        //                m.MemberParent,
+        //                CustomerName = c.CustomerName
+        //            }
+        //        ).FirstOrDefaultAsync();
+
+        //        if (member == null)
+        //            return null;
+
+        //        // Contract
+        //        var contractId = await GetActiveContractAsync(memberId);
+
+        //        // Med Item حسب النوع
+        //        int medItem = type switch
+        //        {
+        //            "Ph" => 5,
+        //            "Rd" => 106,
+        //            "LR" => 107,
+        //            "Lb" => 107,
+        //            "Dt" => 7,
+        //            "Sc" => 14,
+        //            _ => 0
+        //        };
+
+        //        // Coinsurance
+        //        decimal coinsurance = 0;
+
+        //        if (!string.IsNullOrEmpty(contractId) && medItem > 0)
+        //        {
+        //            var coinsData = await GetCoinsuranceDataAsync(
+        //                memberId,
+        //                contractId,
+        //                medItem);
+
+        //            coinsurance = (decimal)coinsData.Coinsurance;
+        //        }
+
+        //        // Parent Name
+        //        string parentName = "";
+
+        //        if (!string.IsNullOrEmpty(member.MemberParent))
+        //        {
+        //            parentName = await context.Members
+        //                .Where(x => x.MemberId == member.MemberParent)
+        //                .Select(x => x.MemberName)
+        //                .FirstOrDefaultAsync() ?? "";
+        //        }
+
+        //        // صورة الكارت
+        //        var imageUrl =
+        //            $"/docs/contracts/{contractId}/{memberId}.jpg";
+
+        //        return new MemberInfoDto
+        //        {
+        //            MemberName = member.MemberName,
+        //            CustomerName = member.CustomerName,
+        //            Mobile = member.MemberTele,
+        //            BirthDate = member.MemberBirthday?.ToString("yyyy-MM-dd"),
+        //            CardImageUrl = imageUrl,
+        //            Coinsurance = coinsurance,
+        //            ParentName = parentName
+        //        };
+        //    }
+        //}
+        public async Task<MemberInfoDto?> GetMemberAsync(string memberId)
+        {
+            using var context = CreateContext();
+
+            var member = await context.Members
+                .Include(x => x.MemberCustomer)
+                .FirstOrDefaultAsync(x => x.MemberId == memberId);
+
+            if (member == null)
+                return null;
+
+            return new MemberInfoDto
+            {
+                MemberId = member.MemberId,
+                MemberName = member.MemberName,
+                Mobile = member.MemberTele,
+                BirthDate = member.MemberBirthday.ToString(),
+                CustomerName = member.MemberCustomer?.CustomerName,
+                MemberNationalId=member.MemberNationalId
+            };
+        }
+        public async Task<string?> GetParentNameAsync(string parentId)
+        {
+            using var context = CreateContext();
+
+            return await context.Members
+                .Where(x => x.MemberId == parentId)
+                .Select(x => x.MemberName)
+                .FirstOrDefaultAsync();
         }
     }
 }

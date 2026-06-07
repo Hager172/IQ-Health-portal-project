@@ -49,5 +49,22 @@ GetCoinsuranceDataAsync(string membId, string contractId, int medItem);
         int action,
         string message,
         string userName = "Online System");
+
+
+
+        Task<List<DiagnosisDto>> GetDiagnosisAsync(
+        string? term);
+
+
+        Task<List<ProductLookupDto>> SearchPharmaProductsAsync(string? term);
+
+        Task<List<ProductLookupDto>> SearchContractServicesAsync(string? term);
+
+        Task<OnlineUserDTO?> GetUserByIdAsync(long userId);
+
+        Task<List<ApprovalDetailDto>> GetBranchApprovalsAsync(string? term);
+        Task<List<ApprovalDetailDto>> GetmainBranchApprovalsAsync(string? term);
     }
+
+
 }
