@@ -1,4 +1,5 @@
-﻿using IQHealthPortal.Application.DTOs;
+﻿using ACMS_ONLINE_DOMAIN.Member.Entities;
+using IQHealthPortal.Application.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,5 +23,7 @@ namespace IQHealthPortal.Application.Interfaces.Repositories
         Task<int> GetGracePeriodAsync(string item);
 
         Task<string> GetApprovalStatusAsync(string formId, string formIdZero);
+        Task<string?> GetParentNameAsync(string parentId);
+        Task<MemberInfoDto?> GetMemberAsync(string memberId);
     }
 }

@@ -19,7 +19,8 @@ namespace IQHealthPortal.Application.DTOs
         public double? Price { get; set; }
         public string? CareItemName { get; set; }
         public string? Notes { get; set; }
-        
+
+        public string? servicename { get; set; }
 
         public string? ItemDesc { get; set; }
 

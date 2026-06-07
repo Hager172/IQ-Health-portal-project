@@ -314,6 +314,128 @@ namespace IQHealthPortal.Infrastructure.Persistence.Repositories
             };
 
             await _context.ClaimLogs.AddAsync(log);
+
+        }
+
+
+        public async Task<List<DiagnosisDto>>
+           GetDiagnosisAsync(string? term)
+        {
+            using var context = CreateContext();
+
+            var query =
+                context.OnlineDiagnoses
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(term))
+            {
+                query = query.Where(x =>
+                    x.Name.Contains(term));
+            }
+
+            return await query
+                .Select(x => new DiagnosisDto
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                })
+                .Take(20)
+                .ToListAsync();
+        }
+
+        public async Task<List<ProductLookupDto>> SearchPharmaProductsAsync(string? term)
+        {
+            using var context = CreateContext();
+
+            return await context.AcmsPharmas
+                .Where(x => string.IsNullOrEmpty(term) || x.Name.Contains(term))
+                .Take(20)
+                .Select(x => new ProductLookupDto
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    price = x.Price
+                })
+                .ToListAsync();
+        }
+
+        public async Task<List<ProductLookupDto>> SearchContractServicesAsync(string? term)
+        {
+            using var context = CreateContext();
+
+            return await context.ContractServices
+                .Where(x => string.IsNullOrEmpty(term) || x.ContractServiceName.Contains(term))
+                .Take(20)
+                .Select(x => new ProductLookupDto
+                {
+                    Id = x.ContractServiceId,
+                    Name = x.ContractServiceName,
+                    price = x.ContractServicePrices
+                })
+                .ToListAsync();
+        }
+
+        public async Task<OnlineUserDTO?> GetUserByIdAsync(long userId)
+        {
+            using var context = CreateContext();
+            return await context.OnlineUsers
+                .Where(x => x.Id == userId)
+                .Select(x => new OnlineUserDTO
+                {
+                    VType = x.VType,
+                    Office = x.Office
+                })
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task<List<ApprovalDetailDto>> GetBranchApprovalsAsync(string? term)
+        {
+            using var context = CreateContext();
+
+            return await context.Approvals
+.Where(x => x.OnlineBCode == term
+         && x.RequestSource == "Online"
+         && x.OnlineStatus != "C").Select(x => new ApprovalDetailDto
+                {
+                    ApprovalId = x.ApprovalId,
+                    ApprovalDate = x.ApprovalDate,
+                    ApStatus = x.OnlineStatus,
+                    ApType = x.ApType,
+                    RequestSource = x.RequestSource,
+                    Notes = x.Notes,
+                    MemberId = x.MemberId,
+                    VendorId = x.VendorId,
+
+                })
+                .ToListAsync();
+
+        }
+
+
+
+
+        public async Task<List<ApprovalDetailDto>> GetmainBranchApprovalsAsync(string? term)
+        {
+            using var context = CreateContext();
+
+            return await context.Approvals
+     .Where(x => x.OnlineBCode.StartsWith(term + ".") && x.RequestSource == "Online"
+         && x.OnlineStatus != "C")
+     .Select(x => new ApprovalDetailDto
+     {
+         ApprovalId = x.ApprovalId,
+         ApprovalDate = x.ApprovalDate,
+         ApStatus = x.ApStatus,
+         ApType = x.ApType,
+         RequestSource = x.RequestSource,
+         Notes = x.Notes,
+         MemberId = x.MemberId,
+         VendorId = x.VendorId,
+     })
+     .ToListAsync();
+
+
+
         }
     }
 }

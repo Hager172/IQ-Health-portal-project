@@ -7,6 +7,7 @@ using IQHealthPortal.Infrastructure.Identity.Services;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 using System.Text;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -66,52 +67,63 @@ namespace IQHealthPortal.Infrastructure.Persistence.Repositories
 
         public async Task<List<MemberApprovalListDto>> GetByMemberIdAsync(string memberId)
         {
-            var member = await _context.Members
-                .FirstOrDefaultAsync(m => m.MemberId == memberId);
-
-            if (member == null)
+            try
             {
-                throw new Exception("Member does not exist");
-            }
-
-            if (member.MemberStatues != "A")
-            {
-                throw new Exception("Member is inactive");
-            }
-
-            var approvals = await _context.Approvals
-                .Where(a => a.MemberId == memberId &&
-                            a.ApStatus == "D" &&
-                            a.OnlineStatus == "n")
-                .OrderByDescending(a => a.ApprovalDate)
-                .Select(a => new MemberApprovalListDto
+                var _context = CreateContext();
+                var member = await _context.Members
+                    .FirstOrDefaultAsync(m => m.MemberId == memberId);
+                var activecontract = await _context.MemberPlans
+                    .Where(m => m.MemberCode == memberId
+                             && m.ContractCodeNavigation != null
+                             && m.ContractCodeNavigation.CustomerContractEndDate > DateTime.Now)
+                    .Select(m => m.ContractCodeNavigation)
+                    .FirstOrDefaultAsync();
+                
+                if (member == null)
                 {
-                    ApprovalNumber = a.ApprovalId,
-                    ApprovalDate = a.ApprovalDate,
-                    Status = a.ApStatus,
-                    Notes = a.Notes,
-                    ExpiryDate = a.ApprovalDate.AddDays(7),
-                    Coinsurance = a.Coinsurance,
-                    MaxValue = a.MaxValue,
-                    MemberTele=a.Member.MemberTele,
-                    ItemCount = a.ApprovalServices.Count(),
+                    throw new Exception("Member does not exist");
+                }
 
-                    Items = a.ApprovalServices.Select(s => new ApprovalItemDto
-                    {
-                        Id = s.ItemSerial.ToString(),
-                        Description = s.ItemDesc,
-                        Quantity = s.Qty ?? 0,
-                        UnitPrice = s.Price ?? 0
-                    }).ToList()
-                })
-                .ToListAsync();
+                if (member.MemberStatues != "A")
+                {
+                    throw new Exception("Member is inactive");
+                }
 
-            if (!approvals.Any())
-            {
-                throw new Exception("No approvals found");
+                if (member.MemberOnlineApprovals == false)
+                {
+                    throw new Exception("Member is not allowed toonline approval");
+
+                }
+                var approvals = await _context.Approvals
+        .Where(a => a.MemberId == memberId &&
+                    a.ApStatus == "D" &&
+                    a.OnlineStatus == "n" &&
+                    EF.Functions.DateDiffDay(a.ApprovalDate, DateTime.Now) <= activecontract.ApprovalValid)
+        .OrderByDescending(a => a.ApprovalDate)
+        .Select(a => new MemberApprovalListDto
+        {
+            ApprovalNumber = a.ApprovalId,
+            ApprovalDate = a.ApprovalDate,
+            Status = a.ApStatus,
+            Notes = a.Notes,
+            ExpiryDate = a.ApprovalDate.AddDays(7),
+            Coinsurance = a.Coinsurance,
+            MaxValue = a.MaxValue,
+            MemberTele = a.Member.MemberTele,
+            ItemCount = a.ApprovalServices.Count()
+        })
+        .ToListAsync();
+
+                if (!approvals.Any())
+                {
+                    throw new Exception("No approvals found");
+                }
+
+                return approvals;
             }
-
-            return approvals;
+            catch(Exception ex) {
+                throw new Exception(ex.Message);
+            }
         }
         public async Task<GetApprovalForEditDto?> GetApprovalForEditAsync(string approvalNumber)
         {
@@ -164,7 +176,7 @@ namespace IQHealthPortal.Infrastructure.Persistence.Repositories
 
         public async Task<ApprovalDetailDto?> GetApprovalDetailDtoAsync(long approvalId)
         {
-            var connectionString = _connectionStringProvider.GetDefaultConnectionString();
+            var connectionString = _connectionStringProvider.GetCurrentConnectionString();
             var approvalDto = new ApprovalDetailDto();
 
             using (var connection = new SqlConnection(connectionString))
@@ -207,36 +219,62 @@ namespace IQHealthPortal.Infrastructure.Persistence.Repositories
                     INNER JOIN approval_diagnose ad ON d.Id = ad.diagnose_id
                     left join online_Item_categories oc on oc.Id=d.care_item
                     WHERE ad.approval_id = @ApprovalId;
-                   SELECT 
-                        s.approval_id,
-                        s.item_serial,
-                        s.service_id,
-                        s.med_item,
-                        s.qty,
-                        s.price,
-                        c.care_item_name,
-                        s.Notes,
-	                    s.is_actual_value,
-	                    s.original_price,
-	                    s.min_units,
-	                    s.dose_units,
-	                    s.dose_repeat,
-	                    s.dose_duration,
-	                    s.ap_qty,
-	                    s.editqty,
-	                    s.dose_dur_type,
-	                    s.coinsurance,
-	                    s.is_chronic,
-                    s.item_repeat,
-                    s.days,
-                    s.online_status,
-                    s.item_desc,
-                    s.original_price,
-                    s.insurer_meditem
-                    FROM approval_services s
-                    Left Join care_items c on c.care_item_code=s.med_item
-                    WHERE s.approval_id = @ApprovalId
-                    ORDER BY item_serial;";
+        SELECT
+    s.approval_id,
+    s.item_serial,
+    s.service_id,
+
+    CASE
+        WHEN vc.vendor_category_alpha_code = 'Ph'
+            THEN ap.name
+        ELSE cs.contract_service_name
+    END AS contract_service_name,
+
+    s.med_item,
+    s.qty,
+    s.price,
+    c.care_item_name,
+    s.Notes,
+    s.is_actual_value,
+    s.original_price,
+    s.min_units,
+    s.dose_units,
+    s.dose_repeat,
+    s.dose_duration,
+    s.ap_qty,
+    s.editqty,
+    s.dose_dur_type,
+    s.coinsurance,
+    s.is_chronic,
+    s.item_repeat,
+    s.days,
+    s.online_status,
+    s.item_desc,
+    s.insurer_meditem
+
+FROM approval_services s
+
+INNER JOIN approvals a
+    ON a.approval_id = s.approval_id
+
+LEFT JOIN Vendor_General vg
+    ON vg.vendor_id = a.vendor_id
+
+LEFT JOIN vendor_category vc
+    ON vc.vendor_category_id = vg.vendor_category_id
+
+LEFT JOIN care_items c
+    ON c.care_item_code = s.med_item
+
+LEFT JOIN contract_services cs
+    ON cs.contract_service_id = s.service_id
+
+LEFT JOIN acms_pharma ap
+    ON ap.id = s.service_id
+
+WHERE s.approval_id = @ApprovalId
+
+ORDER BY s.item_serial;";
 
                 using (var command = new SqlCommand(query, connection))
                 {
@@ -304,6 +342,7 @@ namespace IQHealthPortal.Infrastructure.Persistence.Repositories
                                     ApprovalId = approvalId,
                                     ItemSerial = reader.GetInt32(reader.GetOrdinal("item_serial")),
                                     ServiceId = reader.GetInt32(reader.GetOrdinal("service_id")),
+                                    servicename= reader.IsDBNull(reader.GetOrdinal("contract_service_name"))? null: reader.GetString(reader.GetOrdinal("contract_service_name")),
                                     MedItem = reader.IsDBNull(reader.GetOrdinal("med_item")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("med_item")),
                                     Notes = reader.IsDBNull(reader.GetOrdinal("Notes")) ? null : reader.GetString(reader.GetOrdinal("Notes")),
                                     CareItemName = reader.IsDBNull(reader.GetOrdinal("care_item_name")) ? null : reader.GetString(reader.GetOrdinal("care_item_name")),
