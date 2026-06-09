@@ -18,5 +18,10 @@ namespace IQHealthPortal.Application.Interfaces.services
 
         Task<ClaimResultDto> ValidateClaimAfterAsync(
             ClaimDto claim);
+        Task<MemberInfoDto?> GetMemberInfoAsync(
+    string memberId,
+    string type);
+
+        Task<List<ApprovalDetailDto>> getbranchapproval(string branchId);
     }
 }

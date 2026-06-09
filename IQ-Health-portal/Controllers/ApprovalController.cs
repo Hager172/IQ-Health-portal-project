@@ -5,8 +5,12 @@ using IQHealthPortal.Application.Features.approval.Commands.addapproval;
 using IQHealthPortal.Application.Features.approval.Commands.UpdateApprovalItems;
 using IQHealthPortal.Application.Features.approval.Queries.GetAllTodayApproval;
 using IQHealthPortal.Application.Features.approval.Queries.GetApprovalForEdit;
+using IQHealthPortal.Application.Features.approval.Queries.Getbranchapproval;
+using IQHealthPortal.Application.Features.approval.Queries.GetDiagnosis;
 using IQHealthPortal.Application.Features.approval.Queries.GetMemberApprovals;
+using IQHealthPortal.Application.Features.approval.Queries.GetMemberInfo;
 using IQHealthPortal.Application.Features.approval.Queries.GetNotCompeleteApp;
+using IQHealthPortal.Application.Features.approval.Queries.GetProducts;
 using IQHealthPortal.Application.Features.Approvals.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -129,6 +133,63 @@ namespace IQ_Health_portal.Controllers
             return Ok(result);
         }
 
+
+        [HttpGet("diagnosis")]
+        public async Task<IActionResult> GetDiagnosis(
+     string? term)
+        {
+            var result =
+                await _mediator.Send(
+                    new GetDiagnosisQuery
+                    {
+                        Term = term
+                    });
+
+            return Ok(result);
+        }
+      
+     
+        [HttpGet("products")]
+        [Authorize]
+        public async Task<IActionResult> GetProducts([FromQuery] string? term, [FromQuery] string vtype)
+        {
+            var result = await _mediator.Send(new GetProductsquery
+            {
+                Term = term,
+                VType = vtype
+            });
+
+            return Ok(result);
+        }
+
+        [HttpGet("member-info")]
+        [Authorize]
+        public async Task<IActionResult> GetMemberInfo(
+    [FromQuery] string memberId,
+    [FromQuery] string type)
+        {
+            var result = await _mediator.Send(
+                new GetMemberInfoQuery
+                {
+                    MemberId = memberId,
+                    Type = type
+                });
+
+            return Ok(result);
+        }
+
+
+        [HttpGet("branch-approvals")]
+        [Authorize]
+        public async Task<IActionResult> GetBranchApprovals(string? office_id)
+        {
+            var result = await _mediator.Send(
+                new GetbranchapprovalQuery
+                {
+                    branchid = office_id
+                });
+            return Ok(result);
+        }
     }
 }
     

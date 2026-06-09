@@ -8,6 +8,8 @@ namespace IQHealthPortal.Application.DTOs.ApprovalDtos
     {
         public string Id { get; set; } = null!;
         public string Description { get; set; } = null!;
+
+        public string? Name { get; set; }
         public double Quantity { get; set; }
         //public string QuantityUnit { get; set; } = null!;
         public double? UnitPrice { get; set; }

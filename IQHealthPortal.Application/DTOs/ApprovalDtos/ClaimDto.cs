@@ -10,8 +10,6 @@ namespace IQHealthPortal.Application.DTOs.ApprovalDtos
 
         public DateTime ServiceDate { get; set; }
 
-        public int[] Product { get; set; }
-
         public string PresId { get; set; }
 
         public string? Phone { get; set; }
@@ -22,18 +20,9 @@ namespace IQHealthPortal.Application.DTOs.ApprovalDtos
 
         public string? Notes { get; set; }
 
-        // SERVICES DATA
-        public float Qty { get; set; }
+        public List<ClaimServiceDto> Services { get; set; }
 
-        public float[] Price { get; set; }
-
-        public int[] Units { get; set; }
-
-        public int[] Rep { get; set; }
-
-        public int[] Duration { get; set; }
-
-        // OUTPUT / GENERATED DATA
+        // OUTPUT
         public string? Contract { get; set; }
 
         public string? MsgHolder { get; set; }

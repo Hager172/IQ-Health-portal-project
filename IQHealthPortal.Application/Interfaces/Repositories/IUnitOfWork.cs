@@ -1,4 +1,5 @@
-﻿using IQHealthPortal.Application.Interfaces.Repositories;
+﻿using IQHealthPortal.Application.DTOs;
+using IQHealthPortal.Application.Interfaces.Repositories;
 using IQHealthPortal.Domain.Identity.Entities;
 
 public interface IUnitOfWork : IDisposable
@@ -20,6 +21,7 @@ public interface IUnitOfWork : IDisposable
     IRepository<OnlineClient> OnlineClientRepository { get; set; }
 
     IRepository<OnlineUserClient> OnlineUserClientRepository { get; set; }
+
 
     IRepository<Privilege> PrivilegesRepository { get; set; }
 
