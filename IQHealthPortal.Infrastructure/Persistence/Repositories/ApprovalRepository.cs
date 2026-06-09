@@ -66,7 +66,12 @@ namespace IQHealthPortal.Infrastructure.Persistence.Repositories
 
         public async Task<List<MemberApprovalListDto>> GetByMemberIdAsync(string memberId)
         {
-            var member = await _context.Members
+            // The injected _context is bound to the default (identity) database,
+            // which does not contain the ACMS business tables (Members/Approvals).
+            // Build a context against the current client's database instead.
+            using var context = CreateContext();
+
+            var member = await context.Members
                 .FirstOrDefaultAsync(m => m.MemberId == memberId);
 
             if (member == null)
@@ -79,7 +84,7 @@ namespace IQHealthPortal.Infrastructure.Persistence.Repositories
                 throw new Exception("Member is inactive");
             }
 
-            var approvals = await _context.Approvals
+            var approvals = await context.Approvals
                 .Where(a => a.MemberId == memberId &&
                             a.ApStatus == "D" &&
                             a.OnlineStatus == "n")

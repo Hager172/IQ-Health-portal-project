@@ -26,12 +26,10 @@ namespace IQHealthPortal.Application.Features.Chat.Commands.SendMessage
                 SentAt = DateTime.UtcNow
             };
 
-            await _context.ChatMessages.AddAsync(
-                message,
-                cancellationToken);
+            await _context.ApplicationRepository<ChatMessage>()
+                .AddAsync(message);
 
-            await _context.SaveChangesAsync(
-                cancellationToken);
+            _context.Save();
 
             return true;
         }

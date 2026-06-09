@@ -20,6 +20,7 @@ using System.Security.Cryptography;
 using System.Text;
 namespace IQHealthPortal.Infrastructure.Services.Identity.Services
     {
+    using Claim = System.Security.Claims.Claim;
     public class IdentityService : IIdentityService
         {
         private readonly UserManager<ApplicationUser> _userManager;

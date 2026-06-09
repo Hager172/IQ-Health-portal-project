@@ -4,7 +4,7 @@ using IQHealthPortal.Application.DTOs.itemsDtos;
 using IQHealthPortal.Application.Interfaces.Repositories;
 using IQHealthPortal.Application.Interfaces.services;
 using IQHealthPortal.Infrastructure.Data.Models;
-using IQHealthPortal.Infrastructure.Identity.Services;
+using IQHealthPortal.Infrastructure.Services.Identity.Services;
 using IQHealthPortal.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;

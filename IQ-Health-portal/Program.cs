@@ -155,15 +155,10 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll", policy =>
     {
         policy
-        //.WithOrigins("http://localhost:4200", "http://150.200.12.4:4200") // adjust based on real deployment        
-        .AllowAnyOrigin()
+        .WithOrigins("http://localhost:4200", "http://150.200.12.4:4200") // adjust based on real deployment
         .AllowAnyHeader()
               .AllowAnyMethod()
-               .AllowCredentials()
-                .SetIsOriginAllowed(_ => true);
-        //.AllowCredentials()
-       
-
+               .AllowCredentials();
     });
 });
 

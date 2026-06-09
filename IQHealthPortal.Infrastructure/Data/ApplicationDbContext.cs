@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using IQHealthPortal.Domain.Identity.Entities;
 using IQHealthPortal.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
