@@ -89,7 +89,7 @@ namespace IQHealthPortal.Infrastructure.Persistence.Repositories
                     throw new Exception("Member is inactive");
                 }
 
-                if (member.MemberOnlineApprovals == false)
+                if (member.MemberOnlineApprovals == true)
                 {
                     throw new Exception("Member is not allowed toonline approval");
 
@@ -301,7 +301,7 @@ ORDER BY s.item_serial;";
                             approvalDto.IsOnline = reader.IsDBNull(reader.GetOrdinal("is_online")) ? null : reader.GetString(reader.GetOrdinal("is_online"));
                             approvalDto.ContractId = reader.IsDBNull(reader.GetOrdinal("contract_id")) ? null : reader.GetString(reader.GetOrdinal("contract_id"));
                             approvalDto.Coinsurance = reader.IsDBNull(reader.GetOrdinal("coinsurance")) ? null : reader.GetDouble(reader.GetOrdinal("coinsurance"));
-                            approvalDto.ParentApproval = reader.IsDBNull(reader.GetOrdinal("parent_approval")) ? null : reader.GetInt32(reader.GetOrdinal("parent_approval"));
+                            approvalDto.ParentApproval = reader.IsDBNull(reader.GetOrdinal("parent_approval")) ? null : reader.GetInt64(reader.GetOrdinal("parent_approval"));
                             approvalDto.OnlineStatus = reader.IsDBNull(reader.GetOrdinal("online_status")) ? null : reader.GetString(reader.GetOrdinal("online_status"));
 
 
@@ -555,6 +555,213 @@ ORDER BY s.item_serial;";
             catch
             {
 
+            }
+        }
+
+        // Port of the Java UpdateClaims method.
+        // Uses parameterized SQL (the original concatenated user input directly) and runs
+        // all statements inside a single transaction so partial updates are not committed.
+        public async Task<int> UpdateClaimsAsync(UpdateClaimsRequestDto request, OnlineUserDTO user)
+        {
+            var connectionString = _connectionStringProvider.GetCurrentConnectionString();
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        if (request.IsChronic)
+                        {
+                            const string itemSql = @"
+                                UPDATE approval_services
+                                SET qty = @Qty, days = @Days, item_desc = @Desc,
+                                    med_item = CASE WHEN med_item = -1 THEN 1 ELSE med_item END
+                                WHERE approval_id = @ApprovalId AND item_serial = @ItemSerial;
+
+                                UPDATE approval_services_online
+                                SET qty = @Qty, days = @Days, item_desc = @Desc,
+                                    med_item = CASE WHEN med_item = -1 THEN 1 ELSE med_item END
+                                WHERE approval_id = @ApprovalId AND item_serial = @ItemSerial;";
+
+                            foreach (var item in request.Items)
+                            {
+                                using (var cmd = new SqlCommand(itemSql, connection, transaction))
+                                {
+                                    cmd.Parameters.AddWithValue("@Qty", item.Qty);
+                                    cmd.Parameters.AddWithValue("@Days", (object?)item.Days ?? DBNull.Value);
+                                    cmd.Parameters.AddWithValue("@Desc", (object?)item.Description ?? DBNull.Value);
+                                    cmd.Parameters.AddWithValue("@ApprovalId", request.ApprovalId);
+                                    cmd.Parameters.AddWithValue("@ItemSerial", item.ItemSerial);
+                                    await cmd.ExecuteNonQueryAsync();
+                                }
+                            }
+
+                            const string approvalSql = @"
+                                UPDATE approvals
+                                SET online_b_code = @Office, vendor_id = @Vendor, online_status = 'P',
+                                    ap_status = 'D', NOTES = @Notes, online_lud = GETDATE(), online_user = @UserName
+                                WHERE approval_id = @ApprovalId AND online_status = 'N';
+
+                                UPDATE approvals_online
+                                SET online_b_code = @Office, vendor_id = @Vendor, online_status = 'P',
+                                    ap_status = 'D', NOTES = @Notes, online_lud = GETDATE(), online_user = @UserName
+                                WHERE approval_id = @ApprovalId AND online_status = 'N';";
+
+                            using (var cmd = new SqlCommand(approvalSql, connection, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@Office", (object?)user.Office?.Trim() ?? DBNull.Value);
+                                cmd.Parameters.AddWithValue("@Vendor", (object?)user.Vendor?.Trim() ?? DBNull.Value);
+                                cmd.Parameters.AddWithValue("@Notes", (object?)request.Notes ?? DBNull.Value);
+                                cmd.Parameters.AddWithValue("@UserName", (object?)user.UserName ?? DBNull.Value);
+                                cmd.Parameters.AddWithValue("@ApprovalId", request.ApprovalId);
+                                await cmd.ExecuteNonQueryAsync();
+                            }
+
+                            // dbo.generate_remaining_items(approval_id, 2-digit-year) returns an int.
+                            // EXEC by position so we don't depend on the proc's parameter names.
+                            var year = DateTime.Now.Year.ToString().Substring(2);
+
+                            using (var cmd = new SqlCommand(
+                                "DECLARE @ret int; EXEC @ret = dbo.generate_remaining_items @ApprovalId, @Year; SELECT @ret;",
+                                connection, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@ApprovalId", request.ApprovalId);
+                                cmd.Parameters.AddWithValue("@Year", year);
+
+                                var scalar = await cmd.ExecuteScalarAsync();
+                                await transaction.CommitAsync();
+
+                                return scalar == null || scalar == DBNull.Value
+                                    ? 0
+                                    : Convert.ToInt32(scalar);
+                            }
+                        }
+                        else
+                        {
+                            // online_status keeps its current value when qty is 0, otherwise becomes 'a'.
+                            // (The Java used reference equality `approv[i] == "0"`, which never matched; this
+                            //  implements the intended behaviour.)
+                            const string itemSql = @"
+                                UPDATE approval_services
+                                SET qty = @Qty, days = @Days, item_desc = @Desc,
+                                    online_status = CASE WHEN @Qty = 0 THEN online_status ELSE 'a' END
+                                WHERE approval_id = @ApprovalId AND item_serial = @ItemSerial;
+
+                                UPDATE approval_services_online
+                                SET qty = @Qty, days = @Days, item_desc = @Desc,
+                                    online_status = CASE WHEN @Qty = 0 THEN online_status ELSE 'a' END
+                                WHERE approval_id = @ApprovalId AND item_serial = @ItemSerial;";
+
+                            foreach (var item in request.Items)
+                            {
+                                using (var cmd = new SqlCommand(itemSql, connection, transaction))
+                                {
+                                    cmd.Parameters.AddWithValue("@Qty", item.Qty);
+                                    cmd.Parameters.AddWithValue("@Days", (object?)item.Days ?? DBNull.Value);
+                                    cmd.Parameters.AddWithValue("@Desc", (object?)item.Description ?? DBNull.Value);
+                                    cmd.Parameters.AddWithValue("@ApprovalId", request.ApprovalId);
+                                    cmd.Parameters.AddWithValue("@ItemSerial", item.ItemSerial);
+                                    await cmd.ExecuteNonQueryAsync();
+                                }
+                            }
+
+                            const string approvalSql = @"
+                                UPDATE approvals
+                                SET isNotified = 0, online_status = 'P', ap_status = 'D', NOTES = @Notes,
+                                    Last_update_date = GETDATE(), Last_update_by = @UserName
+                                WHERE approval_id = @ApprovalId AND online_status = 'N';
+
+                                UPDATE approval_services SET MED_ITEM = 1
+                                WHERE approval_id = @ApprovalId AND MED_ITEM = -1;
+
+                                UPDATE approvals_online
+                                SET isNotified = 0, online_status = 'P', ap_status = 'D', NOTES = @Notes,
+                                    Last_update_date = GETDATE(), Last_update_by = @UserName
+                                WHERE approval_id = @ApprovalId AND online_status = 'N';
+
+                                UPDATE approval_services SET MED_ITEM = 1
+                                WHERE approval_id = @ApprovalId AND MED_ITEM = -1;";
+
+                            using (var cmd = new SqlCommand(approvalSql, connection, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@Notes", (object?)request.Notes ?? DBNull.Value);
+                                cmd.Parameters.AddWithValue("@UserName", (object?)user.UserName ?? DBNull.Value);
+                                cmd.Parameters.AddWithValue("@ApprovalId", request.ApprovalId);
+                                await cmd.ExecuteNonQueryAsync();
+                            }
+
+                            await transaction.CommitAsync();
+                            return 0;
+                        }
+                    }
+                    catch
+                    {
+                        await transaction.RollbackAsync();
+                        throw;
+                    }
+                }
+            }
+        }
+
+        // Port of the Java sendToLocal. Calls dbo.sp_manual_approvals_repl on the remote
+        // replication server; on failure, logs the error to online_repl_errors on the main
+        // (current client) DB and swallows it. Typically invoked fire-and-forget, so the
+        // connection strings are resolved synchronously here (while the HttpContext is alive)
+        // before any await.
+        public Task SendToLocalAsync(string approvalCode, int type)
+        {
+            var remoteConnectionString = _connectionStringProvider.GetRemoteConnectionString();
+            var mainConnectionString = _connectionStringProvider.GetCurrentConnectionString();
+
+            return SendToLocalCoreAsync(approvalCode, type, remoteConnectionString, mainConnectionString);
+        }
+
+        private static async Task SendToLocalCoreAsync(
+            string approvalCode, int type, string remoteConnectionString, string mainConnectionString)
+        {
+            try
+            {
+                using (var connection = new SqlConnection(remoteConnectionString))
+                {
+                    await connection.OpenAsync();
+
+                    using (var cmd = new SqlCommand(
+                        "DECLARE @ret int; EXEC @ret = dbo.sp_manual_approvals_repl @approvalCode, @type;",
+                        connection))
+                    {
+                        cmd.Parameters.AddWithValue("@approvalCode", approvalCode);
+                        cmd.Parameters.AddWithValue("@type", type);
+                        await cmd.ExecuteNonQueryAsync();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Fallback: record the replication failure on the main DB, then swallow.
+                try
+                {
+                    using (var connection = new SqlConnection(mainConnectionString))
+                    {
+                        await connection.OpenAsync();
+
+                        using (var cmd = new SqlCommand(
+                            "INSERT INTO online_repl_errors VALUES (@approvalCode, GETDATE(), @message, @type, 0);",
+                            connection))
+                        {
+                            cmd.Parameters.AddWithValue("@approvalCode", approvalCode);
+                            cmd.Parameters.AddWithValue("@message", (object?)ex.Message ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@type", type);
+                            await cmd.ExecuteNonQueryAsync();
+                        }
+                    }
+                }
+                catch
+                {
+                    // Match the Java: secondary failures are ignored.
+                }
             }
         }
 

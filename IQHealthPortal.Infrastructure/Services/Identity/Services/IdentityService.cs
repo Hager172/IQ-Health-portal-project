@@ -14,6 +14,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -24,16 +25,19 @@ namespace IQHealthPortal.Infrastructure.Services.Identity.Services
     public class IdentityService : IIdentityService
         {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IConfiguration _configuration;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly JWT _jwt;
-        private readonly IUnitOfWork _unitOfWork; 
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         public IdentityService(UserManager<ApplicationUser> userManager,
+                               RoleManager<ApplicationRole> roleManager,
                                SignInManager<ApplicationUser> signInManager, IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IOptions<JWT> jwt)
             {
             _userManager = userManager;
+            _roleManager = roleManager;
             _signInManager = signInManager;
             _configuration = configuration;
             _httpContextAccessor = httpContextAccessor;
@@ -82,6 +86,17 @@ namespace IQHealthPortal.Infrastructure.Services.Identity.Services
                 claims.Add(new Claim("BranchId", userClient.BranchId.ToString()));
                 claims.Add(new Claim("ClientId", userClient.ClientId.ToString()));
                 //claims.Add(new Claim("VType",userClient.vty))
+                }
+
+            // RoleId — the numeric role key (ApplicationRole.Id), used for authorization
+            // checks such as the claim-update role gate. Uses the user's first role.
+            var roleNames = await _userManager.GetRolesAsync(user);
+            var firstRoleName = roleNames.FirstOrDefault();
+            if (firstRoleName != null)
+                {
+                var role = await _roleManager.FindByNameAsync(firstRoleName);
+                if (role != null)
+                    claims.Add(new Claim("RoleId", role.Id));
                 }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwt.Key));

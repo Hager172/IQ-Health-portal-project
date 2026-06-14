@@ -11,5 +11,6 @@ namespace IQHealthPortal.Infrastructure.Services.Identity.Services
         string GetConnectionString(string clientId);
         string GetDefaultConnectionString();
         string GetCurrentConnectionString();
+        string GetRemoteConnectionString();
     }
 }

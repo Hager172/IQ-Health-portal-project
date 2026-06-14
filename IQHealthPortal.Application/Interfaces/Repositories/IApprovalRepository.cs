@@ -20,5 +20,9 @@ namespace IQHealthPortal.Application.Interfaces.Repositories
         Task<List<ApprovalTodatDTO>> Getnotcompeleteapp(string client_id, string VendorId);
 
         Task AddApprovalAsync(ApprovalClaimDto approval);
+
+        Task<int> UpdateClaimsAsync(UpdateClaimsRequestDto request, OnlineUserDTO user);
+
+        Task SendToLocalAsync(string approvalCode, int type);
     }
 }
