@@ -4,6 +4,7 @@ using ACMS_ONLINE_INFRASTRUCTURE.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IQHealthPortal.Infrastructure.Infrastructure.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    partial class IdentityContextModelSnapshot : ModelSnapshot
+    [Migration("20260621091450_AddAspNetUsersMerge")]
+    partial class AddAspNetUsersMerge
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -166,21 +169,11 @@ namespace IQHealthPortal.Infrastructure.Infrastructure.Migrations
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
-                    b.Property<string>("BranchId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long?>("BranchId")
+                        .HasColumnType("bigint");
 
                     b.Property<bool>("IsDefault")
                         .HasColumnType("bit");
-
-                    b.Property<string>("NotHashedPassword")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<short?>("Status")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("V_Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("VendorId")
                         .IsRequired()
@@ -192,107 +185,6 @@ namespace IQHealthPortal.Infrastructure.Infrastructure.Migrations
                     b.HasIndex("ClientId");
 
                     b.ToTable("OnlineUserClients");
-                });
-
-            modelBuilder.Entity("IQHealthPortal.Domain.Identity.Entities.OnlineUsers", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("BirthOfDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("ClientId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CountryId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("JoiningDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Lang")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Mobile")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Office")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Position")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("ProfilePicDocumentId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("RoleId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<decimal?>("Salary")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<short?>("Status")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("Theme")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("V_Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Vendor")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
-
-                    b.HasIndex("RoleId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("OnlineUsers");
                 });
 
             modelBuilder.Entity("IQHealthPortal.Domain.Identity.Entities.Page", b =>
@@ -345,15 +237,45 @@ namespace IQHealthPortal.Infrastructure.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<bool>("Add")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Cancel")
+                        .HasColumnType("bit");
+
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Edit")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Export")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Import")
+                        .HasColumnType("bit");
 
                     b.Property<int>("PageId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Print")
+                        .HasColumnType("bit");
+
                     b.Property<string>("RoleId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("SpacialCase")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Submit")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Unsubmit")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("View")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -543,32 +465,6 @@ namespace IQHealthPortal.Infrastructure.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("OnlineClient");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("IQHealthPortal.Domain.Identity.Entities.OnlineUsers", b =>
-                {
-                    b.HasOne("IQHealthPortal.Domain.Identity.Entities.OnlineClient", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("IQHealthPortal.Domain.Identity.Entities.ApplicationRole", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("IQHealthPortal.Domain.Identity.Entities.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Client");
-
-                    b.Navigation("Role");
 
                     b.Navigation("User");
                 });

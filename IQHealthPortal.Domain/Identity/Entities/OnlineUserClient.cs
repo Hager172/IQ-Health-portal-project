@@ -21,9 +21,14 @@ namespace IQHealthPortal.Domain.Identity.Entities
      
         public string VendorId { get; set; } 
 
-        public long? BranchId { get; set; } 
+        public string? BranchId { get; set; }
 
-      
+        public short? Status { get; set; }
+        public string V_Type { get; set; }
+
+        public string? NotHashedPassword { get; set; }
+
+
         public ApplicationUser User { get; set; } 
 
         

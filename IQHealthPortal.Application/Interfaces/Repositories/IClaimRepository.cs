@@ -60,10 +60,13 @@ GetCoinsuranceDataAsync(string membId, string contractId, int medItem);
 
         Task<List<ProductLookupDto>> SearchContractServicesAsync(string? term);
 
-        Task<OnlineUserDTO?> GetUserByIdAsync(long userId);
+        Task<OnlineUserDTO?> GetUserByIdAsync(string userId);
 
         Task<List<ApprovalDetailDto>> GetBranchApprovalsAsync(string? term);
         Task<List<ApprovalDetailDto>> GetmainBranchApprovalsAsync(string? term);
+        Task<bool?> GetUserStatus(string userId);
+        Task<List<ApprovalDetailDto>> GetmainBranch3mApprovalsAsync(string? term); 
+        Task<List<ApprovalDetailDto>> GetBranch3mApprovalsAsync(string? term);
     }
 
 

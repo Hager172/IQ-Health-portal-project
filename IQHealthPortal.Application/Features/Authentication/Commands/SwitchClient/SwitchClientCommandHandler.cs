@@ -125,9 +125,7 @@ namespace ACMS_ONLINE_APPLICATION.User.SwitchClient
 
             try
             {
-                // ✅ Get UserId from token
-                var userId = _contextAccessor.HttpContext?
-                    .User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var userId = request.UserId;
 
                 if (string.IsNullOrEmpty(userId))
                 {
@@ -135,7 +133,25 @@ namespace ACMS_ONLINE_APPLICATION.User.SwitchClient
                     serviceResponse.MessageEn = "User not authenticated";
                     return serviceResponse;
                 }
+                var currentUserId = _contextAccessor.HttpContext?
+    .User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+
+                var isMerged = await _unitOfWork
+                    .IdentityRepository<AspNetUsersMerge>()
+                    .FindAsync(x =>
+                        (x.UserId == currentUserId && x.UserId1 == request.UserId)
+                        ||
+                        (x.UserId1 == currentUserId && x.UserId == request.UserId)
+                    );
+
+
+                if (currentUserId != request.UserId && isMerged == null)
+                {
+                    serviceResponse.Success = false;
+                    serviceResponse.MessageEn = "Invalid merged user";
+                    return serviceResponse;
+                }
                 // ✅ Check client exists for this user
                 var client = await _unitOfWork
                     .IdentityRepository<OnlineUserClient>()
@@ -158,6 +174,7 @@ namespace ACMS_ONLINE_APPLICATION.User.SwitchClient
                     BranchId = client.BranchId?.ToString(),
                     VendorId = client.VendorId,
                     IsAuthenticated = true,
+                    Roles = await _identityService.GetUserRolesAsync(userId),
                     AuthToken = token.Token,
                 };
 

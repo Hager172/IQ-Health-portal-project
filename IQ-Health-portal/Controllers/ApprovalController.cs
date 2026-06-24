@@ -6,6 +6,7 @@ using IQHealthPortal.Application.Features.approval.Commands.UpdateApprovalItems;
 using IQHealthPortal.Application.Features.approval.Queries.GetAllTodayApproval;
 using IQHealthPortal.Application.Features.approval.Queries.GetApprovalForEdit;
 using IQHealthPortal.Application.Features.approval.Queries.Getbranchapproval;
+using IQHealthPortal.Application.Features.approval.Queries.Getbranchapproval3m;
 using IQHealthPortal.Application.Features.approval.Queries.GetDiagnosis;
 using IQHealthPortal.Application.Features.approval.Queries.GetMemberApprovals;
 using IQHealthPortal.Application.Features.approval.Queries.GetMemberInfo;
@@ -111,7 +112,7 @@ namespace IQ_Health_portal.Controllers
 
                 VType = User.FindFirst("VType")?.Value,
 
-                Office = User.FindFirst("Office")?.Value
+                Office = User.FindFirst("Office")!.Value
             };
 
             // COMMAND
@@ -185,6 +186,17 @@ namespace IQ_Health_portal.Controllers
         {
             var result = await _mediator.Send(
                 new GetbranchapprovalQuery
+                {
+                    branchid = office_id
+                });
+            return Ok(result);
+        }
+        [HttpGet("branch-3mapprovals")]
+        [Authorize]
+        public async Task<IActionResult> GetBranch3mApprovals(string? office_id)
+        {
+            var result = await _mediator.Send(
+                new Getbranchapproval3mQuery
                 {
                     branchid = office_id
                 });

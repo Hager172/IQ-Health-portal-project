@@ -35,16 +35,29 @@ namespace IQ_Health_portal.Controllers
         }
 
 
+        //[Authorize]
+        //[HttpPost("SwitchClients", Name = "SwitchClients")]
+        //public async Task<ActionResult<ServiceResponse<GetApprovalDetailsQuery>>> SwitchClients([FromQuery] int ClientId)
+        //{
+
+
+        //    var SwitchClientCommand = new SwitchClientCommand() { ClientId = ClientId };
+        //    return Ok(await _mediator.Send(SwitchClientCommand));
+        //}
         [Authorize]
         [HttpPost("SwitchClients", Name = "SwitchClients")]
-        public async Task<ActionResult<ServiceResponse<GetApprovalDetailsQuery>>> SwitchClients([FromQuery] int ClientId)
+        public async Task<ActionResult<ServiceResponse<SwitchClientCommandResponse>>> SwitchClients(
+    [FromQuery] string UserId,
+    [FromQuery] int ClientId)
         {
+            var command = new SwitchClientCommand
+            {
+                UserId = UserId,
+                ClientId = ClientId
+            };
 
-
-            var SwitchClientCommand = new SwitchClientCommand() { ClientId = ClientId };
-            return Ok(await _mediator.Send(SwitchClientCommand));
+            return Ok(await _mediator.Send(command));
         }
-
 
         [Authorize]
         [HttpGet("Me", Name = "Me")]

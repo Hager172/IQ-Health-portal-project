@@ -254,7 +254,7 @@ namespace IQHealthPortal.Infrastructure.Services.Claim
                 {
                     ApprovalId = claim.ApprovalCode,
                     ApprovalDate = DateTime.Now,
-                    OnlineBCode = currentUser.Office,
+                    OnlineBCode = currentUser.Office.ToString(),
                     MemberId = claim.MembId,
                     Notes = claim.Notes,
                     LastUpdateBy = currentUser.UserName,
@@ -592,6 +592,21 @@ namespace IQHealthPortal.Infrastructure.Services.Claim
             }
 
             return await unitOfWork.ClaimRepository.GetBranchApprovalsAsync(branchId);
+        }
+
+
+        public async Task<List<ApprovalDetailDto>> getbranchapprovallast3monthes(string branchId)
+        {
+            if (string.IsNullOrEmpty(branchId)) return new List<ApprovalDetailDto>();
+
+            var parts = branchId.Split('.');
+
+            if (parts.Length > 1 && parts[1] == "0")
+            {
+                return await unitOfWork.ClaimRepository.GetmainBranch3mApprovalsAsync(parts[0]);
+            }
+
+            return await unitOfWork.ClaimRepository.GetBranch3mApprovalsAsync(branchId);
         }
         //private async Task InsertLog(int approvalCode, string action, string message)
         //{

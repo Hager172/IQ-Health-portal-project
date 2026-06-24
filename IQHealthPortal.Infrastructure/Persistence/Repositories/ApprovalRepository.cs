@@ -612,7 +612,7 @@ ORDER BY s.item_serial;";
 
                             using (var cmd = new SqlCommand(approvalSql, connection, transaction))
                             {
-                                cmd.Parameters.AddWithValue("@Office", (object?)user.Office?.Trim() ?? DBNull.Value);
+                                cmd.Parameters.AddWithValue("@Office", (object?)user.Office?? DBNull.Value);
                                 cmd.Parameters.AddWithValue("@Vendor", (object?)user.Vendor?.Trim() ?? DBNull.Value);
                                 cmd.Parameters.AddWithValue("@Notes", (object?)request.Notes ?? DBNull.Value);
                                 cmd.Parameters.AddWithValue("@UserName", (object?)user.UserName ?? DBNull.Value);

@@ -23,5 +23,6 @@ namespace IQHealthPortal.Application.Interfaces.services
     string type);
 
         Task<List<ApprovalDetailDto>> getbranchapproval(string branchId);
+        Task<List<ApprovalDetailDto>> getbranchapprovallast3monthes(string branchId);
     }
 }

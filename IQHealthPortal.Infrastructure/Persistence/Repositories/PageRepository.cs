@@ -29,17 +29,8 @@ namespace IQHealthPortal.Infrastructure.Persistence.Repositories
                           {
                               PageId = p.Id,
                               NameAr = p.NameAr,
-                              NameEn = p.NameEn,
-                              Add = pr.Add,
-                              View = pr.View,
-                              Edit = pr.Edit,
-                              Submit = pr.Submit,
-                              Unsubmit = pr.Unsubmit,
-                              Cancel = pr.Cancel,
-                              Import = pr.Import,
-                              Export = pr.Export,
-                              Print = pr.Print,
-                              SpacialCase = pr.SpacialCase
+                              NameEn = p.NameEn
+                            
                           })
                           .Distinct()
                           .AsEnumerable()

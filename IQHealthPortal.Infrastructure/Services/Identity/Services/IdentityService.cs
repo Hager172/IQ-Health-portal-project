@@ -34,7 +34,7 @@ namespace IQHealthPortal.Infrastructure.Services.Identity.Services
         private readonly IMapper _mapper;
         public IdentityService(UserManager<ApplicationUser> userManager,
                                RoleManager<ApplicationRole> roleManager,
-                               SignInManager<ApplicationUser> signInManager, IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IOptions<JWT> jwt)
+                               SignInManager<ApplicationUser> signInManager, IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IOptions<JWT> jwt,IUnitOfWork unitOfWork)
             {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -42,6 +42,8 @@ namespace IQHealthPortal.Infrastructure.Services.Identity.Services
             _configuration = configuration;
             _httpContextAccessor = httpContextAccessor;
             _jwt = jwt.Value;
+            this._unitOfWork = unitOfWork;
+            
             }
 
         public async Task<(bool, string?)> ValidateUserAsync(string name, string password)
@@ -65,7 +67,10 @@ namespace IQHealthPortal.Infrastructure.Services.Identity.Services
         public async Task<JwtTokenDto> CreateJwtTokenAsync(string userid, OnlineUserClient? userClient)
             {
             var user = await _userManager.FindByIdAsync(userid);
-            //var userdata= await _unitOfWork.ClaimRepository.GetUserByIdAsync(userid)
+
+            var userdata = await _unitOfWork.ClaimRepository.GetUserByIdAsync(userid);
+
+           
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id),
@@ -74,22 +79,17 @@ namespace IQHealthPortal.Infrastructure.Services.Identity.Services
                 new Claim(ClaimTypes.Name, user.UserName)         ,
                 new Claim(ClaimTypes.NameIdentifier, user.Id)
             };
-            //var claims = new List<Claim>
-            //{
-            //    new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-            //    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            //};
+          
 
             if (userClient != null)
                 {
                 claims.Add(new Claim("VendorId", userClient.VendorId));
                 claims.Add(new Claim("BranchId", userClient.BranchId.ToString()));
                 claims.Add(new Claim("ClientId", userClient.ClientId.ToString()));
-                //claims.Add(new Claim("VType",userClient.vty))
-                }
+                claims.Add(new Claim("VType", userdata?.VType ?? ""));
+                claims.Add(new Claim("Voffice", userdata?.Office.ToString()));
+            }
 
-            // RoleId — the numeric role key (ApplicationRole.Id), used for authorization
-            // checks such as the claim-update role gate. Uses the user's first role.
             var roleNames = await _userManager.GetRolesAsync(user);
             var firstRoleName = roleNames.FirstOrDefault();
             if (firstRoleName != null)

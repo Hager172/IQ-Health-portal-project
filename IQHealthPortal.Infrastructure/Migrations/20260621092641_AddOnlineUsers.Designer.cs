@@ -4,6 +4,7 @@ using ACMS_ONLINE_INFRASTRUCTURE.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IQHealthPortal.Infrastructure.Infrastructure.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    partial class IdentityContextModelSnapshot : ModelSnapshot
+    [Migration("20260621092641_AddOnlineUsers")]
+    partial class AddOnlineUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -166,21 +169,11 @@ namespace IQHealthPortal.Infrastructure.Infrastructure.Migrations
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
-                    b.Property<string>("BranchId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long?>("BranchId")
+                        .HasColumnType("bigint");
 
                     b.Property<bool>("IsDefault")
                         .HasColumnType("bit");
-
-                    b.Property<string>("NotHashedPassword")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<short?>("Status")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("V_Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("VendorId")
                         .IsRequired()
@@ -196,8 +189,11 @@ namespace IQHealthPortal.Infrastructure.Infrastructure.Migrations
 
             modelBuilder.Entity("IQHealthPortal.Domain.Identity.Entities.OnlineUsers", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -345,15 +341,45 @@ namespace IQHealthPortal.Infrastructure.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<bool>("Add")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Cancel")
+                        .HasColumnType("bit");
+
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Edit")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Export")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Import")
+                        .HasColumnType("bit");
 
                     b.Property<int>("PageId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Print")
+                        .HasColumnType("bit");
+
                     b.Property<string>("RoleId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("SpacialCase")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Submit")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Unsubmit")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("View")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

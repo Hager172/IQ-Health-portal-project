@@ -1,4 +1,5 @@
-﻿using IQHealthPortal.Application.DTOs;
+﻿using ACMS_ONLINE_INFRASTRUCTURE.Data;
+using IQHealthPortal.Application.DTOs;
 using IQHealthPortal.Application.DTOs.ApprovalDtos;
 using IQHealthPortal.Application.DTOs.itemsDtos;
 using IQHealthPortal.Application.Interfaces.Repositories;
@@ -10,6 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace IQHealthPortal.Infrastructure.Persistence.Repositories
 {
@@ -375,19 +377,56 @@ namespace IQHealthPortal.Infrastructure.Persistence.Repositories
                 .ToListAsync();
         }
 
-        public async Task<OnlineUserDTO?> GetUserByIdAsync(long userId)
+        public async Task<OnlineUserDTO?> GetUserByIdAsync(string userId)
         {
-            using var context = CreateContext();
-            return await context.OnlineUsers
-                .Where(x => x.Id == userId)
+            var connection = connectionStringProvider.GetDefaultConnectionString();
+
+            var options = new DbContextOptionsBuilder<IdentityContext>()
+                .UseSqlServer(connection)
+                .Options;
+
+            await using var context = new IdentityContext(options);
+
+            if (string.IsNullOrEmpty(userId))
+                return null;
+
+            return await context.OnlineUserClients
+                .Where(x => x.UserId == userId)
                 .Select(x => new OnlineUserDTO
                 {
-                    VType = x.VType,
-                    Office = x.Office
+                    VType = x.V_Type,
+                    Office = x.BranchId,
+                    Status = x.Status
                 })
                 .FirstOrDefaultAsync();
         }
 
+        public async Task<bool?> GetUserStatus(string userId)
+        {
+            var connection = connectionStringProvider.GetDefaultConnectionString();
+
+            var options = new DbContextOptionsBuilder<IdentityContext>()
+                .UseSqlServer(connection)
+                .Options;
+
+            await using var context = new IdentityContext(options);
+
+            if (string.IsNullOrEmpty(userId))
+                return null;
+
+         var status=  await context.OnlineUserClients
+                .Where(x => x.UserId == userId)
+                .Select(x =>x.Status)
+                .FirstOrDefaultAsync();
+
+            if(status == null)
+                return null;
+            if (status == 1)
+                return true;
+            else
+                return false;
+             
+        }
         public async Task<List<ApprovalDetailDto>> GetBranchApprovalsAsync(string? term)
         {
             using var context = CreateContext();
@@ -413,7 +452,67 @@ namespace IQHealthPortal.Infrastructure.Persistence.Repositories
 
 
 
+        public async Task<List<ApprovalDetailDto>> GetBranch3mApprovalsAsync(string? term)
+        {
+            using var context = CreateContext();
 
+            var endDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+
+            var startDate = endDate.AddMonths(-3);
+
+            return await context.Approvals
+                .Where(x => x.OnlineBCode == term
+                         && x.RequestSource == "Online"
+                         && x.OnlineStatus == "P"
+                         && x.ApprovalDate >= startDate
+                         && x.ApprovalDate < endDate) 
+                .Select(x => new ApprovalDetailDto
+                {
+                    ApprovalId = x.ApprovalId,
+                    ApprovalDate = x.ApprovalDate,
+                    ApStatus = x.OnlineStatus,
+                    ApType = x.ApType,
+                    RequestSource = x.RequestSource,
+                    Notes = x.Notes,
+                    MemberId = x.MemberId,
+                    MemberName = x.Member.MemberName,
+                    CompanyName = context.CustomerContracts.Where(c=>c.CustomerContractId==x.ContractId).Select(c=>c.CustomerContractCustomer.CustomerName).FirstOrDefault(),
+                    BranchName = context.OnlineUsers
+    .Where(u => u.Office == x.OnlineBCode)
+    .Select(u => u.FirstName)
+    .FirstOrDefault(),
+                    VendorId = x.VendorId,
+                })
+                .ToListAsync();
+        }
+
+        //public async string GetBranchName(string? office)
+        //{
+           
+        //    using var context = CreateContext();
+
+
+        //    var BranchName = context.OnlineUsers.Where(u => u.Office == office).Select(u => u.FirstName).FirstOrDefault();
+
+        //    return BranchName;
+        //}
+        //var connection = connectionStringProvider.GetDefaultConnectionString();
+
+        //var options = new DbContextOptionsBuilder<IdentityContext>()
+        //    .UseSqlServer(connection)
+        //    .Options;
+
+        //await using var context = new IdentityContext(options);
+
+        //var userid = await context.OnlineUserClients
+        //    .Where(u => u.BranchId == office)
+        //    .Select(u => u.UserId)
+        //    .FirstOrDefaultAsync();
+        //var branchName= await context.Users.Where(x=>x.Id = userid)
+
+
+
+        //return branchName;
         public async Task<List<ApprovalDetailDto>> GetmainBranchApprovalsAsync(string? term)
         {
             using var context = CreateContext();
@@ -437,5 +536,40 @@ namespace IQHealthPortal.Infrastructure.Persistence.Repositories
 
 
         }
+
+        public async Task<List<ApprovalDetailDto>> GetmainBranch3mApprovalsAsync(string? term)
+        {
+            using var context = CreateContext();
+
+            var endDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+
+            var startDate = endDate.AddMonths(-3);
+
+            var result= await context.Approvals
+                .Where(x => x.OnlineBCode.StartsWith(term + ".")
+                         && x.RequestSource == "Online"
+                         && x.OnlineStatus == "P"
+                         && x.ApprovalDate >= startDate
+                         && x.ApprovalDate < endDate)
+                .Select(x => new ApprovalDetailDto
+                {
+                    ApprovalId = x.ApprovalId,
+                    ApprovalDate = x.ApprovalDate,
+                    ApStatus = x.ApStatus,
+                    ApType = x.ApType,
+                    RequestSource = x.RequestSource,
+                    Notes = x.Notes,
+                    MemberId = x.MemberId,
+                    MemberName = x.Member.MemberName,
+                    CompanyName = context.CustomerContracts.Where(c => c.CustomerContractId == x.ContractId).Select(c => c.CustomerContractCustomer.CustomerName).FirstOrDefault(),
+                    v_branch_id=x.OnlineBCode,
+                    BranchName = context.OnlineUsers.Where(u => u.Office == x.OnlineBCode).Select(u => u.LastName).FirstOrDefault(),
+
+                    VendorId = x.VendorId,
+                })
+                .ToListAsync();
+            return result;
+        }
+
     }
 }

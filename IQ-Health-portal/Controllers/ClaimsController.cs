@@ -31,7 +31,7 @@ namespace IQ_Health_portal.Controllers
                     UserName = User.Identity?.Name,
                     Vendor = User.FindFirst("Vendor")?.Value,
                     VType = User.FindFirst("VType")?.Value,
-                    Office = User.FindFirst("Office")?.Value,
+                    Office =User.FindFirst("Office")?.Value,
                     RoleId = int.TryParse(User.FindFirst("RoleId")?.Value, out var roleId)
                         ? roleId
                         : null

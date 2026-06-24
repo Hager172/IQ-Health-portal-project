@@ -18,5 +18,7 @@ namespace IQHealthPortal.Application.DTOs
 
         public byte IsActive { get; set; }
 
+        public string? UserId { get; set; }
+
     }
 }

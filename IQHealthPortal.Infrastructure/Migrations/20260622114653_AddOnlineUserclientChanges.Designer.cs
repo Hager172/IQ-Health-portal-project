@@ -4,6 +4,7 @@ using ACMS_ONLINE_INFRASTRUCTURE.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IQHealthPortal.Infrastructure.Infrastructure.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    partial class IdentityContextModelSnapshot : ModelSnapshot
+    [Migration("20260622114653_AddOnlineUserclientChanges")]
+    partial class AddOnlineUserclientChanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -166,8 +169,8 @@ namespace IQHealthPortal.Infrastructure.Infrastructure.Migrations
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
-                    b.Property<string>("BranchId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long?>("BranchId")
+                        .HasColumnType("bigint");
 
                     b.Property<bool>("IsDefault")
                         .HasColumnType("bit");

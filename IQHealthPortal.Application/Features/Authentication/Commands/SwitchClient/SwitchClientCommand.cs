@@ -11,5 +11,7 @@ namespace ACMS_ONLINE_APPLICATION.User.SwitchClient
     public class SwitchClientCommand : IRequest<ServiceResponse< SwitchClientCommandResponse>>
     {
         public int ClientId { get; set; }
+
+        public string? UserId { get; set; }
     }
 }

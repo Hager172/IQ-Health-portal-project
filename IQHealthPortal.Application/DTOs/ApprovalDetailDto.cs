@@ -14,7 +14,8 @@ namespace IQHealthPortal.Application.DTOs
         public string RequestSource { get; set; }
         public string Notes { get; set; }
         public string MemberId { get; set; }
-        public string MemberName { get; set; }          
+        public string MemberName { get; set; }
+        public string CompanyName { get; set; }
         public string MemberNationalId { get; set; }    
         public List<DiagnosisDto> Diagnoses { get; set; } = new();
 
@@ -23,6 +24,8 @@ namespace IQHealthPortal.Application.DTOs
         public string VendorId { get; set; }
         public string VendorName { get; set; }
         public string? v_branch_id { get; set; }
+        public string? BranchName { get; set; }
+
         public string? ContractId { get; set; }
         public long? ParentApproval { get; set; }
 
