@@ -47,11 +47,15 @@ public partial class MembersComplaint
 
     public virtual Approval? Approval { get; set; }
 
+    public virtual ICollection<ComplaintReply> ComplaintReplies { get; set; } = new List<ComplaintReply>();
+
     public virtual ComplanitType? ComplaintTypeNavigation { get; set; }
 
     public virtual ICollection<CrmLog> CrmLogs { get; set; } = new List<CrmLog>();
 
     public virtual Department DepartmentNavigation { get; set; } = null!;
+
+    public virtual ICollection<FollowupMemberscomplaint> FollowupMemberscomplaints { get; set; } = new List<FollowupMemberscomplaint>();
 
     public virtual Member? Member { get; set; }
 

@@ -27,6 +27,8 @@ public partial class VendorCategory
 
     public virtual ICollection<CrmItemCopayment> CrmItemCopayments { get; set; } = new List<CrmItemCopayment>();
 
+    public virtual ICollection<CrmVendorsCopayment> CrmVendorsCopayments { get; set; } = new List<CrmVendorsCopayment>();
+
     public virtual ICollection<Inquery> Inqueries { get; set; } = new List<Inquery>();
 
     public virtual ICollection<InsuranceCategoryCode> InsuranceCategoryCodes { get; set; } = new List<InsuranceCategoryCode>();

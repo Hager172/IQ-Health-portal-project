@@ -38,4 +38,6 @@ public partial class Action
     public virtual ICollection<VendorLog> VendorLogs { get; set; } = new List<VendorLog>();
 
     public virtual ICollection<VendorStatusMonitor> VendorStatusMonitors { get; set; } = new List<VendorStatusMonitor>();
+
+    public virtual ICollection<VendorTaxesLog> VendorTaxesLogs { get; set; } = new List<VendorTaxesLog>();
 }

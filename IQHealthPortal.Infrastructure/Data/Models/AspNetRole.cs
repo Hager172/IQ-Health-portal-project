@@ -13,6 +13,8 @@ public partial class AspNetRole
 
     public string? ConcurrencyStamp { get; set; }
 
+    public virtual ICollection<AspNetRoleClaim> AspNetRoleClaims { get; set; } = new List<AspNetRoleClaim>();
+
     public virtual ICollection<CustomerCoordinatorLog> CustomerCoordinatorLogs { get; set; } = new List<CustomerCoordinatorLog>();
 
     public virtual ICollection<UserCustomer> UserCustomers { get; set; } = new List<UserCustomer>();

@@ -62,4 +62,6 @@ public partial class VMcMemberConsumption
     public string LogNote { get; set; } = null!;
 
     public string? PaymentChannelName { get; set; }
+
+    public decimal? AdjNumber { get; set; }
 }

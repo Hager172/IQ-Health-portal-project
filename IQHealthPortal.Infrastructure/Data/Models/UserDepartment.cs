@@ -17,6 +17,8 @@ public partial class UserDepartment
 
     public string? UserFullName { get; set; }
 
+    public virtual OrgBranch Branch { get; set; } = null!;
+
     public virtual Department Dept { get; set; } = null!;
 
     public virtual ICollection<UserDepartment> InverseParent { get; set; } = new List<UserDepartment>();

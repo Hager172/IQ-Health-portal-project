@@ -75,9 +75,13 @@ public partial class Customer
 
     public int? CompanyActivity { get; set; }
 
+    public bool? ManagementCompany { get; set; }
+
     public virtual ICollection<AcmsOtp> AcmsOtps { get; set; } = new List<AcmsOtp>();
 
     public virtual ICollection<Batch> Batches { get; set; } = new List<Batch>();
+
+    public virtual ICollection<BatchesCheckBalance> BatchesCheckBalances { get; set; } = new List<BatchesCheckBalance>();
 
     public virtual ICollection<Bill> Bills { get; set; } = new List<Bill>();
 
@@ -121,6 +125,8 @@ public partial class Customer
 
     public virtual ICollection<CustomerVendorException> CustomerVendorExceptions { get; set; } = new List<CustomerVendorException>();
 
+    public virtual ICollection<CustomersContractMaster> CustomersContractMasters { get; set; } = new List<CustomersContractMaster>();
+
     public virtual ICollection<CustomersVisit> CustomersVisits { get; set; } = new List<CustomersVisit>();
 
     public virtual ICollection<DisRefund> DisRefunds { get; set; } = new List<DisRefund>();
@@ -144,6 +150,8 @@ public partial class Customer
     public virtual ICollection<NotesClaimGroup> NotesClaimGroups { get; set; } = new List<NotesClaimGroup>();
 
     public virtual ICollection<NotesTpaGroup> NotesTpaGroups { get; set; } = new List<NotesTpaGroup>();
+
+    public virtual ICollection<ReceptionOrder> ReceptionOrders { get; set; } = new List<ReceptionOrder>();
 
     public virtual ICollection<SchCustomerArchive> SchCustomerArchives { get; set; } = new List<SchCustomerArchive>();
 

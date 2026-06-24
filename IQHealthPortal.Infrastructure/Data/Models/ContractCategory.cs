@@ -16,4 +16,6 @@ public partial class ContractCategory
     public virtual ICollection<CustomerContractCategory> CustomerContractCategories { get; set; } = new List<CustomerContractCategory>();
 
     public virtual ICollection<MemberPlan> MemberPlans { get; set; } = new List<MemberPlan>();
+
+    public virtual ICollection<RequestcrmCustomerCategory> RequestcrmCustomerCategories { get; set; } = new List<RequestcrmCustomerCategory>();
 }

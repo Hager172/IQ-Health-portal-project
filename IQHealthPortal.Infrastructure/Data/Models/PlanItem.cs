@@ -51,6 +51,8 @@ public partial class PlanItem
 
     public bool? NoteAlert { get; set; }
 
+    public long? SharedItemId { get; set; }
+
     public virtual CareItem Item { get; set; } = null!;
 
     public virtual ICollection<ItemCopayment> ItemCopayments { get; set; } = new List<ItemCopayment>();
@@ -62,6 +64,8 @@ public partial class PlanItem
     public virtual ContractPool? PlanItemPool { get; set; }
 
     public virtual ICollection<PlanItemRule> PlanItemRules { get; set; } = new List<PlanItemRule>();
+
+    public virtual PlanSharedItem? SharedItem { get; set; }
 
     public virtual ICollection<VendorsCopayment> VendorsCopayments { get; set; } = new List<VendorsCopayment>();
 

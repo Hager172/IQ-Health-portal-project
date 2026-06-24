@@ -29,6 +29,10 @@ public partial class Area
 
     public virtual ICollection<Member> Members { get; set; } = new List<Member>();
 
+    public virtual ICollection<ReceptionOrder> ReceptionOrderAreas { get; set; } = new List<ReceptionOrder>();
+
+    public virtual ICollection<ReceptionOrder> ReceptionOrderCountries { get; set; } = new List<ReceptionOrder>();
+
     public virtual ICollection<VendorBranch> VendorBranches { get; set; } = new List<VendorBranch>();
 
     public virtual ICollection<VendorBranchesTemp> VendorBranchesTemps { get; set; } = new List<VendorBranchesTemp>();

@@ -29,5 +29,7 @@ public partial class AcmcPrivilege
 
     public bool? PrevSpacialcase { get; set; }
 
+    public virtual AcmcPage Page { get; set; } = null!;
+
     public virtual AspNetUser User { get; set; } = null!;
 }

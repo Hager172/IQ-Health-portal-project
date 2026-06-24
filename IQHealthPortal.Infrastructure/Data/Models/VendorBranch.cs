@@ -43,6 +43,8 @@ public partial class VendorBranch
 
     public virtual ICollection<Approval> Approvals { get; set; } = new List<Approval>();
 
+    public virtual ICollection<MashcareBranchStutusMentor> MashcareBranchStutusMentors { get; set; } = new List<MashcareBranchStutusMentor>();
+
     public virtual VendorGeneral Vendor { get; set; } = null!;
 
     public virtual Area VendorBrancharea { get; set; } = null!;

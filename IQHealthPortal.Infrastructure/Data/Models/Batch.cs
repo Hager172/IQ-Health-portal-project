@@ -63,6 +63,8 @@ public partial class Batch
 
     public decimal? PerentId { get; set; }
 
+    public bool? CheckBalanceResult { get; set; }
+
     public virtual ICollection<BatchDetail> BatchDetails { get; set; } = new List<BatchDetail>();
 
     public virtual ICollection<BatchLog> BatchLogs { get; set; } = new List<BatchLog>();
@@ -70,6 +72,10 @@ public partial class Batch
     public virtual StateRef? BatchStatusNavigation { get; set; }
 
     public virtual VendorGeneral BatchVendor { get; set; } = null!;
+
+    public virtual ICollection<BatchesCheckBalance> BatchesCheckBalances { get; set; } = new List<BatchesCheckBalance>();
+
+    public virtual ICollection<CheckBalanceBugReport> CheckBalanceBugReports { get; set; } = new List<CheckBalanceBugReport>();
 
     public virtual Customer? Customer { get; set; }
 

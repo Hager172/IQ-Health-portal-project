@@ -19,11 +19,15 @@ public partial class VMashCareRefundSummary
 
     public DateTime CreationDate { get; set; }
 
+    public string? ServiceId { get; set; }
+
     public string? ServiceName { get; set; }
 
     public double? ServicePrice { get; set; }
 
     public string WrittenBy { get; set; } = null!;
+
+    public string RiquestedBy { get; set; } = null!;
 
     public string? ApType { get; set; }
 

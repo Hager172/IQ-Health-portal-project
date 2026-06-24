@@ -15,6 +15,10 @@ public partial class CareItem
 
     public virtual ICollection<BatchDetail> BatchDetails { get; set; } = new List<BatchDetail>();
 
+    public virtual ICollection<CheckBalanceReply> CheckBalanceReplyCurrentMeditemNavigations { get; set; } = new List<CheckBalanceReply>();
+
+    public virtual ICollection<CheckBalanceReply> CheckBalanceReplyUpdatedMeditemNavigations { get; set; } = new List<CheckBalanceReply>();
+
     public virtual ICollection<ChronicLookupTable> ChronicLookupTables { get; set; } = new List<ChronicLookupTable>();
 
     public virtual ICollection<CrmPlanItem> CrmPlanItems { get; set; } = new List<CrmPlanItem>();

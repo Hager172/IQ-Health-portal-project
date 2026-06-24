@@ -21,7 +21,7 @@ public partial class ApprovalsLog
 
     public string ApprovalStatus { get; set; } = null!;
 
-    public double? Price { get; set; }
+    public double Price { get; set; }
 
     public string LastUpdateBy { get; set; } = null!;
 

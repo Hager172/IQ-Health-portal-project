@@ -1,4 +1,4 @@
-﻿using IQHealthPortal.Domain.Identity.Entities;
+using IQHealthPortal.Application.Interfaces.Repositories;
 using MediatR;
 
 
@@ -7,29 +7,21 @@ namespace IQHealthPortal.Application.Features.Chat.Commands.SendMessage
     public class SendMessageHandler
     : IRequestHandler<SendMessageCommand, bool>
     {
-        private readonly IUnitOfWork _context;
+        private readonly IChatRepository _chatRepository;
 
-        public SendMessageHandler(IUnitOfWork context)
+        public SendMessageHandler(IChatRepository chatRepository)
         {
-            _context = context;
+            _chatRepository = chatRepository;
         }
 
         public async Task<bool> Handle(
             SendMessageCommand request,
             CancellationToken cancellationToken)
         {
-            var message = new ChatMessage
-            {
-                SenderId = request.SenderId,
-                ReceiverId = request.ReceiverId,
-                Message = request.Message,
-                SentAt = DateTime.UtcNow
-            };
-
-            await _context.ApplicationRepository<ChatMessage>()
-                .AddAsync(message);
-
-            _context.Save();
+            await _chatRepository.AddMessageAsync(
+                request.SenderId,
+                request.ReceiverId,
+                request.Message);
 
             return true;
         }

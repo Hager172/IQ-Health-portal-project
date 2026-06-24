@@ -32,4 +32,6 @@ public partial class Broker
     public virtual ICollection<CrmCustomerContract> CrmCustomerContracts { get; set; } = new List<CrmCustomerContract>();
 
     public virtual ICollection<CustomerContract> CustomerContracts { get; set; } = new List<CustomerContract>();
+
+    public virtual ICollection<RequestcrmCustomer> RequestcrmCustomers { get; set; } = new List<RequestcrmCustomer>();
 }
