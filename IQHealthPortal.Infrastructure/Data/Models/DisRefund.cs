@@ -49,6 +49,10 @@ public partial class DisRefund
 
     public string? FinReview { get; set; }
 
+    public string? IsharId { get; set; }
+
+    public string? ReviewNote { get; set; }
+
     public virtual Batch Batch { get; set; } = null!;
 
     public virtual BatchDetail BatchDetail { get; set; } = null!;

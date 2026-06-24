@@ -91,6 +91,8 @@ public partial class VendorGeneral
 
     public virtual ICollection<CrmItemCopayment> CrmItemCopayments { get; set; } = new List<CrmItemCopayment>();
 
+    public virtual ICollection<CrmVendorsCopayment> CrmVendorsCopayments { get; set; } = new List<CrmVendorsCopayment>();
+
     public virtual ICollection<CustomerComplaint> CustomerComplaints { get; set; } = new List<CustomerComplaint>();
 
     public virtual ICollection<CustomerVendorException> CustomerVendorExceptions { get; set; } = new List<CustomerVendorException>();
@@ -110,6 +112,8 @@ public partial class VendorGeneral
     public virtual ICollection<MembersComplaint> MembersComplaints { get; set; } = new List<MembersComplaint>();
 
     public virtual VendorGeneral? Parent { get; set; }
+
+    public virtual ICollection<ReceptionOrder> ReceptionOrders { get; set; } = new List<ReceptionOrder>();
 
     public virtual Area? VendorAreaNavigation { get; set; }
 
@@ -142,6 +146,8 @@ public partial class VendorGeneral
     public virtual ICollection<VendorSpecialrole> VendorSpecialroles { get; set; } = new List<VendorSpecialrole>();
 
     public virtual ICollection<VendorStatusMonitor> VendorStatusMonitors { get; set; } = new List<VendorStatusMonitor>();
+
+    public virtual ICollection<VendorTaxis> VendorTaxes { get; set; } = new List<VendorTaxis>();
 
     public virtual ICollection<VendorsCopayment> VendorsCopayments { get; set; } = new List<VendorsCopayment>();
 

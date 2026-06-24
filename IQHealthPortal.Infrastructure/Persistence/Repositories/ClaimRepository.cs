@@ -215,7 +215,7 @@ namespace IQHealthPortal.Infrastructure.Persistence.Repositories
                 MemberId = logDto.MemberId,
                 Notes = logDto.Notes,
                 ApprovalStatus = logDto.ApprovalStatus,
-                Price = logDto.Price,
+                Price = logDto.Price ?? 0,
                 LastUpdateBy = logDto.LastUpdateBy,
                 LastUpdateDate = logDto.LastUpdateDate,
                 LastUpdateFrom = logDto.LastUpdateFrom,

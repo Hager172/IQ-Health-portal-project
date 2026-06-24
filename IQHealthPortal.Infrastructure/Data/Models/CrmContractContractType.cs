@@ -15,11 +15,19 @@ public partial class CrmContractContractType
 
     public double? ManagementFees { get; set; }
 
+    public string? OfferName { get; set; }
+
+    public int? TypeStages { get; set; }
+
     public virtual ContractType1? ContractType { get; set; }
 
     public virtual CrmCustomerContract? CrmContract { get; set; }
 
     public virtual ICollection<CrmContractPlan> CrmContractPlans { get; set; } = new List<CrmContractPlan>();
 
+    public virtual ICollection<CrmCustomerContract> CrmCustomerContracts { get; set; } = new List<CrmCustomerContract>();
+
     public virtual Customer? InsurerNavigation { get; set; }
+
+    public virtual StatusProcedure? TypeStagesNavigation { get; set; }
 }

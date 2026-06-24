@@ -9,5 +9,6 @@ namespace IQHealthPortal.Application.Features.Chat.Commands.SendMessage
         public string ReceiverId { get; set; } = default!;
 
         public string Message { get; set; } = default!;
+        public string ClientId { get; set; } = default!;
     }
 }

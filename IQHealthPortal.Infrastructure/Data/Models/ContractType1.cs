@@ -11,6 +11,8 @@ public partial class ContractType1
 
     public string? ContractTypeNameEn { get; set; }
 
+    public bool? Isshow { get; set; }
+
     public virtual ICollection<BatchDetail> BatchDetails { get; set; } = new List<BatchDetail>();
 
     public virtual ICollection<ContractActivity> ContractActivities { get; set; } = new List<ContractActivity>();

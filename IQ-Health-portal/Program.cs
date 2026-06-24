@@ -88,6 +88,7 @@ builder.Services.AddScoped<IClaimRepository, ClaimRepository>();
 
 builder.Services.AddSingleton<IConnectionStringProvider, ConnectionStringProvider>();
 builder.Services.AddScoped<ImemberRepository, MemberRepository>();
+builder.Services.AddScoped<IChatRepository, ChatRepository>();
 //builder.Services.AddScoped<IUserPermissionRepository, UserPermissionRepository>();
 //builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 //builder.Services.AddMediatR(typeof(ApplicationLayer).Assembly);
@@ -108,7 +109,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSignalR();
+builder.Services.AddSignalR(options => options.EnableDetailedErrors = true);
 
 // Source - https://stackoverflow.com/a/79835686
 // Posted by Nermin, modified by community. See post 'Timeline' for change history
@@ -155,7 +156,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll", policy =>
     {
         policy
-        .WithOrigins("http://localhost:4200", "http://150.200.12.4:4200") // adjust based on real deployment
+        .WithOrigins("http://localhost:4200", "http://150.200.12.4:4200", "http://localhost:9214") // adjust based on real deployment
         .AllowAnyHeader()
               .AllowAnyMethod()
                .AllowCredentials();

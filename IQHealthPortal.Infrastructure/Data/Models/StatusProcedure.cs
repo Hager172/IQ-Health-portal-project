@@ -13,6 +13,8 @@ public partial class StatusProcedure
 
     public virtual ICollection<BatchLog> BatchLogs { get; set; } = new List<BatchLog>();
 
+    public virtual ICollection<CrmContractContractType> CrmContractContractTypes { get; set; } = new List<CrmContractContractType>();
+
     public virtual ICollection<CrmContractExcutor> CrmContractExcutors { get; set; } = new List<CrmContractExcutor>();
 
     public virtual ICollection<CrmCustomerContract> CrmCustomerContracts { get; set; } = new List<CrmCustomerContract>();
@@ -22,6 +24,8 @@ public partial class StatusProcedure
     public virtual ICollection<MembersComplaint> MembersComplaints { get; set; } = new List<MembersComplaint>();
 
     public virtual ICollection<PrivilegeRequest> PrivilegeRequests { get; set; } = new List<PrivilegeRequest>();
+
+    public virtual ICollection<RequestcrmCustomer> RequestcrmCustomers { get; set; } = new List<RequestcrmCustomer>();
 
     public virtual ICollection<SandaScheduleLog> SandaScheduleLogs { get; set; } = new List<SandaScheduleLog>();
 

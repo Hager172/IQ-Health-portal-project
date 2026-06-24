@@ -25,6 +25,8 @@ public partial class CrmCustomer
 
     public string LastUpdateBy { get; set; } = null!;
 
+    public bool? ManagementCompany { get; set; }
+
     public virtual ICollection<CrmCustomerContact> CrmCustomerContacts { get; set; } = new List<CrmCustomerContact>();
 
     public virtual ICollection<CrmCustomerContract> CrmCustomerContracts { get; set; } = new List<CrmCustomerContract>();

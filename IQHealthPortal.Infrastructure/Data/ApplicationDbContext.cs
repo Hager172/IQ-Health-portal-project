@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using IQHealthPortal.Domain.Identity.Entities;
 using IQHealthPortal.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,6 +32,8 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<AcmcPrivilege> AcmcPrivileges { get; set; }
 
+    public virtual DbSet<AcmsCheque> AcmsCheques { get; set; }
+
     public virtual DbSet<AcmsNotification> AcmsNotifications { get; set; }
 
     public virtual DbSet<AcmsOption> AcmsOptions { get; set; }
@@ -49,9 +50,11 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<AcmsdocumentationCodeLog> AcmsdocumentationCodeLogs { get; set; }
 
-    //public virtual DbSet<Action> Actions { get; set; }
+    public virtual DbSet<IQHealthPortal.Infrastructure.Data.Models.Action> Actions { get; set; }
 
     public virtual DbSet<ActiveCustomer> ActiveCustomers { get; set; }
+
+    public virtual DbSet<AggregatedCounter> AggregatedCounters { get; set; }
 
     public virtual DbSet<Approval> Approvals { get; set; }
 
@@ -85,15 +88,23 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
 
+    public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; }
+
     public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
 
     public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
 
     public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
 
+    public virtual DbSet<AssginOrder> AssginOrders { get; set; }
+
+    public virtual DbSet<AssginOrderLog> AssginOrderLogs { get; set; }
+
     public virtual DbSet<AttachedDocumentName> AttachedDocumentNames { get; set; }
 
     public virtual DbSet<AuditLog> AuditLogs { get; set; }
+
+    public virtual DbSet<Bank> Banks { get; set; }
 
     public virtual DbSet<Batch> Batches { get; set; }
 
@@ -102,6 +113,8 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<BatchGroup> BatchGroups { get; set; }
 
     public virtual DbSet<BatchLog> BatchLogs { get; set; }
+
+    public virtual DbSet<BatchesCheckBalance> BatchesCheckBalances { get; set; }
 
     public virtual DbSet<BatchesPrivateNote> BatchesPrivateNotes { get; set; }
 
@@ -121,6 +134,12 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<CareItem> CareItems { get; set; }
 
+    public virtual DbSet<ChatMessage> ChatMessages { get; set; }
+
+    public virtual DbSet<CheckBalanceBugReport> CheckBalanceBugReports { get; set; }
+
+    public virtual DbSet<CheckBalanceReply> CheckBalanceReplies { get; set; }
+
     public virtual DbSet<ChronicLookupTable> ChronicLookupTables { get; set; }
 
     public virtual DbSet<Claim> Claims { get; set; }
@@ -132,6 +151,8 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<ClaimLotsFormsCode> ClaimLotsFormsCodes { get; set; }
 
     public virtual DbSet<Client> Clients { get; set; }
+
+    public virtual DbSet<ComplaintReply> ComplaintReplies { get; set; }
 
     public virtual DbSet<ComplanitType> ComplanitTypes { get; set; }
 
@@ -161,6 +182,8 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<ContractType1> ContractTypes1 { get; set; }
 
+    public virtual DbSet<Counter> Counters { get; set; }
+
     public virtual DbSet<CrmContractClass> CrmContractClasses { get; set; }
 
     public virtual DbSet<CrmContractContractType> CrmContractContractTypes { get; set; }
@@ -184,6 +207,8 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<CrmLog> CrmLogs { get; set; }
 
     public virtual DbSet<CrmPlanItem> CrmPlanItems { get; set; }
+
+    public virtual DbSet<CrmVendorsCopayment> CrmVendorsCopayments { get; set; }
 
     public virtual DbSet<CrmcontractsLog> CrmcontractsLogs { get; set; }
 
@@ -219,13 +244,19 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<CustomerVendorException> CustomerVendorExceptions { get; set; }
 
+    public virtual DbSet<CustomersContractMaster> CustomersContractMasters { get; set; }
+
     public virtual DbSet<CustomersVisit> CustomersVisits { get; set; }
 
     public virtual DbSet<DaysOfTheWeek> DaysOfTheWeeks { get; set; }
 
+    public virtual DbSet<DefaultCustomer> DefaultCustomers { get; set; }
+
     public virtual DbSet<Department> Departments { get; set; }
 
     public virtual DbSet<DisRefund> DisRefunds { get; set; }
+
+    public virtual DbSet<DocumentType> DocumentTypes { get; set; }
 
     public virtual DbSet<DueAttachedFile> DueAttachedFiles { get; set; }
 
@@ -239,6 +270,8 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<FollowupDoctor> FollowupDoctors { get; set; }
 
+    public virtual DbSet<FollowupMemberscomplaint> FollowupMemberscomplaints { get; set; }
+
     public virtual DbSet<GeneralVisit> GeneralVisits { get; set; }
 
     public virtual DbSet<GeneralVisitsUser> GeneralVisitsUsers { get; set; }
@@ -248,6 +281,8 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<GroupBillsTpa> GroupBillsTpas { get; set; }
 
     public virtual DbSet<GroupsLog> GroupsLogs { get; set; }
+
+    public virtual DbSet<Hash> Hashes { get; set; }
 
     public virtual DbSet<HmisWafdeenVisit> HmisWafdeenVisits { get; set; }
 
@@ -269,6 +304,14 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<ItemCopayment> ItemCopayments { get; set; }
 
+    public virtual DbSet<Job> Jobs { get; set; }
+
+    public virtual DbSet<JobParameter> JobParameters { get; set; }
+
+    public virtual DbSet<JobQueue> JobQueues { get; set; }
+
+    public virtual DbSet<List> Lists { get; set; }
+
     public virtual DbSet<LocalTicket> LocalTickets { get; set; }
 
     public virtual DbSet<LocalTicketsReply> LocalTicketsReplies { get; set; }
@@ -283,6 +326,8 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<MashPayment> MashPayments { get; set; }
 
+    public virtual DbSet<MashcareBranchStutusMentor> MashcareBranchStutusMentors { get; set; }
+
     public virtual DbSet<McAuthenticate> McAuthenticates { get; set; }
 
     public virtual DbSet<McAuthenticateLog> McAuthenticateLogs { get; set; }
@@ -292,6 +337,8 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<Member> Members { get; set; }
 
     public virtual DbSet<MemberArchiveDoc> MemberArchiveDocs { get; set; }
+
+    public virtual DbSet<MemberCareitemsBalance> MemberCareitemsBalances { get; set; }
 
     public virtual DbSet<MemberContact> MemberContacts { get; set; }
 
@@ -359,11 +406,21 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<OnlineUser> OnlineUsers { get; set; }
 
+    public virtual DbSet<OrderLocation> OrderLocations { get; set; }
+
+    public virtual DbSet<OrderReceptionDestination> OrderReceptionDestinations { get; set; }
+
+    public virtual DbSet<OrgBranch> OrgBranches { get; set; }
+
+    public virtual DbSet<OrganizationSetting> OrganizationSettings { get; set; }
+
     public virtual DbSet<OutlookAttachment> OutlookAttachments { get; set; }
 
     public virtual DbSet<OutlookEmail> OutlookEmails { get; set; }
 
     public virtual DbSet<PaaBillSrvU> PaaBillSrvUs { get; set; }
+
+    public virtual DbSet<ParallelApproval> ParallelApprovals { get; set; }
 
     public virtual DbSet<PaymentChannel> PaymentChannels { get; set; }
 
@@ -372,6 +429,8 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<PaymentsLog> PaymentsLogs { get; set; }
 
     public virtual DbSet<PharmaMigration> PharmaMigrations { get; set; }
+
+    public virtual DbSet<PharmaPriceLog> PharmaPriceLogs { get; set; }
 
     public virtual DbSet<PharmaTemp> PharmaTemps { get; set; }
 
@@ -385,7 +444,13 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<PlanItemRule> PlanItemRules { get; set; }
 
+    public virtual DbSet<PlanSharedItem> PlanSharedItems { get; set; }
+
+    public virtual DbSet<PlanSharedItemRule> PlanSharedItemRules { get; set; }
+
     public virtual DbSet<PrepareOnlinePatch> PrepareOnlinePatches { get; set; }
+
+    public virtual DbSet<PreviousMember> PreviousMembers { get; set; }
 
     public virtual DbSet<PrivilegeLog> PrivilegeLogs { get; set; }
 
@@ -401,7 +466,19 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<ProviderLog> ProviderLogs { get; set; }
 
+    public virtual DbSet<ReceptionEmployee> ReceptionEmployees { get; set; }
+
+    public virtual DbSet<ReceptionOrder> ReceptionOrders { get; set; }
+
     public virtual DbSet<RequestAttached> RequestAttacheds { get; set; }
+
+    public virtual DbSet<RequestcrmClass> RequestcrmClasses { get; set; }
+
+    public virtual DbSet<RequestcrmCustomer> RequestcrmCustomers { get; set; }
+
+    public virtual DbSet<RequestcrmCustomerCategory> RequestcrmCustomerCategories { get; set; }
+
+    public virtual DbSet<RequiredTask> RequiredTasks { get; set; }
 
     public virtual DbSet<Residence> Residences { get; set; }
 
@@ -429,11 +506,23 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<SchCustomerArchive> SchCustomerArchives { get; set; }
 
+    public virtual DbSet<Schema> Schemas { get; set; }
+
+    public virtual DbSet<SeniorMember> SeniorMembers { get; set; }
+
+    public virtual DbSet<Server> Servers { get; set; }
+
     public virtual DbSet<ServiceReviewResponse> ServiceReviewResponses { get; set; }
+
+    public virtual DbSet<Set> Sets { get; set; }
+
+    public virtual DbSet<SharedCareItem> SharedCareItems { get; set; }
 
     public virtual DbSet<SourceQuery> SourceQueries { get; set; }
 
     public virtual DbSet<StandardService> StandardServices { get; set; }
+
+    public virtual DbSet<State> States { get; set; }
 
     public virtual DbSet<StateRef> StateRefs { get; set; }
 
@@ -446,6 +535,8 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<SubscriptionPlan> SubscriptionPlans { get; set; }
 
     public virtual DbSet<SudanCustomer> SudanCustomers { get; set; }
+
+    public virtual DbSet<SyUser> SyUsers { get; set; }
 
     public virtual DbSet<SysSetting> SysSettings { get; set; }
 
@@ -483,6 +574,8 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<UserFavoriteMenu> UserFavoriteMenus { get; set; }
 
+    public virtual DbSet<UserHaveMemberInMashcare> UserHaveMemberInMashcares { get; set; }
+
     public virtual DbSet<UserLog> UserLogs { get; set; }
 
     public virtual DbSet<UserManual> UserManuals { get; set; }
@@ -490,6 +583,10 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<UserNotification> UserNotifications { get; set; }
 
     public virtual DbSet<UserPlan> UserPlans { get; set; }
+
+    public virtual DbSet<UserPlanMashcare> UserPlanMashcares { get; set; }
+
+    public virtual DbSet<UserPlanPaymentBill> UserPlanPaymentBills { get; set; }
 
     public virtual DbSet<UserReportColumn> UserReportColumns { get; set; }
 
@@ -499,11 +596,33 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<UsersVendorsVisit> UsersVendorsVisits { get; set; }
 
+    public virtual DbSet<VAccAllTransaction> VAccAllTransactions { get; set; }
+
+    public virtual DbSet<VAccAmrKabdKhazna> VAccAmrKabdKhaznas { get; set; }
+
     public virtual DbSet<VAccAmrSarfKhazna> VAccAmrSarfKhaznas { get; set; }
 
     public virtual DbSet<VAccBank> VAccBanks { get; set; }
 
+    public virtual DbSet<VAccCombinedLedger> VAccCombinedLedgers { get; set; }
+
+    public virtual DbSet<VAccCoreTransaction> VAccCoreTransactions { get; set; }
+
+    public virtual DbSet<VAccInvoiceBase> VAccInvoiceBases { get; set; }
+
     public virtual DbSet<VAccInvoiceCollection> VAccInvoiceCollections { get; set; }
+
+    public virtual DbSet<VAccMedOptimized> VAccMedOptimizeds { get; set; }
+
+    public virtual DbSet<VAccOpeningBalance> VAccOpeningBalances { get; set; }
+
+    public virtual DbSet<VAccOptimizedAcc1medO2> VAccOptimizedAcc1medO2s { get; set; }
+
+    public virtual DbSet<VAccOptimizedAcc1medO2WithRank> VAccOptimizedAcc1medO2WithRanks { get; set; }
+
+    public virtual DbSet<VAccPaymentBase> VAccPaymentBases { get; set; }
+
+    public virtual DbSet<VAccPaymentWithAccount> VAccPaymentWithAccounts { get; set; }
 
     public virtual DbSet<VAccTasweeMoredAll> VAccTasweeMoredAlls { get; set; }
 
@@ -549,6 +668,8 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<VCustomerAllBill> VCustomerAllBills { get; set; }
 
+    public virtual DbSet<VCustomerBalance> VCustomerBalances { get; set; }
+
     public virtual DbSet<VCustomerConsumptionSummary> VCustomerConsumptionSummaries { get; set; }
 
     public virtual DbSet<VCustomerConsumptionSummaryTpa> VCustomerConsumptionSummaryTpas { get; set; }
@@ -557,7 +678,13 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<VCustomerContractsQuarterYear> VCustomerContractsQuarterYears { get; set; }
 
+    public virtual DbSet<VCustomerInvoiceBase> VCustomerInvoiceBases { get; set; }
+
     public virtual DbSet<VCustomerNationalOrNotCount> VCustomerNationalOrNotCounts { get; set; }
+
+    public virtual DbSet<VCustomerPaymentBase> VCustomerPaymentBases { get; set; }
+
+    public virtual DbSet<VCustomerPaymentWithAccount> VCustomerPaymentWithAccounts { get; set; }
 
     public virtual DbSet<VCustomerVisit> VCustomerVisits { get; set; }
 
@@ -590,6 +717,10 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<VInquery> VInqueries { get; set; }
 
     public virtual DbSet<VInsuranceCompaniesReport> VInsuranceCompaniesReports { get; set; }
+
+    public virtual DbSet<VInvoiceBase> VInvoiceBases { get; set; }
+
+    public virtual DbSet<VInvoiceBaseCustomer> VInvoiceBaseCustomers { get; set; }
 
     public virtual DbSet<VLogInformation> VLogInformations { get; set; }
 
@@ -649,6 +780,8 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<VOnlineWorklist> VOnlineWorklists { get; set; }
 
+    public virtual DbSet<VPaymentBase> VPaymentBases { get; set; }
+
     public virtual DbSet<VPendingReason> VPendingReasons { get; set; }
 
     public virtual DbSet<VPriceIndex> VPriceIndices { get; set; }
@@ -658,6 +791,32 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<VRecommendationService> VRecommendationServices { get; set; }
 
     public virtual DbSet<VReimpWorklist> VReimpWorklists { get; set; }
+
+    public virtual DbSet<VReportAccAmrKabdChequAll> VReportAccAmrKabdChequAlls { get; set; }
+
+    public virtual DbSet<VReportAccAmrSarfKhazna> VReportAccAmrSarfKhaznas { get; set; }
+
+    public virtual DbSet<VReportAccChartLedgerCore> VReportAccChartLedgerCores { get; set; }
+
+    public virtual DbSet<VReportAccChartLedgerEnriched> VReportAccChartLedgerEnricheds { get; set; }
+
+    public virtual DbSet<VReportAccLedgerChart> VReportAccLedgerCharts { get; set; }
+
+    public virtual DbSet<VReportNamozeg41Final> VReportNamozeg41Finals { get; set; }
+
+    public virtual DbSet<VReportTreasuryPaymentChecksAnalysis> VReportTreasuryPaymentChecksAnalyses { get; set; }
+
+    public virtual DbSet<VReportTreasuryReceiptChecksAnalysis> VReportTreasuryReceiptChecksAnalyses { get; set; }
+
+    public virtual DbSet<VReportVwDownPaymentTax> VReportVwDownPaymentTaxes { get; set; }
+
+    public virtual DbSet<VReportVwLedgerMinimal> VReportVwLedgerMinimals { get; set; }
+
+    public virtual DbSet<VReportVwNamozeg41BackNew> VReportVwNamozeg41BackNews { get; set; }
+
+    public virtual DbSet<VReportVwPaymentStatus> VReportVwPaymentStatuses { get; set; }
+
+    public virtual DbSet<VReportVwTaxPoliciesSimple> VReportVwTaxPoliciesSimples { get; set; }
 
     public virtual DbSet<VScannedQr> VScannedQrs { get; set; }
 
@@ -677,6 +836,10 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<VUsedPharma> VUsedPharmas { get; set; }
 
+    public virtual DbSet<VVendorAllTransaction> VVendorAllTransactions { get; set; }
+
+    public virtual DbSet<VVendorBalance> VVendorBalances { get; set; }
+
     public virtual DbSet<VVendorBranch> VVendorBranches { get; set; }
 
     public virtual DbSet<VVendorBranchesMob> VVendorBranchesMobs { get; set; }
@@ -684,6 +847,8 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<VVendorCurrentService> VVendorCurrentServices { get; set; }
 
     public virtual DbSet<VVendorLedger> VVendorLedgers { get; set; }
+
+    public virtual DbSet<VVendorOpeningBalance> VVendorOpeningBalances { get; set; }
 
     public virtual DbSet<VVendorPayment> VVendorPayments { get; set; }
 
@@ -706,6 +871,8 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<VWebMember> VWebMembers { get; set; }
 
     public virtual DbSet<VWorklist> VWorklists { get; set; }
+
+    public virtual DbSet<VendorAgreementHistory> VendorAgreementHistories { get; set; }
 
     public virtual DbSet<VendorArchieve> VendorArchieves { get; set; }
 
@@ -751,6 +918,10 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<VendorStatusMonitor> VendorStatusMonitors { get; set; }
 
+    public virtual DbSet<VendorTaxesLog> VendorTaxesLogs { get; set; }
+
+    public virtual DbSet<VendorTaxis> VendorTaxes { get; set; }
+
     public virtual DbSet<VendorTpaTemp> VendorTpaTemps { get; set; }
 
     public virtual DbSet<VendorsCopayment> VendorsCopayments { get; set; }
@@ -781,9 +952,17 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<WafdeenVisit> WafdeenVisits { get; set; }
 
+    public virtual DbSet<WebCareItem> WebCareItems { get; set; }
+
     public virtual DbSet<WebCommonDisease> WebCommonDiseases { get; set; }
 
+    public virtual DbSet<WebCustomerCareItem> WebCustomerCareItems { get; set; }
+
     public virtual DbSet<WebCustomerRequest> WebCustomerRequests { get; set; }
+
+    public virtual DbSet<WebMember> WebMembers { get; set; }
+
+    public virtual DbSet<WebMemberItem> WebMemberItems { get; set; }
 
     public virtual DbSet<WebMembersRegistration> WebMembersRegistrations { get; set; }
 
@@ -795,6 +974,8 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<WebVClient> WebVClients { get; set; }
 
+    public virtual DbSet<WebVClientNew> WebVClientNews { get; set; }
+
     public virtual DbSet<WebVIcustomer> WebVIcustomers { get; set; }
 
     public virtual DbSet<WhatIsNew> WhatIsNews { get; set; }
@@ -803,16 +984,9 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<WithContractedPrice> WithContractedPrices { get; set; }
 
-    public DbSet<ChatMessage> ChatMessages => Set<ChatMessage>();
-
-    [DbFunction("f_member_status_at_date", "dbo")]
-    public static string MemberStatusAtDate(string memberId, DateTime date)
-    {
-        throw new NotImplementedException();
-    }
-    //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-    //        => optionsBuilder.UseSqlServer("Server=150.200.12.1;initial catalog=acms_migration;persist security info=True;user id=acms_login;password=acms@bms;multipleactiveresultsets=True;trustServerCertificate=True;");
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=150.200.12.1;initial catalog=acms_migration;persist security info=True;user id=acms_login;password=acms@bms;multipleactiveresultsets=True;trustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -1025,10 +1199,53 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.PrevUnsubmit).HasColumnName("prev_unsubmit");
             entity.Property(e => e.PrevView).HasColumnName("prev_view");
 
+            entity.HasOne(d => d.Page).WithMany(p => p.AcmcPrivileges)
+                .HasForeignKey(d => d.PageId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_acmc_privilege_acmc_Page");
+
             entity.HasOne(d => d.User).WithMany(p => p.AcmcPrivileges)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_acmc_privilege_AspNetUsers");
+        });
+
+        modelBuilder.Entity<AcmsCheque>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__acms_che__3213E83F470FC20E");
+
+            entity.ToTable("acms_cheques");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.BankId).HasColumnName("bank_id");
+            entity.Property(e => e.ChequeDate).HasColumnName("cheque_date");
+            entity.Property(e => e.CreationDate)
+                .HasColumnType("datetime")
+                .HasColumnName("creation_date");
+            entity.Property(e => e.HasSlashes).HasColumnName("has_slashes");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("last_update_by");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("last_update_date");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("last_update_from");
+            entity.Property(e => e.PayTo)
+                .HasMaxLength(150)
+                .HasColumnName("pay_to");
+            entity.Property(e => e.Price).HasColumnName("price");
+            entity.Property(e => e.Signature)
+                .HasMaxLength(150)
+                .HasColumnName("signature");
+
+            entity.HasOne(d => d.Bank).WithMany(p => p.AcmsCheques)
+                .HasForeignKey(d => d.BankId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_approvals_acms_cheques_bank");
         });
 
         modelBuilder.Entity<AcmsNotification>(entity =>
@@ -1338,18 +1555,18 @@ public partial class ApplicationDbContext : DbContext
                 .HasConstraintName("FK_ACMSDocumentationCodeLog_ACMSDocumentationCode");
         });
 
-        //modelBuilder.Entity<Action>(entity =>
-        //{
-        //    entity.ToTable("actions", tb => tb.HasTrigger("trg_Audit_dbo_actions"));
+        modelBuilder.Entity<IQHealthPortal.Infrastructure.Data.Models.Action>(entity =>
+        {
+            entity.ToTable("actions", tb => tb.HasTrigger("trg_Audit_dbo_actions"));
 
-        //    entity.Property(e => e.ActionId)
-        //        .ValueGeneratedNever()
-        //        .HasColumnName("action_id");
-        //    entity.Property(e => e.ActionName)
-        //        .HasMaxLength(100)
-        //        .IsUnicode(false)
-        //        .HasColumnName("action_name");
-        //});
+            entity.Property(e => e.ActionId)
+                .ValueGeneratedNever()
+                .HasColumnName("action_id");
+            entity.Property(e => e.ActionName)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("action_name");
+        });
 
         modelBuilder.Entity<ActiveCustomer>(entity =>
         {
@@ -1426,6 +1643,18 @@ public partial class ApplicationDbContext : DbContext
                 .IsUnicode(false)
                 .UseCollation("Arabic_100_CI_AI")
                 .HasColumnName("telephones");
+        });
+
+        modelBuilder.Entity<AggregatedCounter>(entity =>
+        {
+            entity.HasKey(e => e.Key).HasName("PK_HangFire_CounterAggregated");
+
+            entity.ToTable("AggregatedCounter", "HangFire");
+
+            entity.HasIndex(e => e.ExpireAt, "IX_HangFire_AggregatedCounter_ExpireAt").HasFilter("([ExpireAt] IS NOT NULL)");
+
+            entity.Property(e => e.Key).HasMaxLength(100);
+            entity.Property(e => e.ExpireAt).HasColumnType("datetime");
         });
 
         modelBuilder.Entity<Approval>(entity =>
@@ -2278,6 +2507,13 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.NormalizedName).HasMaxLength(256);
         });
 
+        modelBuilder.Entity<AspNetRoleClaim>(entity =>
+        {
+            entity.Property(e => e.RoleId).HasMaxLength(128);
+
+            entity.HasOne(d => d.Role).WithMany(p => p.AspNetRoleClaims).HasForeignKey(d => d.RoleId);
+        });
+
         modelBuilder.Entity<AspNetUser>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK_dbo.AspNetUsers");
@@ -2374,6 +2610,63 @@ public partial class ApplicationDbContext : DbContext
                 .HasConstraintName("FK_AspNetUserLogins_AspNetUsers");
         });
 
+        modelBuilder.Entity<AssginOrder>(entity =>
+        {
+            entity.ToTable("Assgin_Order");
+
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.LastUpdateDate).HasColumnType("datetime");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.OrderId).HasColumnName("order_id");
+            entity.Property(e => e.UserId)
+                .HasMaxLength(128)
+                .IsUnicode(false)
+                .HasColumnName("user_Id");
+
+            entity.HasOne(d => d.Order).WithMany(p => p.AssginOrders)
+                .HasForeignKey(d => d.OrderId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Assgin_Order_Reception_Orders");
+
+            entity.HasOne(d => d.StatusNavigation).WithMany(p => p.AssginOrders)
+                .HasForeignKey(d => d.Status)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Assgin_Order_Status");
+
+            entity.HasOne(d => d.User).WithMany(p => p.AssginOrders)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Assgin_Order_AspNetUsers");
+        });
+
+        modelBuilder.Entity<AssginOrderLog>(entity =>
+        {
+            entity.ToTable("Assgin_order_Log");
+
+            entity.Property(e => e.AssginId).HasColumnName("Assgin_Id");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(128)
+                .IsUnicode(false);
+            entity.Property(e => e.LastUpdateDate).HasColumnType("datetime");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+
+            entity.HasOne(d => d.Assgin).WithMany(p => p.AssginOrderLogs)
+                .HasForeignKey(d => d.AssginId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Assgin_order_Log_Assgin_order_Log");
+
+            entity.HasOne(d => d.StatusNavigation).WithMany(p => p.AssginOrderLogs)
+                .HasForeignKey(d => d.Status)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Assgin_order_Log_Status");
+        });
+
         modelBuilder.Entity<AttachedDocumentName>(entity =>
         {
             entity.HasKey(e => e.AttachedDocId);
@@ -2400,6 +2693,29 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.ChangedDate).HasDefaultValueSql("(sysdatetime())");
             entity.Property(e => e.RecordId).HasMaxLength(500);
             entity.Property(e => e.TableName).HasMaxLength(128);
+        });
+
+        modelBuilder.Entity<Bank>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__banks__3213E83FE8D5622C");
+
+            entity.ToTable("banks");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.BankName)
+                .HasMaxLength(150)
+                .IsUnicode(false)
+                .HasColumnName("bank_name");
+            entity.Property(e => e.BankNameAr)
+                .HasMaxLength(150)
+                .HasColumnName("bank_name_ar");
+            entity.Property(e => e.BankPathName)
+                .HasMaxLength(150)
+                .HasColumnName("bank_path_name");
+            entity.Property(e => e.BankShortName)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("bank_short_name");
         });
 
         modelBuilder.Entity<Batch>(entity =>
@@ -2438,6 +2754,7 @@ public partial class ApplicationDbContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("batch_vendor_id");
+            entity.Property(e => e.CheckBalanceResult).HasColumnName("check_balance_result");
             entity.Property(e => e.CurrentStep)
                 .HasMaxLength(1)
                 .IsUnicode(false)
@@ -2716,6 +3033,58 @@ public partial class ApplicationDbContext : DbContext
             entity.HasOne(d => d.Status).WithMany(p => p.BatchLogs)
                 .HasForeignKey(d => d.Statusid)
                 .HasConstraintName("FK_batch_log_status_procedure");
+        });
+
+        modelBuilder.Entity<BatchesCheckBalance>(entity =>
+        {
+            entity.HasKey(e => e.InvId);
+
+            entity.ToTable("Batches_CheckBalance");
+
+            entity.Property(e => e.InvId)
+                .ValueGeneratedNever()
+                .HasColumnName("inv_id");
+            entity.Property(e => e.BatchId)
+                .HasColumnType("numeric(9, 0)")
+                .HasColumnName("batch_id");
+            entity.Property(e => e.CheckDate)
+                .HasColumnType("datetime")
+                .HasColumnName("check_date");
+            entity.Property(e => e.CustomerId).HasColumnName("customer_id");
+            entity.Property(e => e.HasAttach).HasColumnName("has_attach");
+            entity.Property(e => e.IsSolved).HasColumnName("is_solved");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(50)
+                .HasColumnName("last_update_by");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("last_update_date");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(50)
+                .HasColumnName("last_update_from");
+            entity.Property(e => e.Message)
+                .HasMaxLength(500)
+                .HasColumnName("message");
+            entity.Property(e => e.Notes).HasColumnName("notes");
+            entity.Property(e => e.Serial).HasColumnName("serial");
+            entity.Property(e => e.SolvedDate)
+                .HasColumnType("datetime")
+                .HasColumnName("solved_date");
+
+            entity.HasOne(d => d.Batch).WithMany(p => p.BatchesCheckBalances)
+                .HasForeignKey(d => d.BatchId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Batches_CheckBalance_Batches");
+
+            entity.HasOne(d => d.Customer).WithMany(p => p.BatchesCheckBalances)
+                .HasForeignKey(d => d.CustomerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Batches_CheckBalance_Customers");
+
+            entity.HasOne(d => d.Inv).WithOne(p => p.BatchesCheckBalance)
+                .HasForeignKey<BatchesCheckBalance>(d => d.InvId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Batches_CheckBalance_inv_details");
         });
 
         modelBuilder.Entity<BatchesPrivateNote>(entity =>
@@ -3120,6 +3489,94 @@ public partial class ApplicationDbContext : DbContext
                     });
         });
 
+        modelBuilder.Entity<ChatMessage>(entity =>
+        {
+            entity.Property(e => e.Receiver).HasMaxLength(100);
+            entity.Property(e => e.Sender).HasMaxLength(100);
+            entity.Property(e => e.SentAt).HasDefaultValueSql("(getdate())", "DF_ChatMessages_SentAt");
+        });
+
+        modelBuilder.Entity<CheckBalanceBugReport>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_bug_report");
+
+            entity.ToTable("check_balance_bug_report");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Accepted).HasColumnName("accepted");
+            entity.Property(e => e.AcceptedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("accepted_at");
+            entity.Property(e => e.AcceptedBy)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("accepted_by");
+            entity.Property(e => e.BatchId)
+                .HasColumnType("numeric(9, 0)")
+                .HasColumnName("batch_id");
+            entity.Property(e => e.InvId).HasColumnName("inv_id");
+            entity.Property(e => e.IsSolved).HasColumnName("is_solved");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(50)
+                .HasColumnName("last_update_by");
+            entity.Property(e => e.LastUpdateDate)
+                .HasDefaultValueSql("(getdate())", "DF_bug_report_last_update_date")
+                .HasColumnType("datetime")
+                .HasColumnName("last_update_date");
+            entity.Property(e => e.Notes).HasColumnName("notes");
+
+            entity.HasOne(d => d.Batch).WithMany(p => p.CheckBalanceBugReports)
+                .HasForeignKey(d => d.BatchId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_bug_report_Batches");
+
+            entity.HasOne(d => d.Inv).WithMany(p => p.CheckBalanceBugReports)
+                .HasForeignKey(d => d.InvId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_bug_report_Batch_details");
+        });
+
+        modelBuilder.Entity<CheckBalanceReply>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__check_ba__3214EC07F2F20C29");
+
+            entity.ToTable("check_balance_replies");
+
+            entity.Property(e => e.Accepted).HasColumnName("accepted");
+            entity.Property(e => e.CurrentMeditem).HasColumnName("current_meditem");
+            entity.Property(e => e.HasAttach).HasColumnName("has_attach");
+            entity.Property(e => e.InvId).HasColumnName("inv_id");
+            entity.Property(e => e.LastUpdateAt)
+                .HasColumnType("datetime")
+                .HasColumnName("last_update_at");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("last_update_by");
+            entity.Property(e => e.Notes)
+                .IsUnicode(false)
+                .HasColumnName("notes");
+            entity.Property(e => e.RequiredAt)
+                .HasColumnType("datetime")
+                .HasColumnName("required_at");
+            entity.Property(e => e.RequiredBy)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("required_by");
+            entity.Property(e => e.Type)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.UpdatedMeditem).HasColumnName("updated_meditem");
+
+            entity.HasOne(d => d.CurrentMeditemNavigation).WithMany(p => p.CheckBalanceReplyCurrentMeditemNavigations)
+                .HasForeignKey(d => d.CurrentMeditem)
+                .HasConstraintName("FK_replies_current_meditem");
+
+            entity.HasOne(d => d.UpdatedMeditemNavigation).WithMany(p => p.CheckBalanceReplyUpdatedMeditemNavigations)
+                .HasForeignKey(d => d.UpdatedMeditem)
+                .HasConstraintName("FK_replies_updated_meditem");
+        });
+
         modelBuilder.Entity<ChronicLookupTable>(entity =>
         {
             entity.HasKey(e => new { e.PlanCode, e.OldMeditem, e.RefCode });
@@ -3303,6 +3760,38 @@ public partial class ApplicationDbContext : DbContext
                 .IsUnicode(false)
                 .UseCollation("SQL_Latin1_General_CP1_CI_AS")
                 .HasColumnName("client_website");
+        });
+
+        modelBuilder.Entity<ComplaintReply>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__complain__3213E83FEAE4EBFB");
+
+            entity.ToTable("complaint_replies");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.CustomerComplaintId).HasColumnName("customer_complaint_id");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("last_update_by");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("last_update_date");
+            entity.Property(e => e.MemberComplaintId)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("member_complaint_id");
+            entity.Property(e => e.Note)
+                .IsUnicode(false)
+                .HasColumnName("note");
+
+            entity.HasOne(d => d.CustomerComplaint).WithMany(p => p.ComplaintReplies)
+                .HasForeignKey(d => d.CustomerComplaintId)
+                .HasConstraintName("FK_ComplaintReplies_CustomerComplaints");
+
+            entity.HasOne(d => d.MemberComplaint).WithMany(p => p.ComplaintReplies)
+                .HasForeignKey(d => d.MemberComplaintId)
+                .HasConstraintName("FK_ComplaintReplies_MemberComplaints");
         });
 
         modelBuilder.Entity<ComplanitType>(entity =>
@@ -3875,6 +4364,18 @@ public partial class ApplicationDbContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("contract_type_name_en");
+            entity.Property(e => e.Isshow).HasColumnName("isshow");
+        });
+
+        modelBuilder.Entity<Counter>(entity =>
+        {
+            entity.HasKey(e => new { e.Key, e.Id }).HasName("PK_HangFire_Counter");
+
+            entity.ToTable("Counter", "HangFire");
+
+            entity.Property(e => e.Key).HasMaxLength(100);
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
+            entity.Property(e => e.ExpireAt).HasColumnType("datetime");
         });
 
         modelBuilder.Entity<CrmContractClass>(entity =>
@@ -3885,7 +4386,7 @@ public partial class ApplicationDbContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Class)
-                .HasMaxLength(1)
+                .HasMaxLength(3)
                 .IsUnicode(false)
                 .HasColumnName("class");
             entity.Property(e => e.CrmContractId).HasColumnName("crm_contract_id");
@@ -3910,6 +4411,10 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.CrmContractId).HasColumnName("crm_contract_id");
             entity.Property(e => e.Insurer).HasColumnName("insurer");
             entity.Property(e => e.ManagementFees).HasColumnName("management_fees");
+            entity.Property(e => e.OfferName)
+                .HasMaxLength(30)
+                .HasColumnName("offer_name");
+            entity.Property(e => e.TypeStages).HasColumnName("type_stages");
 
             entity.HasOne(d => d.ContractType).WithMany(p => p.CrmContractContractTypes)
                 .HasForeignKey(d => d.ContractTypeId)
@@ -3922,6 +4427,10 @@ public partial class ApplicationDbContext : DbContext
             entity.HasOne(d => d.InsurerNavigation).WithMany(p => p.CrmContractContractTypes)
                 .HasForeignKey(d => d.Insurer)
                 .HasConstraintName("Fk_crmcontract_contracttype_insurer");
+
+            entity.HasOne(d => d.TypeStagesNavigation).WithMany(p => p.CrmContractContractTypes)
+                .HasForeignKey(d => d.TypeStages)
+                .HasConstraintName("Fk_crm_contract_contractType_stages");
         });
 
         modelBuilder.Entity<CrmContractExcutor>(entity =>
@@ -4096,6 +4605,7 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.LastUpdateFrom)
                 .HasMaxLength(50)
                 .HasColumnName("last_update_from");
+            entity.Property(e => e.ManagementCompany).HasColumnName("management_company");
             entity.Property(e => e.OldCustomerId).HasColumnName("old_customer_id");
             entity.Property(e => e.RegistertionNum)
                 .HasMaxLength(50)
@@ -4180,6 +4690,7 @@ public partial class ApplicationDbContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("actual_start");
             entity.Property(e => e.BrokerId).HasColumnName("broker_id");
+            entity.Property(e => e.ConvertOfferid).HasColumnName("convert_offerid");
             entity.Property(e => e.LastUpdateBy)
                 .HasMaxLength(50)
                 .HasColumnName("last_update_by");
@@ -4189,6 +4700,14 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.LastUpdateFrom)
                 .HasMaxLength(50)
                 .HasColumnName("last_update_from");
+            entity.Property(e => e.MedicalNetworkClass)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasColumnName("medical_network_class");
+            entity.Property(e => e.RealContract)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("real_contract");
             entity.Property(e => e.Status).HasColumnName("status");
             entity.Property(e => e.TempCustomer).HasColumnName("temp_customer");
             entity.Property(e => e.TempEndDate)
@@ -4205,6 +4724,10 @@ public partial class ApplicationDbContext : DbContext
             entity.HasOne(d => d.Broker).WithMany(p => p.CrmCustomerContracts)
                 .HasForeignKey(d => d.BrokerId)
                 .HasConstraintName("FK_crm_customer_contracts_brokers");
+
+            entity.HasOne(d => d.ConvertOffer).WithMany(p => p.CrmCustomerContracts)
+                .HasForeignKey(d => d.ConvertOfferid)
+                .HasConstraintName("FK_crm_customer_contracts_ctype");
 
             entity.HasOne(d => d.StatusNavigation).WithMany(p => p.CrmCustomerContracts)
                 .HasForeignKey(d => d.Status)
@@ -4256,11 +4779,10 @@ public partial class ApplicationDbContext : DbContext
 
         modelBuilder.Entity<CrmItemCopayment>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Crm_Item__3213E83FCD66603C");
+            entity.HasKey(e => e.Id).HasName("PK__Crm_Item__3214EC07268280A5");
 
-            entity.ToTable("Crm_Item_copayments", tb => tb.HasTrigger("trg_Audit_dbo_Crm_Item_copayments"));
+            entity.ToTable("Crm_ItemCopayments");
 
-            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Copayment).HasColumnName("copayment");
             entity.Property(e => e.Enabled).HasColumnName("enabled");
             entity.Property(e => e.Isallowed).HasColumnName("isallowed");
@@ -4281,16 +4803,16 @@ public partial class ApplicationDbContext : DbContext
             entity.HasOne(d => d.PlanItem).WithMany(p => p.CrmItemCopayments)
                 .HasForeignKey(d => d.PlanItemId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_crmItem_copayments_PlanItems");
+                .HasConstraintName("FK_Itemcopayments_CrmPlanItems");
 
             entity.HasOne(d => d.VendorCategory).WithMany(p => p.CrmItemCopayments)
                 .HasForeignKey(d => d.VendorCategoryId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_crmItem_copayments_vendor_category");
+                .HasConstraintName("FK_Crm_Itemcopayments_vendorcategory");
 
             entity.HasOne(d => d.Vendor).WithMany(p => p.CrmItemCopayments)
                 .HasForeignKey(d => d.VendorId)
-                .HasConstraintName("FK_crmItem_copayments_Vendor_General");
+                .HasConstraintName("FK_Crm_Itemcopayments_VendorGeneral");
         });
 
         modelBuilder.Entity<CrmLog>(entity =>
@@ -4305,7 +4827,6 @@ public partial class ApplicationDbContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("complain_id");
             entity.Property(e => e.Complaint)
-                .HasMaxLength(500)
                 .IsUnicode(false)
                 .HasColumnName("complaint");
             entity.Property(e => e.LastUpdateBy)
@@ -4320,7 +4841,6 @@ public partial class ApplicationDbContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("last_update_from");
             entity.Property(e => e.Respond)
-                .HasMaxLength(500)
                 .IsUnicode(false)
                 .HasColumnName("respond");
 
@@ -4402,6 +4922,44 @@ public partial class ApplicationDbContext : DbContext
             entity.HasOne(d => d.Pools).WithMany(p => p.CrmPlanItems)
                 .HasForeignKey(d => d.PoolsId)
                 .HasConstraintName("FK_crmPlanItems_Contract_Pools");
+        });
+
+        modelBuilder.Entity<CrmVendorsCopayment>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__crm_Vend__3214EC07B67D4F8A");
+
+            entity.ToTable("crm_VendorsCopayments");
+
+            entity.Property(e => e.Copayment).HasColumnName("copayment");
+            entity.Property(e => e.Enabled).HasColumnName("enabled");
+            entity.Property(e => e.Isallowed).HasColumnName("isallowed");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("last_update_by");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("last_update_date");
+            entity.Property(e => e.PlanItemId).HasColumnName("planItem_id");
+            entity.Property(e => e.VendorCategoryId).HasColumnName("vendor_category_id");
+            entity.Property(e => e.VendorId)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("vendor_id");
+
+            entity.HasOne(d => d.PlanItem).WithMany(p => p.CrmVendorsCopayments)
+                .HasForeignKey(d => d.PlanItemId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_VendorsCopayments_CrmPlanItems");
+
+            entity.HasOne(d => d.VendorCategory).WithMany(p => p.CrmVendorsCopayments)
+                .HasForeignKey(d => d.VendorCategoryId)
+                .HasConstraintName("FK_Crm_VendorsCopayments_vendorcategory");
+
+            entity.HasOne(d => d.Vendor).WithMany(p => p.CrmVendorsCopayments)
+                .HasForeignKey(d => d.VendorId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Crm_VendorsCopayments_VendorGeneral");
         });
 
         modelBuilder.Entity<CrmcontractsLog>(entity =>
@@ -4669,6 +5227,7 @@ public partial class ApplicationDbContext : DbContext
                 .IsUnicode(false)
                 .UseCollation("Arabic_100_CI_AI")
                 .HasColumnName("last_update_from");
+            entity.Property(e => e.ManagementCompany).HasColumnName("management_company");
             entity.Property(e => e.WhatsappNumber)
                 .HasMaxLength(30)
                 .IsUnicode(false)
@@ -5213,6 +5772,31 @@ public partial class ApplicationDbContext : DbContext
                 .HasConstraintName("FK_customer_vendor_exception_Vendor_General");
         });
 
+        modelBuilder.Entity<CustomersContractMaster>(entity =>
+        {
+            entity.ToTable("customers_contract_master");
+
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.ContractId)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("contract_id");
+            entity.Property(e => e.CustomerId).HasColumnName("customer_id");
+            entity.Property(e => e.IsMaster).HasColumnName("is_master");
+
+            entity.HasOne(d => d.Contract).WithMany(p => p.CustomersContractMasters)
+                .HasForeignKey(d => d.ContractId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_customers_contract_master_Customer_Contracts");
+
+            entity.HasOne(d => d.Customer).WithMany(p => p.CustomersContractMasters)
+                .HasForeignKey(d => d.CustomerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_customers_contract_master_Customers");
+        });
+
         modelBuilder.Entity<CustomersVisit>(entity =>
         {
             entity.ToTable("Customers_visits", tb => tb.HasTrigger("trg_Audit_dbo_Customers_visits"));
@@ -5286,6 +5870,32 @@ public partial class ApplicationDbContext : DbContext
                 .HasColumnName("day_name_ar");
         });
 
+        modelBuilder.Entity<DefaultCustomer>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToTable("DefaultCustomer");
+
+            entity.Property(e => e.CustomerId)
+                .HasMaxLength(150)
+                .HasColumnName("customer_id");
+            entity.Property(e => e.Project).HasColumnName("project");
+            entity.Property(e => e.UserId)
+                .HasMaxLength(128)
+                .IsUnicode(false)
+                .HasColumnName("user_id");
+
+            entity.HasOne(d => d.ProjectNavigation).WithMany()
+                .HasForeignKey(d => d.Project)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_DefaultCustomer_Projects");
+
+            entity.HasOne(d => d.User).WithMany()
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_DefaultCustomer_AspNetUsers");
+        });
+
         modelBuilder.Entity<Department>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Departme__3214EC078BF10F54");
@@ -5323,6 +5933,10 @@ public partial class ApplicationDbContext : DbContext
                 .HasColumnName("fin_review");
             entity.Property(e => e.Insurer).HasColumnName("insurer");
             entity.Property(e => e.InvId).HasColumnName("inv_id");
+            entity.Property(e => e.IsharId)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ishar_id");
             entity.Property(e => e.LastUpdateBy)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -5342,6 +5956,10 @@ public partial class ApplicationDbContext : DbContext
                 .HasMaxLength(250)
                 .IsUnicode(false);
             entity.Property(e => e.NotficatiohnId).HasColumnName("Notficatiohn_id");
+            entity.Property(e => e.ReviewNote)
+                .HasMaxLength(250)
+                .IsUnicode(false)
+                .HasColumnName("review_note");
             entity.Property(e => e.Status)
                 .HasMaxLength(1)
                 .IsUnicode(false);
@@ -5401,6 +6019,19 @@ public partial class ApplicationDbContext : DbContext
                 .HasPrincipalKey(p => new { p.ContractCode, p.Serial, p.CustomerId, p.ActivityId, p.Insurer })
                 .HasForeignKey(d => new { d.ContractCode, d.ActivitySerial, d.CustomerId, d.ContractActivity, d.Insurer })
                 .HasConstraintName("FK_dis_refund_contract_activities");
+        });
+
+        modelBuilder.Entity<DocumentType>(entity =>
+        {
+            entity.ToTable("Document_Type");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.NameAr)
+                .HasMaxLength(50)
+                .HasColumnName("name_ar");
+            entity.Property(e => e.NameEn)
+                .HasMaxLength(50)
+                .HasColumnName("name_en");
         });
 
         modelBuilder.Entity<DueAttachedFile>(entity =>
@@ -5575,6 +6206,46 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.Name).HasMaxLength(255);
         });
 
+        modelBuilder.Entity<FollowupMemberscomplaint>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__followup__3213E83F8EB3BCDC");
+
+            entity.ToTable("followup_memberscomplaints");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.ComplaintId)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("complaint_id");
+            entity.Property(e => e.CreationDate)
+                .HasColumnType("datetime")
+                .HasColumnName("creation_date");
+            entity.Property(e => e.Department)
+                .HasMaxLength(128)
+                .IsUnicode(false)
+                .HasColumnName("department");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("last_update_by");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("last_update_date");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("last_update_from");
+            entity.Property(e => e.Notes).HasColumnName("notes");
+
+            entity.HasOne(d => d.Complaint).WithMany(p => p.FollowupMemberscomplaints)
+                .HasForeignKey(d => d.ComplaintId)
+                .HasConstraintName("FK_reply_memberscomplaints_members_complaints");
+
+            entity.HasOne(d => d.DepartmentNavigation).WithMany(p => p.FollowupMemberscomplaints)
+                .HasForeignKey(d => d.Department)
+                .HasConstraintName("FK_reply_memberscomplaints_AspNetUsers");
+        });
+
         modelBuilder.Entity<GeneralVisit>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("pk_general_visits");
@@ -5738,6 +6409,18 @@ public partial class ApplicationDbContext : DbContext
             entity.HasOne(d => d.Customer).WithMany(p => p.GroupsLogs)
                 .HasForeignKey(d => d.CustomerId)
                 .HasConstraintName("fk_Department");
+        });
+
+        modelBuilder.Entity<Hash>(entity =>
+        {
+            entity.HasKey(e => new { e.Key, e.Field }).HasName("PK_HangFire_Hash");
+
+            entity.ToTable("Hash", "HangFire");
+
+            entity.HasIndex(e => e.ExpireAt, "IX_HangFire_Hash_ExpireAt").HasFilter("([ExpireAt] IS NOT NULL)");
+
+            entity.Property(e => e.Key).HasMaxLength(100);
+            entity.Property(e => e.Field).HasMaxLength(100);
         });
 
         modelBuilder.Entity<HmisWafdeenVisit>(entity =>
@@ -6277,6 +6960,58 @@ public partial class ApplicationDbContext : DbContext
                 .HasConstraintName("FK_Item_copayments_PlanItems");
         });
 
+        modelBuilder.Entity<Job>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_HangFire_Job");
+
+            entity.ToTable("Job", "HangFire");
+
+            entity.HasIndex(e => e.ExpireAt, "IX_HangFire_Job_ExpireAt").HasFilter("([ExpireAt] IS NOT NULL)");
+
+            entity.HasIndex(e => e.StateName, "IX_HangFire_Job_StateName").HasFilter("([StateName] IS NOT NULL)");
+
+            entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+            entity.Property(e => e.ExpireAt).HasColumnType("datetime");
+            entity.Property(e => e.StateName).HasMaxLength(20);
+        });
+
+        modelBuilder.Entity<JobParameter>(entity =>
+        {
+            entity.HasKey(e => new { e.JobId, e.Name }).HasName("PK_HangFire_JobParameter");
+
+            entity.ToTable("JobParameter", "HangFire");
+
+            entity.Property(e => e.Name).HasMaxLength(40);
+
+            entity.HasOne(d => d.Job).WithMany(p => p.JobParameters)
+                .HasForeignKey(d => d.JobId)
+                .HasConstraintName("FK_HangFire_JobParameter_Job");
+        });
+
+        modelBuilder.Entity<JobQueue>(entity =>
+        {
+            entity.HasKey(e => new { e.Queue, e.Id }).HasName("PK_HangFire_JobQueue");
+
+            entity.ToTable("JobQueue", "HangFire");
+
+            entity.Property(e => e.Queue).HasMaxLength(50);
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
+            entity.Property(e => e.FetchedAt).HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<List>(entity =>
+        {
+            entity.HasKey(e => new { e.Key, e.Id }).HasName("PK_HangFire_List");
+
+            entity.ToTable("List", "HangFire");
+
+            entity.HasIndex(e => e.ExpireAt, "IX_HangFire_List_ExpireAt").HasFilter("([ExpireAt] IS NOT NULL)");
+
+            entity.Property(e => e.Key).HasMaxLength(100);
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
+            entity.Property(e => e.ExpireAt).HasColumnType("datetime");
+        });
+
         modelBuilder.Entity<LocalTicket>(entity =>
         {
             entity.HasKey(e => e.LocalId);
@@ -6522,6 +7257,34 @@ public partial class ApplicationDbContext : DbContext
                 .HasPrincipalKey(p => new { p.ApprovalId, p.ReqId })
                 .HasForeignKey(d => new { d.ApprovalId, d.ReqId })
                 .HasConstraintName("FK_mash_payments_approvals");
+        });
+
+        modelBuilder.Entity<MashcareBranchStutusMentor>(entity =>
+        {
+            entity.ToTable("mashcare_branch_stutus_mentor");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.BranchId).HasColumnName("branch_id");
+            entity.Property(e => e.Date)
+                .HasColumnType("datetime")
+                .HasColumnName("date");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("last_update_by");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("last_update_date");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("last_update_from");
+            entity.Property(e => e.Status).HasColumnName("status");
+
+            entity.HasOne(d => d.Branch).WithMany(p => p.MashcareBranchStutusMentors)
+                .HasForeignKey(d => d.BranchId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_mashcare_branch_stutus_mentor_vendor_branches");
         });
 
         modelBuilder.Entity<McAuthenticate>(entity =>
@@ -6851,6 +7614,36 @@ public partial class ApplicationDbContext : DbContext
                 .HasConstraintName("FK_memer_archieve_docs_Members");
         });
 
+        modelBuilder.Entity<MemberCareitemsBalance>(entity =>
+        {
+            entity.HasKey(e => new { e.MemberId, e.ContractId, e.MedItem });
+
+            entity.ToTable("MemberCareitemsBalance");
+
+            entity.Property(e => e.MemberId)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("Member_ID");
+            entity.Property(e => e.ContractId)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("Contract_ID");
+            entity.Property(e => e.MedItem).HasColumnName("Med_Item");
+            entity.Property(e => e.ApprovalsBalance)
+                .HasColumnType("numeric(18, 2)")
+                .HasColumnName("Approvals_balance");
+            entity.Property(e => e.CiCount).HasColumnName("CI_count");
+            entity.Property(e => e.ClaimsBalance)
+                .HasColumnType("numeric(18, 2)")
+                .HasColumnName("Claims_balance");
+            entity.Property(e => e.MedItemLimit)
+                .HasColumnType("numeric(18, 2)")
+                .HasColumnName("MedItem_Limit");
+            entity.Property(e => e.Notes)
+                .HasMaxLength(255)
+                .IsUnicode(false);
+        });
+
         modelBuilder.Entity<MemberContact>(entity =>
         {
             entity.HasKey(e => e.AddressId).HasName("PK_member_contacts_1");
@@ -7160,7 +7953,6 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.ApprovalId).HasColumnName("approval_id");
             entity.Property(e => e.Closed).HasColumnName("closed");
             entity.Property(e => e.Complaint)
-                .HasMaxLength(5000)
                 .IsUnicode(false)
                 .HasColumnName("complaint");
             entity.Property(e => e.ComplaintType).HasColumnName("complaint_type");
@@ -7198,7 +7990,6 @@ public partial class ApplicationDbContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("request_source");
             entity.Property(e => e.Respond)
-                .HasMaxLength(5000)
                 .IsUnicode(false)
                 .HasColumnName("respond");
             entity.Property(e => e.Stauts).HasColumnName("stauts");
@@ -7992,6 +8783,109 @@ public partial class ApplicationDbContext : DbContext
                 .HasColumnName("vendor");
         });
 
+        modelBuilder.Entity<OrderLocation>(entity =>
+        {
+            entity.ToTable("Order_Location");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.ArriveOrderDate)
+                .HasColumnType("datetime")
+                .HasColumnName("arrive_order_date");
+            entity.Property(e => e.ArriveOrderLang)
+                .HasMaxLength(50)
+                .HasColumnName("arrive_order_lang");
+            entity.Property(e => e.ArriveOrderLat)
+                .HasMaxLength(50)
+                .HasColumnName("arrive_order_lat");
+            entity.Property(e => e.EndOrgDate)
+                .HasColumnType("datetime")
+                .HasColumnName("end_org_date");
+            entity.Property(e => e.EndOrgLang)
+                .HasMaxLength(50)
+                .HasColumnName("end_org_lang");
+            entity.Property(e => e.EndOrgLat)
+                .HasMaxLength(50)
+                .HasColumnName("end_org_lat");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("last_update_date");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(50)
+                .HasColumnName("last_update_from");
+            entity.Property(e => e.LastUpdatedBy)
+                .HasMaxLength(50)
+                .HasColumnName("last_updated_by");
+            entity.Property(e => e.LeaveOrderDate)
+                .HasColumnType("datetime")
+                .HasColumnName("leave_order_date");
+            entity.Property(e => e.LeaveOrderLang)
+                .HasMaxLength(50)
+                .HasColumnName("leave_order_lang");
+            entity.Property(e => e.LeaveOrderLat)
+                .HasMaxLength(50)
+                .HasColumnName("leave_order_lat");
+            entity.Property(e => e.OrderId).HasColumnName("order_id");
+            entity.Property(e => e.StartOrgDate)
+                .HasColumnType("datetime")
+                .HasColumnName("start_org_date");
+            entity.Property(e => e.StartOrgLang)
+                .HasMaxLength(50)
+                .HasColumnName("start_org_lang");
+            entity.Property(e => e.StartOrgLat)
+                .HasMaxLength(50)
+                .HasColumnName("start_org_lat");
+            entity.Property(e => e.Status).HasColumnName("status");
+
+            entity.HasOne(d => d.Order).WithMany(p => p.OrderLocations)
+                .HasForeignKey(d => d.OrderId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Order_Location_Order_Location");
+
+            entity.HasOne(d => d.StatusNavigation).WithMany(p => p.OrderLocations)
+                .HasForeignKey(d => d.Status)
+                .HasConstraintName("FK_Order_Location_Status");
+        });
+
+        modelBuilder.Entity<OrderReceptionDestination>(entity =>
+        {
+            entity.ToTable("Order_Reception_Destination");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Address).HasMaxLength(100);
+            entity.Property(e => e.Destination)
+                .HasMaxLength(50)
+                .HasColumnName("destination");
+        });
+
+        modelBuilder.Entity<OrgBranch>(entity =>
+        {
+            entity.ToTable("Org_Branches");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Address).HasMaxLength(100);
+            entity.Property(e => e.Lang).HasMaxLength(50);
+            entity.Property(e => e.Lat).HasMaxLength(50);
+            entity.Property(e => e.Name)
+                .HasMaxLength(50)
+                .HasColumnName("name");
+            entity.Property(e => e.OrgId).HasColumnName("org_id");
+
+            entity.HasOne(d => d.Org).WithMany(p => p.OrgBranches)
+                .HasForeignKey(d => d.OrgId)
+                .HasConstraintName("FK_Org_Branches_Organization_Settings");
+        });
+
+        modelBuilder.Entity<OrganizationSetting>(entity =>
+        {
+            entity.ToTable("Organization_Settings");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Address).HasMaxLength(200);
+            entity.Property(e => e.Name)
+                .HasMaxLength(100)
+                .HasColumnName("name");
+        });
+
         modelBuilder.Entity<OutlookAttachment>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Outlook___3214EC0708872087");
@@ -8110,6 +9004,23 @@ public partial class ApplicationDbContext : DbContext
                 .HasColumnName("ST_VNAMEA");
         });
 
+        modelBuilder.Entity<ParallelApproval>(entity =>
+        {
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Approvalid1).HasColumnName("approvalid1");
+            entity.Property(e => e.Approvalid2).HasColumnName("approvalid2");
+
+            entity.HasOne(d => d.Approvalid1Navigation).WithMany(p => p.ParallelApprovalApprovalid1Navigations)
+                .HasForeignKey(d => d.Approvalid1)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_ParallelApprovals_approvals");
+
+            entity.HasOne(d => d.Approvalid2Navigation).WithMany(p => p.ParallelApprovalApprovalid2Navigations)
+                .HasForeignKey(d => d.Approvalid2)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_ParallelApprovals_approvals1");
+        });
+
         modelBuilder.Entity<PaymentChannel>(entity =>
         {
             entity.ToTable("payment_channels", tb => tb.HasTrigger("trg_Audit_dbo_payment_channels"));
@@ -8200,6 +9111,34 @@ public partial class ApplicationDbContext : DbContext
                 .HasMaxLength(255)
                 .HasColumnName("V_PACKUNIT");
             entity.Property(e => e.VPrice).HasColumnName("V_PRICE");
+        });
+
+        modelBuilder.Entity<PharmaPriceLog>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__pharma_p__3213E83FF64C6EC7");
+
+            entity.ToTable("pharma_price_log");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Active).HasColumnName("active");
+            entity.Property(e => e.LastUpdatedDate)
+                .HasColumnType("datetime")
+                .HasColumnName("last_updated_date");
+            entity.Property(e => e.NewPrice).HasColumnName("new_price");
+            entity.Property(e => e.OldPrice).HasColumnName("old_price");
+            entity.Property(e => e.PahrmaId).HasColumnName("pahrmaId");
+            entity.Property(e => e.PriceUpdateId)
+                .HasMaxLength(25)
+                .IsUnicode(false)
+                .HasColumnName("price_update_id");
+            entity.Property(e => e.UrlId)
+                .HasMaxLength(25)
+                .IsUnicode(false)
+                .HasColumnName("url_id");
+            entity.Property(e => e.UrlPrice)
+                .HasMaxLength(25)
+                .IsUnicode(false)
+                .HasColumnName("url_price");
         });
 
         modelBuilder.Entity<PharmaTemp>(entity =>
@@ -8393,6 +9332,10 @@ public partial class ApplicationDbContext : DbContext
                 .HasForeignKey(d => d.PlanItemPoolId)
                 .HasConstraintName("FK_PlanItems_Contract_Pools");
 
+            entity.HasOne(d => d.SharedItem).WithMany(p => p.PlanItems)
+                .HasForeignKey(d => d.SharedItemId)
+                .HasConstraintName("FK_PlanItems_plan_shared_items");
+
             entity.HasMany(d => d.Services).WithMany(p => p.PlanItems)
                 .UsingEntity<Dictionary<string, object>>(
                     "PlanItemService",
@@ -8502,6 +9445,83 @@ public partial class ApplicationDbContext : DbContext
                     });
         });
 
+        modelBuilder.Entity<PlanSharedItem>(entity =>
+        {
+            entity.ToTable("plan_shared_items");
+
+            entity.HasIndex(e => new { e.PlanId, e.SharedItemId }, "IX_plan_shared_items").IsUnique();
+
+            entity.HasIndex(e => new { e.PlanId, e.SharedItemId }, "UQ_plan_shared_items_plan_item").IsUnique();
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.IsActive).HasColumnName("is_active");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("last_update_by");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("last_update_date");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("last_update_from");
+            entity.Property(e => e.PlanId)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("plan_id");
+
+            entity.HasOne(d => d.Plan).WithMany(p => p.PlanSharedItems)
+                .HasForeignKey(d => d.PlanId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_plan_shared_items_Contract_Plans");
+
+            entity.HasOne(d => d.SharedItem).WithMany(p => p.PlanSharedItems)
+                .HasForeignKey(d => d.SharedItemId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_plan_shared_items_SharedCareItems");
+        });
+
+        modelBuilder.Entity<PlanSharedItemRule>(entity =>
+        {
+            entity.HasKey(e => new { e.PlanId, e.ItemId, e.RuleSerial });
+
+            entity.ToTable("plan_shared_item_rules");
+
+            entity.Property(e => e.PlanId)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("plan_id");
+            entity.Property(e => e.ItemId).HasColumnName("item_id");
+            entity.Property(e => e.RuleSerial).HasColumnName("rule_serial");
+            entity.Property(e => e.IsActive).HasColumnName("isActive");
+            entity.Property(e => e.PaymentType)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("payment_type");
+            entity.Property(e => e.RuleCycle).HasColumnName("rule_cycle");
+            entity.Property(e => e.RuleLevel)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("rule_level");
+            entity.Property(e => e.RuleValue).HasColumnName("rule_value");
+
+            entity.HasOne(d => d.Item).WithMany(p => p.PlanSharedItemRules)
+                .HasForeignKey(d => d.ItemId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_plan_shared_item_rules_SharedCareItems");
+
+            entity.HasOne(d => d.Plan).WithMany(p => p.PlanSharedItemRules)
+                .HasForeignKey(d => d.PlanId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_plan_shared_item_rules_Contract_Plans");
+
+            entity.HasOne(d => d.SharedItem).WithMany(p => p.PlanSharedItemRules)
+                .HasForeignKey(d => d.SharedItemId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_plan_shared_item_rules_plan_shared_items");
+        });
+
         modelBuilder.Entity<PrepareOnlinePatch>(entity =>
         {
             entity.ToTable("prepare_online_patch", tb => tb.HasTrigger("trg_Audit_dbo_prepare_online_patch"));
@@ -8523,6 +9543,48 @@ public partial class ApplicationDbContext : DbContext
                 .HasMaxLength(28)
                 .IsUnicode(false)
                 .HasColumnName("user_name");
+        });
+
+        modelBuilder.Entity<PreviousMember>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__previous__3213E83F12858DE0");
+
+            entity.ToTable("previous_member");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.CreatedBy)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("created_by");
+            entity.Property(e => e.IsDeleted).HasColumnName("is_deleted");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("last_update_by");
+            entity.Property(e => e.LastUpdateDate)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("last_update_date");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("last_update_from");
+            entity.Property(e => e.MemberId1)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("member_id1");
+            entity.Property(e => e.MemberId2)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("member_id2");
+
+            entity.HasOne(d => d.MemberId1Navigation).WithMany(p => p.PreviousMemberMemberId1Navigations)
+                .HasForeignKey(d => d.MemberId1)
+                .HasConstraintName("FK_prev_memebr1");
+
+            entity.HasOne(d => d.MemberId2Navigation).WithMany(p => p.PreviousMemberMemberId2Navigations)
+                .HasForeignKey(d => d.MemberId2)
+                .HasConstraintName("FK_prev_memebr2");
         });
 
         modelBuilder.Entity<PrivilegeLog>(entity =>
@@ -8761,6 +9823,76 @@ public partial class ApplicationDbContext : DbContext
                 .HasColumnName("Vendor_id");
         });
 
+        modelBuilder.Entity<ReceptionEmployee>(entity =>
+        {
+            entity.ToTable("Reception_Employees");
+
+            entity.Property(e => e.Id)
+                .HasMaxLength(128)
+                .IsUnicode(false);
+            entity.Property(e => e.Name)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<ReceptionOrder>(entity =>
+        {
+            entity.ToTable("Reception_Orders");
+
+            entity.Property(e => e.Address).HasMaxLength(150);
+            entity.Property(e => e.AreaId).HasColumnName("Area_Id");
+            entity.Property(e => e.CountryId).HasColumnName("Country_Id");
+            entity.Property(e => e.CustomerId).HasColumnName("Customer_Id");
+            entity.Property(e => e.DeliveryTime).HasColumnType("datetime");
+            entity.Property(e => e.DocumentType).HasColumnName("document_type");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.LastUpdatedBy)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.LastUpdatedDate).HasColumnType("datetime");
+            entity.Property(e => e.Notes)
+                .HasMaxLength(500)
+                .IsUnicode(false);
+            entity.Property(e => e.Number).HasColumnName("number");
+            entity.Property(e => e.RequiredTaskId).HasColumnName("required_task-id");
+            entity.Property(e => e.VendorId)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("Vendor_Id");
+
+            entity.HasOne(d => d.Area).WithMany(p => p.ReceptionOrderAreas)
+                .HasForeignKey(d => d.AreaId)
+                .HasConstraintName("FK_Reception_Orders_areas");
+
+            entity.HasOne(d => d.Country).WithMany(p => p.ReceptionOrderCountries)
+                .HasForeignKey(d => d.CountryId)
+                .HasConstraintName("FK_Reception_Orders_areas1");
+
+            entity.HasOne(d => d.Customer).WithMany(p => p.ReceptionOrders)
+                .HasForeignKey(d => d.CustomerId)
+                .HasConstraintName("FK_Reception_Orders_Customers");
+
+            entity.HasOne(d => d.DocumentTypeNavigation).WithMany(p => p.ReceptionOrders)
+                .HasForeignKey(d => d.DocumentType)
+                .HasConstraintName("FK_Reception_Orders_Document_Type");
+
+            entity.HasOne(d => d.RequiredTask).WithMany(p => p.ReceptionOrders)
+                .HasForeignKey(d => d.RequiredTaskId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Reception_Orders_Movement_Type");
+
+            entity.HasOne(d => d.StatusNavigation).WithMany(p => p.ReceptionOrders)
+                .HasForeignKey(d => d.Status)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Reception_Orders_Status");
+
+            entity.HasOne(d => d.Vendor).WithMany(p => p.ReceptionOrders)
+                .HasForeignKey(d => d.VendorId)
+                .HasConstraintName("FK_Reception_Orders_Reception_Orders");
+        });
+
         modelBuilder.Entity<RequestAttached>(entity =>
         {
             entity.HasKey(e => e.AttachId);
@@ -8784,6 +9916,135 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.LastUpdateDate)
                 .HasColumnType("datetime")
                 .HasColumnName("last_update_date");
+        });
+
+        modelBuilder.Entity<RequestcrmClass>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__requestc__3213E83F8BEDB9A5");
+
+            entity.ToTable("requestcrm_class");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Class)
+                .HasMaxLength(3)
+                .IsUnicode(false)
+                .HasColumnName("class");
+            entity.Property(e => e.MembersCount).HasColumnName("members_count");
+            entity.Property(e => e.RequestId).HasColumnName("request_id");
+
+            entity.HasOne(d => d.Request).WithMany(p => p.RequestcrmClasses)
+                .HasForeignKey(d => d.RequestId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_requestcrm_requestCustomer");
+        });
+
+        modelBuilder.Entity<RequestcrmCustomer>(entity =>
+        {
+            entity.HasKey(e => e.TempId).HasName("PK__requestc__FEEC6BDBB9EBB7DB");
+
+            entity.ToTable("requestcrm_customer");
+
+            entity.Property(e => e.TempId).HasColumnName("temp_id");
+            entity.Property(e => e.Address)
+                .HasMaxLength(500)
+                .HasColumnName("address");
+            entity.Property(e => e.BrokerId).HasColumnName("broker_id");
+            entity.Property(e => e.CustomerTele)
+                .HasMaxLength(15)
+                .IsUnicode(false)
+                .HasColumnName("customer_tele");
+            entity.Property(e => e.DelegationDate)
+                .HasColumnType("datetime")
+                .HasColumnName("delegation_date");
+            entity.Property(e => e.DelegationPath)
+                .HasMaxLength(120)
+                .IsUnicode(false)
+                .HasColumnName("delegation_path");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(50)
+                .HasColumnName("last_update_by");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("last_update_date");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(50)
+                .HasColumnName("last_update_from");
+            entity.Property(e => e.MedicalNetwork)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasColumnName("medical_network");
+            entity.Property(e => e.RegistertionNum)
+                .HasMaxLength(50)
+                .HasColumnName("registertion_num");
+            entity.Property(e => e.StatusId).HasColumnName("status_id");
+            entity.Property(e => e.TaxFile)
+                .HasMaxLength(50)
+                .HasColumnName("tax_file");
+            entity.Property(e => e.TempName)
+                .HasMaxLength(500)
+                .HasColumnName("temp_name");
+
+            entity.HasOne(d => d.Broker).WithMany(p => p.RequestcrmCustomers)
+                .HasForeignKey(d => d.BrokerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_requestcrm_broker");
+
+            entity.HasOne(d => d.Status).WithMany(p => p.RequestcrmCustomers)
+                .HasForeignKey(d => d.StatusId)
+                .HasConstraintName("FK_requestcrm_customer_status_procedure");
+        });
+
+        modelBuilder.Entity<RequestcrmCustomerCategory>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__requestc__3213E83FBBB5177E");
+
+            entity.ToTable("requestcrm_Customer_categories");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.AnnualFees).HasColumnName("annual_fees");
+            entity.Property(e => e.CategoriesId).HasColumnName("categories_id");
+            entity.Property(e => e.IsLevelIndividual).HasColumnName("is_level_individual");
+            entity.Property(e => e.LastUpdatedBy)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("last_updated_by");
+            entity.Property(e => e.LastUpdatedDate)
+                .HasColumnType("datetime")
+                .HasColumnName("last_updated_date");
+            entity.Property(e => e.LastUpdatedFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("last_updated_from");
+            entity.Property(e => e.MinMemberAllow).HasColumnName("min_member_allow");
+            entity.Property(e => e.Notes)
+                .HasMaxLength(200)
+                .IsUnicode(false)
+                .HasColumnName("notes");
+            entity.Property(e => e.RequestId).HasColumnName("request_id");
+
+            entity.HasOne(d => d.Categories).WithMany(p => p.RequestcrmCustomerCategories)
+                .HasForeignKey(d => d.CategoriesId)
+                .HasConstraintName("Fk_requestcrmcat_categories");
+
+            entity.HasOne(d => d.Request).WithMany(p => p.RequestcrmCustomerCategories)
+                .HasForeignKey(d => d.RequestId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_requestcrmCat_requestCustomer");
+        });
+
+        modelBuilder.Entity<RequiredTask>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_Movement_Type");
+
+            entity.ToTable("Required_Task");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.NameAr)
+                .HasMaxLength(50)
+                .HasColumnName("name_ar");
+            entity.Property(e => e.NameEn)
+                .HasMaxLength(50)
+                .HasColumnName("name_en");
         });
 
         modelBuilder.Entity<Residence>(entity =>
@@ -9290,6 +10551,39 @@ public partial class ApplicationDbContext : DbContext
                 .HasConstraintName("FK_sch_customer_archive_Customers");
         });
 
+        modelBuilder.Entity<Schema>(entity =>
+        {
+            entity.HasKey(e => e.Version).HasName("PK_HangFire_Schema");
+
+            entity.ToTable("Schema", "HangFire");
+
+            entity.Property(e => e.Version).ValueGeneratedNever();
+        });
+
+        modelBuilder.Entity<SeniorMember>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToTable("senior_members");
+
+            entity.Property(e => e.Date)
+                .HasColumnType("datetime")
+                .HasColumnName("date");
+            entity.Property(e => e.MemberId).HasColumnName("member_id");
+        });
+
+        modelBuilder.Entity<Server>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_HangFire_Server");
+
+            entity.ToTable("Server", "HangFire");
+
+            entity.HasIndex(e => e.LastHeartbeat, "IX_HangFire_Server_LastHeartbeat");
+
+            entity.Property(e => e.Id).HasMaxLength(200);
+            entity.Property(e => e.LastHeartbeat).HasColumnType("datetime");
+        });
+
         modelBuilder.Entity<ServiceReviewResponse>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__service___3214EC0763AE66A7");
@@ -9343,6 +10637,29 @@ public partial class ApplicationDbContext : DbContext
                     });
         });
 
+        modelBuilder.Entity<Set>(entity =>
+        {
+            entity.HasKey(e => new { e.Key, e.Value }).HasName("PK_HangFire_Set");
+
+            entity.ToTable("Set", "HangFire");
+
+            entity.HasIndex(e => e.ExpireAt, "IX_HangFire_Set_ExpireAt").HasFilter("([ExpireAt] IS NOT NULL)");
+
+            entity.HasIndex(e => new { e.Key, e.Score }, "IX_HangFire_Set_Score");
+
+            entity.Property(e => e.Key).HasMaxLength(100);
+            entity.Property(e => e.Value).HasMaxLength(256);
+            entity.Property(e => e.ExpireAt).HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<SharedCareItem>(entity =>
+        {
+            entity.HasKey(e => e.SharedItemId).HasName("PK__SharedCa__81140D59828B506A");
+
+            entity.Property(e => e.SharedItemId).ValueGeneratedNever();
+            entity.Property(e => e.SharedItemName).HasMaxLength(255);
+        });
+
         modelBuilder.Entity<SourceQuery>(entity =>
         {
             entity.HasKey(e => e.SourceId);
@@ -9367,9 +10684,7 @@ public partial class ApplicationDbContext : DbContext
                     tb.HasTrigger("trg_Audit_dbo_StandardServices");
                 });
 
-            entity.Property(e => e.StandServiceCode)
-                .ValueGeneratedNever()
-                .HasColumnName("stand_service_code");
+            entity.Property(e => e.StandServiceCode).HasColumnName("stand_service_code");
             entity.Property(e => e.LastUpdateBy)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -9407,6 +10722,24 @@ public partial class ApplicationDbContext : DbContext
             entity.HasOne(d => d.StandServiceVendorCategory).WithMany(p => p.StandardServices)
                 .HasForeignKey(d => d.StandServiceVendorCategoryId)
                 .HasConstraintName("FK_StandardServices_vendor_category");
+        });
+
+        modelBuilder.Entity<State>(entity =>
+        {
+            entity.HasKey(e => new { e.JobId, e.Id }).HasName("PK_HangFire_State");
+
+            entity.ToTable("State", "HangFire");
+
+            entity.HasIndex(e => e.CreatedAt, "IX_HangFire_State_CreatedAt");
+
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
+            entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+            entity.Property(e => e.Name).HasMaxLength(20);
+            entity.Property(e => e.Reason).HasMaxLength(100);
+
+            entity.HasOne(d => d.Job).WithMany(p => p.States)
+                .HasForeignKey(d => d.JobId)
+                .HasConstraintName("FK_HangFire_State_Job");
         });
 
         modelBuilder.Entity<StateRef>(entity =>
@@ -9507,6 +10840,93 @@ public partial class ApplicationDbContext : DbContext
                 .ToView("SudanCustomers");
 
             entity.Property(e => e.CustomerId).HasColumnName("customer_id");
+        });
+
+        modelBuilder.Entity<SyUser>(entity =>
+        {
+            entity.HasKey(e => e.UserCode).HasName("ASA2189");
+
+            entity.ToTable("sy_user");
+
+            entity.Property(e => e.UserCode)
+                .ValueGeneratedNever()
+                .HasColumnName("user_code");
+            entity.Property(e => e.AccEnabled)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasColumnName("acc_enabled");
+            entity.Property(e => e.DrpName)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("drp_name");
+            entity.Property(e => e.GrpDesc)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("grp_desc");
+            entity.Property(e => e.IpAddress)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("ip_address");
+            entity.Property(e => e.LinkUserCustomer)
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .HasDefaultValue("System")
+                .HasColumnName("link_user_customer");
+            entity.Property(e => e.MacAddress)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("mac_address");
+            entity.Property(e => e.NewPassword)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("newPassword");
+            entity.Property(e => e.OldPass)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("oldPass");
+            entity.Property(e => e.Passwd)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("passwd");
+            entity.Property(e => e.PcName)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("pc_name");
+            entity.Property(e => e.PfcUserid)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("pfc_userid");
+            entity.Property(e => e.SignPicture)
+                .HasMaxLength(200)
+                .IsUnicode(false)
+                .HasColumnName("sign_picture");
+            entity.Property(e => e.StEmpid)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("st_empid");
+            entity.Property(e => e.TempPass)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("tempPass");
+            entity.Property(e => e.UserLogon)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("user_logon");
+            entity.Property(e => e.UserPwd)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("user_pwd");
+            entity.Property(e => e.UserType)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasColumnName("user_type");
+            entity.Property(e => e.VersionInstallDate)
+                .HasColumnType("datetime")
+                .HasColumnName("version_install_date");
+            entity.Property(e => e.VersionNumber)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("version_number");
         });
 
         modelBuilder.Entity<SysSetting>(entity =>
@@ -9808,7 +11228,6 @@ public partial class ApplicationDbContext : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.ReplyClientId).HasColumnName("reply_client_id");
             entity.Property(e => e.ReplyNote)
-                .HasMaxLength(200)
                 .IsUnicode(false)
                 .HasColumnName("reply_note");
             entity.Property(e => e.RequestStatus).HasColumnName("request_status");
@@ -10023,6 +11442,11 @@ public partial class ApplicationDbContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("user_id");
 
+            entity.HasOne(d => d.Branch).WithMany(p => p.UserDepartments)
+                .HasForeignKey(d => d.BranchId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_user_department_Org_Branches");
+
             entity.HasOne(d => d.Dept).WithMany(p => p.UserDepartments)
                 .HasForeignKey(d => d.DeptId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -10055,6 +11479,36 @@ public partial class ApplicationDbContext : DbContext
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_UserFavoriteMenus_AspNetUsers");
+        });
+
+        modelBuilder.Entity<UserHaveMemberInMashcare>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("UserHaveMemberInMashcare");
+
+            entity.Property(e => e.MemberEmail)
+                .HasMaxLength(256)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
+            entity.Property(e => e.MemberName)
+                .HasMaxLength(150)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS")
+                .HasColumnName("member_name");
+            entity.Property(e => e.MemberTele)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS")
+                .HasColumnName("member_tele");
+            entity.Property(e => e.Password).UseCollation("SQL_Latin1_General_CP1_CI_AS");
+            entity.Property(e => e.PlanName)
+                .HasMaxLength(200)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
+            entity.Property(e => e.UserId)
+                .HasMaxLength(450)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
+            entity.Property(e => e.UserName)
+                .HasMaxLength(256)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
         });
 
         modelBuilder.Entity<UserLog>(entity =>
@@ -10108,6 +11562,11 @@ public partial class ApplicationDbContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("last_update_from");
             entity.Property(e => e.PageId).HasColumnName("pageId");
+
+            entity.HasOne(d => d.Page).WithMany(p => p.UserManuals)
+                .HasForeignKey(d => d.PageId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_user_manual_acmc_Page");
         });
 
         modelBuilder.Entity<UserNotification>(entity =>
@@ -10182,6 +11641,50 @@ public partial class ApplicationDbContext : DbContext
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_user_plans_AspNetUsers");
+        });
+
+        modelBuilder.Entity<UserPlanMashcare>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("UserPlanMashcare");
+
+            entity.Property(e => e.CustomerId).HasColumnName("customer_id");
+            entity.Property(e => e.CustomerName)
+                .HasMaxLength(60)
+                .IsUnicode(false)
+                .HasColumnName("customer_name");
+            entity.Property(e => e.MemberClass)
+                .HasMaxLength(3)
+                .IsUnicode(false)
+                .HasColumnName("member_class");
+            entity.Property(e => e.MemberId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("member_id");
+            entity.Property(e => e.MemberName)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("member_name");
+            entity.Property(e => e.Password).UseCollation("SQL_Latin1_General_CP1_CI_AS");
+            entity.Property(e => e.PlanCode)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("plan_code");
+            entity.Property(e => e.PlanName)
+                .HasMaxLength(200)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
+            entity.Property(e => e.UserId)
+                .HasMaxLength(450)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
+            entity.Property(e => e.UserName)
+                .HasMaxLength(256)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
+        });
+
+        modelBuilder.Entity<UserPlanPaymentBill>(entity =>
+        {
+            entity.HasKey(e => new { e.Paymentid, e.Billid });
         });
 
         modelBuilder.Entity<UserReportColumn>(entity =>
@@ -10276,6 +11779,169 @@ public partial class ApplicationDbContext : DbContext
             entity.HasOne(d => d.VendorVisit).WithMany(p => p.UsersVendorsVisits)
                 .HasForeignKey(d => d.VendorVisitId)
                 .HasConstraintName("fk_Visits_Vendors_visits");
+        });
+
+        modelBuilder.Entity<VAccAllTransaction>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_acc_all_transactions");
+
+            entity.Property(e => e.Account1)
+                .HasMaxLength(100)
+                .HasColumnName("account1");
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("account_code");
+            entity.Property(e => e.AdjDate).HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasMaxLength(50)
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillId).HasColumnName("BILL_ID");
+            entity.Property(e => e.BillType).HasColumnName("BILL_TYPE");
+            entity.Property(e => e.Comments)
+                .HasMaxLength(500)
+                .HasColumnName("COMMENTS");
+            entity.Property(e => e.CompanyCode).HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1).HasColumnName("company_code1");
+            entity.Property(e => e.ContractId)
+                .HasMaxLength(50)
+                .HasColumnName("contract_id");
+            entity.Property(e => e.CostCenter).HasColumnName("COST_CENTER");
+            entity.Property(e => e.Credit)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("CREDIT");
+            entity.Property(e => e.Debit)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("DEBIT");
+            entity.Property(e => e.DocDestCode).HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(100)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.DocType).HasColumnName("DOC_TYPE");
+            entity.Property(e => e.Expr1).HasMaxLength(500);
+            entity.Property(e => e.GroupNo).HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode).HasColumnName("magmoat_code");
+            entity.Property(e => e.MohafzatCode).HasColumnName("mohafzat_code");
+            entity.Property(e => e.MontagatCode).HasColumnName("montagat_code");
+            entity.Property(e => e.Mony)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("mony");
+            entity.Property(e => e.Mony1)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("mony1");
+            entity.Property(e => e.Mony1R)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("mony1_r");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(10)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit).HasColumnName("operating_unit");
+            entity.Property(e => e.RegonCode).HasColumnName("regon_code");
+            entity.Property(e => e.Serial).HasColumnName("serial");
+            entity.Property(e => e.Source1)
+                .HasMaxLength(100)
+                .HasColumnName("source1");
+            entity.Property(e => e.Tahweel)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode).HasColumnName("wehdat_code");
+        });
+
+        modelBuilder.Entity<VAccAmrKabdKhazna>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_acc_amr_kabd_khazna");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(255)
+                .HasColumnName("ACCOUNT_CODE");
+            entity.Property(e => e.AccountName)
+                .HasMaxLength(250)
+                .HasColumnName("account_name");
+            entity.Property(e => e.AdjDate)
+                .HasColumnType("datetime")
+                .HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjStatus)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("ADJ_STATUS");
+            entity.Property(e => e.AmeelName)
+                .HasMaxLength(250)
+                .HasColumnName("ameel_name");
+            entity.Property(e => e.AmeelNo).HasColumnName("ameel_no");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.CboCurrency)
+                .HasMaxLength(150)
+                .IsUnicode(false)
+                .HasColumnName("cboCurrency");
+            entity.Property(e => e.Credit)
+                .HasColumnType("numeric(18, 2)")
+                .HasColumnName("CREDIT");
+            entity.Property(e => e.DateTimePicker1)
+                .HasColumnType("datetime")
+                .HasColumnName("dateTimePicker1");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.JeSerial)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("JE_SERIAL");
+            entity.Property(e => e.MoredName)
+                .HasMaxLength(250)
+                .HasColumnName("mored_name");
+            entity.Property(e => e.MoredNo)
+                .HasMaxLength(20)
+                .HasColumnName("mored_no");
+            entity.Property(e => e.PaidValue)
+                .HasColumnType("numeric(19, 3)")
+                .HasColumnName("PAID_VALUE");
+            entity.Property(e => e.TahweelSandookRaese)
+                .HasColumnType("numeric(1, 0)")
+                .HasColumnName("tahweel_sandook_raese");
+            entity.Property(e => e.TextBox14)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("textBox14");
+            entity.Property(e => e.ValueI)
+                .HasColumnType("numeric(19, 3)")
+                .HasColumnName("VALUE_I");
         });
 
         modelBuilder.Entity<VAccAmrSarfKhazna>(entity =>
@@ -10429,6 +12095,326 @@ public partial class ApplicationDbContext : DbContext
                 .HasColumnName("sb_type");
         });
 
+        modelBuilder.Entity<VAccCombinedLedger>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_acc_combined_ledger");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ACCOUNT_CODE");
+            entity.Property(e => e.AccountKhetami)
+                .HasMaxLength(20)
+                .HasColumnName("account_khetami");
+            entity.Property(e => e.AccountName)
+                .HasMaxLength(250)
+                .HasColumnName("account_name");
+            entity.Property(e => e.AdjDate)
+                .HasColumnType("datetime")
+                .HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AdjStatus)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasColumnName("ADJ_STATUS");
+            entity.Property(e => e.AmeelName)
+                .HasMaxLength(250)
+                .HasColumnName("ameel_name");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.Arrange1)
+                .HasMaxLength(3)
+                .HasColumnName("arrange1");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillId)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("BILL_ID");
+            entity.Property(e => e.BillType).HasColumnName("BILL_TYPE");
+            entity.Property(e => e.Comments)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("COMMENTS");
+            entity.Property(e => e.CompanyCode).HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1).HasColumnName("company_code1");
+            entity.Property(e => e.CompanyName)
+                .HasMaxLength(50)
+                .HasColumnName("company_name");
+            entity.Property(e => e.CostCenter).HasColumnName("COST_CENTER");
+            entity.Property(e => e.CostCenterName)
+                .HasMaxLength(50)
+                .HasColumnName("COST_CENTER_name");
+            entity.Property(e => e.Credit).HasColumnName("CREDIT");
+            entity.Property(e => e.Debit).HasColumnName("DEBIT");
+            entity.Property(e => e.DocDestCode).HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.DocType).HasColumnName("DOC_TYPE");
+            entity.Property(e => e.GroupKind)
+                .HasMaxLength(50)
+                .HasColumnName("group_kind");
+            entity.Property(e => e.GroupName)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("group_name");
+            entity.Property(e => e.GroupNo).HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode).HasColumnName("magmoat_code");
+            entity.Property(e => e.MagmoatName)
+                .HasMaxLength(50)
+                .HasColumnName("magmoat_name");
+            entity.Property(e => e.MohafzatCode).HasColumnName("mohafzat_code");
+            entity.Property(e => e.MohafzatName)
+                .HasMaxLength(50)
+                .HasColumnName("mohafzat_name");
+            entity.Property(e => e.MontagatCode).HasColumnName("montagat_code");
+            entity.Property(e => e.MontagatName)
+                .HasMaxLength(50)
+                .HasColumnName("montagat_name");
+            entity.Property(e => e.Mony1).HasColumnName("mony1");
+            entity.Property(e => e.Mony1R).HasColumnName("mony1_r");
+            entity.Property(e => e.Notes)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("notes");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(20)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit).HasColumnName("operating_unit");
+            entity.Property(e => e.RegonCode).HasColumnName("regon_code");
+            entity.Property(e => e.RegonName)
+                .HasMaxLength(50)
+                .HasColumnName("regon_name");
+            entity.Property(e => e.Serial).HasColumnName("serial");
+            entity.Property(e => e.SourceCode)
+                .HasMaxLength(10)
+                .HasColumnName("source_code");
+            entity.Property(e => e.SourceName)
+                .HasMaxLength(50)
+                .HasColumnName("source_name");
+            entity.Property(e => e.Tahweel)
+                .HasColumnType("numeric(18, 2)")
+                .HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode).HasColumnName("wehdat_code");
+            entity.Property(e => e.WehdatName)
+                .HasMaxLength(50)
+                .HasColumnName("wehdat_name");
+        });
+
+        modelBuilder.Entity<VAccCoreTransaction>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_acc_core_transactions");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ACCOUNT_CODE");
+            entity.Property(e => e.AdjDate)
+                .HasColumnType("datetime")
+                .HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjDate2)
+                .HasColumnType("datetime")
+                .HasColumnName("ADJ_DATE_2");
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AdjStatus)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasColumnName("ADJ_STATUS");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillId)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("BILL_ID");
+            entity.Property(e => e.BillType).HasColumnName("BILL_TYPE");
+            entity.Property(e => e.Comments)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("COMMENTS");
+            entity.Property(e => e.CompanyCode).HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1).HasColumnName("company_code1");
+            entity.Property(e => e.CostCenter).HasColumnName("COST_CENTER");
+            entity.Property(e => e.Credit).HasColumnName("CREDIT");
+            entity.Property(e => e.Debit).HasColumnName("DEBIT");
+            entity.Property(e => e.DocDestCode).HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.DocType).HasColumnName("DOC_TYPE");
+            entity.Property(e => e.GroupKind)
+                .HasMaxLength(50)
+                .HasColumnName("group_kind");
+            entity.Property(e => e.GroupNo).HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode).HasColumnName("magmoat_code");
+            entity.Property(e => e.MohafzatCode).HasColumnName("mohafzat_code");
+            entity.Property(e => e.MontagatCode).HasColumnName("montagat_code");
+            entity.Property(e => e.Mony1).HasColumnName("mony1");
+            entity.Property(e => e.Mony1R).HasColumnName("mony1_r");
+            entity.Property(e => e.Notes)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("notes");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(20)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit).HasColumnName("operating_unit");
+            entity.Property(e => e.RegonCode).HasColumnName("regon_code");
+            entity.Property(e => e.Serial).HasColumnName("serial");
+            entity.Property(e => e.Tahweel)
+                .HasColumnType("numeric(18, 2)")
+                .HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode).HasColumnName("wehdat_code");
+        });
+
+        modelBuilder.Entity<VAccInvoiceBase>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_acc_invoice_base");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("account_code");
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(15, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1).HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.AmeelNo1)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("ameel_no1");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(255)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillStatus).HasColumnName("BILL_STATUS");
+            entity.Property(e => e.CompanyCode).HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1).HasColumnName("company_code1");
+            entity.Property(e => e.ContractId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("contract_id");
+            entity.Property(e => e.CostCenter).HasColumnName("COST_CENTER");
+            entity.Property(e => e.Credit).HasColumnName("credit");
+            entity.Property(e => e.CustomerName)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("customer_name");
+            entity.Property(e => e.Debit).HasColumnName("debit");
+            entity.Property(e => e.DocDate)
+                .HasColumnType("datetime")
+                .HasColumnName("doc_date");
+            entity.Property(e => e.DocDestCode).HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocNum)
+                .HasColumnType("numeric(9, 0)")
+                .HasColumnName("doc_num");
+            entity.Property(e => e.GroupNo).HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(3)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode).HasColumnName("magmoat_code");
+            entity.Property(e => e.MohafzatCode).HasColumnName("mohafzat_code");
+            entity.Property(e => e.MontagatCode).HasColumnName("montagat_code");
+            entity.Property(e => e.Mony).HasColumnName("mony");
+            entity.Property(e => e.Mony1).HasColumnName("mony1");
+            entity.Property(e => e.Mony1R).HasColumnName("mony1_r");
+            entity.Property(e => e.Notes)
+                .HasMaxLength(1000)
+                .IsUnicode(false)
+                .HasColumnName("notes");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit).HasColumnName("operating_unit");
+            entity.Property(e => e.PaymentType)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("payment_type");
+            entity.Property(e => e.RegonCode).HasColumnName("regon_code");
+            entity.Property(e => e.Serial).HasColumnName("serial");
+            entity.Property(e => e.Source1)
+                .HasMaxLength(13)
+                .IsUnicode(false)
+                .HasColumnName("source1");
+            entity.Property(e => e.Tahweel).HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode).HasColumnName("wehdat_code");
+        });
+
         modelBuilder.Entity<VAccInvoiceCollection>(entity =>
         {
             entity
@@ -10472,6 +12458,595 @@ public partial class ApplicationDbContext : DbContext
                 .HasMaxLength(10)
                 .IsUnicode(false)
                 .HasColumnName("source");
+        });
+
+        modelBuilder.Entity<VAccMedOptimized>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_acc_med_optimized");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("account_code");
+            entity.Property(e => e.AdjDate).HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasMaxLength(50)
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillId).HasColumnName("BILL_ID");
+            entity.Property(e => e.BillType).HasColumnName("BILL_TYPE");
+            entity.Property(e => e.Comments)
+                .HasMaxLength(500)
+                .HasColumnName("COMMENTS");
+            entity.Property(e => e.CompanyCode).HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1).HasColumnName("company_code1");
+            entity.Property(e => e.ContractId)
+                .HasMaxLength(50)
+                .HasColumnName("contract_id");
+            entity.Property(e => e.CostCenter).HasColumnName("COST_CENTER");
+            entity.Property(e => e.Credit)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("CREDIT");
+            entity.Property(e => e.Debit)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("DEBIT");
+            entity.Property(e => e.DocDestCode).HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(100)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.DocType).HasColumnName("DOC_TYPE");
+            entity.Property(e => e.Expr1).HasMaxLength(500);
+            entity.Property(e => e.GroupNo).HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode).HasColumnName("magmoat_code");
+            entity.Property(e => e.MohafzatCode).HasColumnName("mohafzat_code");
+            entity.Property(e => e.MontagatCode).HasColumnName("montagat_code");
+            entity.Property(e => e.Mony)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("mony");
+            entity.Property(e => e.Mony1)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("mony1");
+            entity.Property(e => e.Mony1R)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("mony1_r");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(10)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit).HasColumnName("operating_unit");
+            entity.Property(e => e.RegonCode).HasColumnName("regon_code");
+            entity.Property(e => e.SaCnamea)
+                .HasMaxLength(100)
+                .HasColumnName("sa_cnamea");
+            entity.Property(e => e.Serial).HasColumnName("serial");
+            entity.Property(e => e.Source1)
+                .HasMaxLength(100)
+                .HasColumnName("source1");
+            entity.Property(e => e.Tahweel)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode).HasColumnName("wehdat_code");
+        });
+
+        modelBuilder.Entity<VAccOpeningBalance>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_acc_opening_balance");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("account_code");
+            entity.Property(e => e.AdjDate).HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasMaxLength(50)
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillId)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("BILL_ID");
+            entity.Property(e => e.BillType).HasColumnName("BILL_TYPE");
+            entity.Property(e => e.Comments)
+                .HasMaxLength(500)
+                .HasColumnName("COMMENTS");
+            entity.Property(e => e.CompanyCode).HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1).HasColumnName("company_code1");
+            entity.Property(e => e.ContractId)
+                .HasMaxLength(50)
+                .HasColumnName("contract_id");
+            entity.Property(e => e.CostCenter).HasColumnName("COST_CENTER");
+            entity.Property(e => e.Credit)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("CREDIT");
+            entity.Property(e => e.Debit)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("DEBIT");
+            entity.Property(e => e.DocDestCode).HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(100)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.DocType).HasColumnName("DOC_TYPE");
+            entity.Property(e => e.Expr1).HasMaxLength(200);
+            entity.Property(e => e.GroupNo).HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode).HasColumnName("magmoat_code");
+            entity.Property(e => e.MohafzatCode).HasColumnName("mohafzat_code");
+            entity.Property(e => e.MontagatCode).HasColumnName("montagat_code");
+            entity.Property(e => e.Mony)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("mony");
+            entity.Property(e => e.Mony1)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("mony1");
+            entity.Property(e => e.Mony1R)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("mony1_r");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(10)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit).HasColumnName("operating_unit");
+            entity.Property(e => e.RegonCode).HasColumnName("regon_code");
+            entity.Property(e => e.SaCnamea)
+                .HasMaxLength(100)
+                .HasColumnName("sa_cnamea");
+            entity.Property(e => e.Serial).HasColumnName("serial");
+            entity.Property(e => e.Source1)
+                .HasMaxLength(100)
+                .HasColumnName("source1");
+            entity.Property(e => e.Tahweel)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode).HasColumnName("wehdat_code");
+        });
+
+        modelBuilder.Entity<VAccOptimizedAcc1medO2>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_acc_optimized_acc_1med_o2");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .HasColumnName("ACCOUNT_CODE");
+            entity.Property(e => e.AdjDate)
+                .HasColumnType("datetime")
+                .HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(15, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(20)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(255)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillId)
+                .HasColumnType("numeric(10, 0)")
+                .HasColumnName("BILL_ID");
+            entity.Property(e => e.BillType).HasColumnName("BILL_TYPE");
+            entity.Property(e => e.Comments)
+                .HasMaxLength(1000)
+                .IsUnicode(false)
+                .HasColumnName("COMMENTS");
+            entity.Property(e => e.CompanyCode).HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1).HasColumnName("company_code1");
+            entity.Property(e => e.ContractId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("contract_id");
+            entity.Property(e => e.CostCenter).HasColumnName("COST_CENTER");
+            entity.Property(e => e.Credit).HasColumnName("CREDIT");
+            entity.Property(e => e.Debit).HasColumnName("DEBIT");
+            entity.Property(e => e.DocDestCode).HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.DocType).HasColumnName("DOC_TYPE");
+            entity.Property(e => e.Expr1)
+                .HasMaxLength(1000)
+                .IsUnicode(false);
+            entity.Property(e => e.GroupNo).HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode).HasColumnName("magmoat_code");
+            entity.Property(e => e.MohafzatCode).HasColumnName("mohafzat_code");
+            entity.Property(e => e.MontagatCode).HasColumnName("montagat_code");
+            entity.Property(e => e.Mony)
+                .HasColumnType("numeric(18, 2)")
+                .HasColumnName("mony");
+            entity.Property(e => e.Mony1)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("mony1");
+            entity.Property(e => e.Mony1R)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("mony1_r");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit).HasColumnName("operating_unit");
+            entity.Property(e => e.RegonCode).HasColumnName("regon_code");
+            entity.Property(e => e.SaCnamea)
+                .HasMaxLength(250)
+                .HasColumnName("sa_cnamea");
+            entity.Property(e => e.SaCtnamea)
+                .HasMaxLength(250)
+                .HasColumnName("sa_ctnamea");
+            entity.Property(e => e.Serial).HasColumnName("serial");
+            entity.Property(e => e.Source1)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("source1");
+            entity.Property(e => e.Tahweel)
+                .HasColumnType("numeric(18, 2)")
+                .HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode).HasColumnName("wehdat_code");
+        });
+
+        modelBuilder.Entity<VAccOptimizedAcc1medO2WithRank>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_acc_optimized_acc_1med_o2_with_rank");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .HasColumnName("ACCOUNT_CODE");
+            entity.Property(e => e.AdjDate)
+                .HasColumnType("datetime")
+                .HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(15, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(20)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(255)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillId)
+                .HasColumnType("numeric(10, 0)")
+                .HasColumnName("BILL_ID");
+            entity.Property(e => e.BillType).HasColumnName("BILL_TYPE");
+            entity.Property(e => e.Comments)
+                .HasMaxLength(1000)
+                .IsUnicode(false)
+                .HasColumnName("COMMENTS");
+            entity.Property(e => e.CompanyCode).HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1).HasColumnName("company_code1");
+            entity.Property(e => e.ContractId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("contract_id");
+            entity.Property(e => e.CostCenter).HasColumnName("COST_CENTER");
+            entity.Property(e => e.Credit).HasColumnName("CREDIT");
+            entity.Property(e => e.Debit).HasColumnName("DEBIT");
+            entity.Property(e => e.DocDestCode).HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.DocType).HasColumnName("DOC_TYPE");
+            entity.Property(e => e.Expr1)
+                .HasMaxLength(1000)
+                .IsUnicode(false);
+            entity.Property(e => e.GroupNo).HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode).HasColumnName("magmoat_code");
+            entity.Property(e => e.MohafzatCode).HasColumnName("mohafzat_code");
+            entity.Property(e => e.MontagatCode).HasColumnName("montagat_code");
+            entity.Property(e => e.Mony)
+                .HasColumnType("numeric(18, 2)")
+                .HasColumnName("mony");
+            entity.Property(e => e.Mony1)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("mony1");
+            entity.Property(e => e.Mony1R)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("mony1_r");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit).HasColumnName("operating_unit");
+            entity.Property(e => e.RegonCode).HasColumnName("regon_code");
+            entity.Property(e => e.SaCnamea)
+                .HasMaxLength(250)
+                .HasColumnName("sa_cnamea");
+            entity.Property(e => e.SaCtnamea)
+                .HasMaxLength(250)
+                .HasColumnName("sa_ctnamea");
+            entity.Property(e => e.Serial).HasColumnName("serial");
+            entity.Property(e => e.Source1)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("source1");
+            entity.Property(e => e.Tahweel)
+                .HasColumnType("numeric(18, 2)")
+                .HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode).HasColumnName("wehdat_code");
+        });
+
+        modelBuilder.Entity<VAccPaymentBase>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_acc_payment_base");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(20)
+                .HasColumnName("ACCOUNT_CODE");
+            entity.Property(e => e.AdjDate)
+                .HasColumnType("datetime")
+                .HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(20)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillId).HasColumnName("BILL_ID");
+            entity.Property(e => e.BillType).HasColumnName("BILL_TYPE");
+            entity.Property(e => e.Comments)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("COMMENTS");
+            entity.Property(e => e.CompanyCode).HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1).HasColumnName("company_code1");
+            entity.Property(e => e.CostCenter).HasColumnName("COST_CENTER");
+            entity.Property(e => e.Credit)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("CREDIT");
+            entity.Property(e => e.Debit)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("DEBIT");
+            entity.Property(e => e.DocDestCode).HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.DocType).HasColumnName("DOC_TYPE");
+            entity.Property(e => e.GroupNo).HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode).HasColumnName("magmoat_code");
+            entity.Property(e => e.MohafzatCode).HasColumnName("mohafzat_code");
+            entity.Property(e => e.MontagatCode).HasColumnName("montagat_code");
+            entity.Property(e => e.Mony1)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("mony1");
+            entity.Property(e => e.Mony1R)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("mony1_r");
+            entity.Property(e => e.Notes)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("notes");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit).HasColumnName("operating_unit");
+            entity.Property(e => e.RegonCode).HasColumnName("regon_code");
+            entity.Property(e => e.Serial).HasColumnName("serial");
+            entity.Property(e => e.SortOrder)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("sort_order");
+            entity.Property(e => e.Source1)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("source1");
+            entity.Property(e => e.Tahweel)
+                .HasColumnType("numeric(18, 2)")
+                .HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode).HasColumnName("wehdat_code");
+        });
+
+        modelBuilder.Entity<VAccPaymentWithAccount>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_acc_payment_with_accounts");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(20)
+                .HasColumnName("ACCOUNT_CODE");
+            entity.Property(e => e.AccountName)
+                .HasMaxLength(250)
+                .HasColumnName("account_name");
+            entity.Property(e => e.AdjDate)
+                .HasColumnType("datetime")
+                .HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(20)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillId).HasColumnName("BILL_ID");
+            entity.Property(e => e.BillType).HasColumnName("BILL_TYPE");
+            entity.Property(e => e.Comments)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("COMMENTS");
+            entity.Property(e => e.CompanyCode).HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1).HasColumnName("company_code1");
+            entity.Property(e => e.CostCenter).HasColumnName("COST_CENTER");
+            entity.Property(e => e.Credit)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("CREDIT");
+            entity.Property(e => e.Debit)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("DEBIT");
+            entity.Property(e => e.DocDestCode).HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.DocType).HasColumnName("DOC_TYPE");
+            entity.Property(e => e.GroupNo).HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode).HasColumnName("magmoat_code");
+            entity.Property(e => e.MohafzatCode).HasColumnName("mohafzat_code");
+            entity.Property(e => e.MontagatCode).HasColumnName("montagat_code");
+            entity.Property(e => e.Mony1)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("mony1");
+            entity.Property(e => e.Mony1R)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("mony1_r");
+            entity.Property(e => e.Notes)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("notes");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit).HasColumnName("operating_unit");
+            entity.Property(e => e.RegonCode).HasColumnName("regon_code");
+            entity.Property(e => e.Serial).HasColumnName("serial");
+            entity.Property(e => e.Source1)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("source1");
+            entity.Property(e => e.Tahweel)
+                .HasColumnType("numeric(18, 2)")
+                .HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode).HasColumnName("wehdat_code");
         });
 
         modelBuilder.Entity<VAccTasweeMoredAll>(entity =>
@@ -11660,6 +14235,10 @@ public partial class ApplicationDbContext : DbContext
                 .IsUnicode(false)
                 .UseCollation("Arabic_100_CI_AI")
                 .HasColumnName("Approval_type");
+            entity.Property(e => e.ContractId)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("contract_id");
             entity.Property(e => e.Member)
                 .HasMaxLength(20)
                 .IsUnicode(false);
@@ -11809,6 +14388,109 @@ public partial class ApplicationDbContext : DbContext
                 .HasColumnName("payment_type");
         });
 
+        modelBuilder.Entity<VCustomerBalance>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_customer_balance");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .HasColumnName("ACCOUNT_CODE");
+            entity.Property(e => e.AdjDate)
+                .HasColumnType("datetime")
+                .HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(15, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(20)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(255)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillId)
+                .HasColumnType("numeric(10, 0)")
+                .HasColumnName("BILL_ID");
+            entity.Property(e => e.BillType).HasColumnName("BILL_TYPE");
+            entity.Property(e => e.Comments)
+                .HasMaxLength(1000)
+                .IsUnicode(false)
+                .HasColumnName("COMMENTS");
+            entity.Property(e => e.CompanyCode).HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1).HasColumnName("company_code1");
+            entity.Property(e => e.ContractId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("contract_id");
+            entity.Property(e => e.CostCenter).HasColumnName("COST_CENTER");
+            entity.Property(e => e.Credit).HasColumnName("CREDIT");
+            entity.Property(e => e.Debit).HasColumnName("DEBIT");
+            entity.Property(e => e.DocDestCode).HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.DocType).HasColumnName("DOC_TYPE");
+            entity.Property(e => e.Expr1)
+                .HasMaxLength(1000)
+                .IsUnicode(false);
+            entity.Property(e => e.GroupNo).HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode).HasColumnName("magmoat_code");
+            entity.Property(e => e.MohafzatCode).HasColumnName("mohafzat_code");
+            entity.Property(e => e.MontagatCode).HasColumnName("montagat_code");
+            entity.Property(e => e.Mony)
+                .HasColumnType("numeric(18, 2)")
+                .HasColumnName("mony");
+            entity.Property(e => e.Mony1)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("mony1");
+            entity.Property(e => e.Mony1R)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("mony1_r");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit).HasColumnName("operating_unit");
+            entity.Property(e => e.RegonCode).HasColumnName("regon_code");
+            entity.Property(e => e.SaCnamea)
+                .HasMaxLength(250)
+                .HasColumnName("sa_cnamea");
+            entity.Property(e => e.SaCtnamea)
+                .HasMaxLength(250)
+                .HasColumnName("sa_ctnamea");
+            entity.Property(e => e.Serial).HasColumnName("serial");
+            entity.Property(e => e.Source1)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("source1");
+            entity.Property(e => e.Tahweel)
+                .HasColumnType("numeric(18, 2)")
+                .HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode).HasColumnName("wehdat_code");
+        });
+
         modelBuilder.Entity<VCustomerConsumptionSummary>(entity =>
         {
             entity
@@ -11920,6 +14602,98 @@ public partial class ApplicationDbContext : DbContext
                 .HasColumnName("customer_name");
         });
 
+        modelBuilder.Entity<VCustomerInvoiceBase>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_customer_invoice_base");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("account_code");
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(15, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1).HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.AmeelNo1)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("ameel_no1");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(255)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillStatus).HasColumnName("BILL_STATUS");
+            entity.Property(e => e.CompanyCode).HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1).HasColumnName("company_code1");
+            entity.Property(e => e.ContractId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("contract_id");
+            entity.Property(e => e.CostCenter).HasColumnName("COST_CENTER");
+            entity.Property(e => e.Credit).HasColumnName("credit");
+            entity.Property(e => e.CustomerName)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("customer_name");
+            entity.Property(e => e.Debit).HasColumnName("debit");
+            entity.Property(e => e.DocDate)
+                .HasColumnType("datetime")
+                .HasColumnName("doc_date");
+            entity.Property(e => e.DocDestCode).HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocNum)
+                .HasColumnType("numeric(9, 0)")
+                .HasColumnName("doc_num");
+            entity.Property(e => e.GroupNo).HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(3)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode).HasColumnName("magmoat_code");
+            entity.Property(e => e.MohafzatCode).HasColumnName("mohafzat_code");
+            entity.Property(e => e.MontagatCode).HasColumnName("montagat_code");
+            entity.Property(e => e.Mony).HasColumnName("mony");
+            entity.Property(e => e.Mony1).HasColumnName("mony1");
+            entity.Property(e => e.Mony1R).HasColumnName("mony1_r");
+            entity.Property(e => e.Notes)
+                .HasMaxLength(1000)
+                .IsUnicode(false)
+                .HasColumnName("notes");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit).HasColumnName("operating_unit");
+            entity.Property(e => e.PaymentType)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("payment_type");
+            entity.Property(e => e.RegonCode).HasColumnName("regon_code");
+            entity.Property(e => e.Serial).HasColumnName("serial");
+            entity.Property(e => e.Source1)
+                .HasMaxLength(13)
+                .IsUnicode(false)
+                .HasColumnName("source1");
+            entity.Property(e => e.Tahweel).HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode).HasColumnName("wehdat_code");
+        });
+
         modelBuilder.Entity<VCustomerNationalOrNotCount>(entity =>
         {
             entity
@@ -11933,6 +14707,198 @@ public partial class ApplicationDbContext : DbContext
                 .HasColumnName("customer_name");
             entity.Property(e => e.MemberNoNid).HasColumnName("memberNoNID");
             entity.Property(e => e.MemberhasNid).HasColumnName("memberhasNID");
+        });
+
+        modelBuilder.Entity<VCustomerPaymentBase>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_customer_payment_base");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(20)
+                .HasColumnName("ACCOUNT_CODE");
+            entity.Property(e => e.AdjDate)
+                .HasColumnType("datetime")
+                .HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(20)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillId).HasColumnName("BILL_ID");
+            entity.Property(e => e.BillType).HasColumnName("BILL_TYPE");
+            entity.Property(e => e.Comments)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("COMMENTS");
+            entity.Property(e => e.CompanyCode).HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1).HasColumnName("company_code1");
+            entity.Property(e => e.CostCenter).HasColumnName("COST_CENTER");
+            entity.Property(e => e.Credit)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("CREDIT");
+            entity.Property(e => e.Debit)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("DEBIT");
+            entity.Property(e => e.DocDestCode).HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.DocType).HasColumnName("DOC_TYPE");
+            entity.Property(e => e.GroupNo).HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode).HasColumnName("magmoat_code");
+            entity.Property(e => e.MohafzatCode).HasColumnName("mohafzat_code");
+            entity.Property(e => e.MontagatCode).HasColumnName("montagat_code");
+            entity.Property(e => e.Mony1)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("mony1");
+            entity.Property(e => e.Mony1R)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("mony1_r");
+            entity.Property(e => e.Notes)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("notes");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit).HasColumnName("operating_unit");
+            entity.Property(e => e.RegonCode).HasColumnName("regon_code");
+            entity.Property(e => e.Serial).HasColumnName("serial");
+            entity.Property(e => e.SortOrder)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("sort_order");
+            entity.Property(e => e.Source1)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("source1");
+            entity.Property(e => e.Tahweel)
+                .HasColumnType("numeric(18, 2)")
+                .HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode).HasColumnName("wehdat_code");
+        });
+
+        modelBuilder.Entity<VCustomerPaymentWithAccount>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_customer_payment_with_accounts");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(20)
+                .HasColumnName("ACCOUNT_CODE");
+            entity.Property(e => e.AccountName)
+                .HasMaxLength(250)
+                .HasColumnName("account_name");
+            entity.Property(e => e.AdjDate)
+                .HasColumnType("datetime")
+                .HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(20)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillId).HasColumnName("BILL_ID");
+            entity.Property(e => e.BillType).HasColumnName("BILL_TYPE");
+            entity.Property(e => e.Comments)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("COMMENTS");
+            entity.Property(e => e.CompanyCode).HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1).HasColumnName("company_code1");
+            entity.Property(e => e.CostCenter).HasColumnName("COST_CENTER");
+            entity.Property(e => e.Credit)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("CREDIT");
+            entity.Property(e => e.Debit)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("DEBIT");
+            entity.Property(e => e.DocDestCode).HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.DocType).HasColumnName("DOC_TYPE");
+            entity.Property(e => e.GroupNo).HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode).HasColumnName("magmoat_code");
+            entity.Property(e => e.MohafzatCode).HasColumnName("mohafzat_code");
+            entity.Property(e => e.MontagatCode).HasColumnName("montagat_code");
+            entity.Property(e => e.Mony1)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("mony1");
+            entity.Property(e => e.Mony1R)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("mony1_r");
+            entity.Property(e => e.Notes)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("notes");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit).HasColumnName("operating_unit");
+            entity.Property(e => e.RegonCode).HasColumnName("regon_code");
+            entity.Property(e => e.Serial).HasColumnName("serial");
+            entity.Property(e => e.Source1)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("source1");
+            entity.Property(e => e.Tahweel)
+                .HasColumnType("numeric(18, 2)")
+                .HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode).HasColumnName("wehdat_code");
         });
 
         modelBuilder.Entity<VCustomerVisit>(entity =>
@@ -12340,6 +15306,11 @@ public partial class ApplicationDbContext : DbContext
                 .HasMaxLength(1000)
                 .IsUnicode(false)
                 .HasColumnName("notes");
+            entity.Property(e => e.PatientId)
+                .HasMaxLength(15)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("PATIENT_ID");
         });
 
         modelBuilder.Entity<VGetIsPackageContract>(entity =>
@@ -12776,6 +15747,190 @@ public partial class ApplicationDbContext : DbContext
                 .IsUnicode(false);
         });
 
+        modelBuilder.Entity<VInvoiceBase>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_invoice_base");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("account_code");
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(15, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1).HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.AmeelNo1)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("ameel_no1");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(255)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillStatus).HasColumnName("BILL_STATUS");
+            entity.Property(e => e.CompanyCode).HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1).HasColumnName("company_code1");
+            entity.Property(e => e.ContractId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("contract_id");
+            entity.Property(e => e.CostCenter).HasColumnName("COST_CENTER");
+            entity.Property(e => e.Credit).HasColumnName("credit");
+            entity.Property(e => e.CustomerName)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("customer_name");
+            entity.Property(e => e.Debit).HasColumnName("debit");
+            entity.Property(e => e.DocDate)
+                .HasColumnType("datetime")
+                .HasColumnName("doc_date");
+            entity.Property(e => e.DocDestCode).HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocNum)
+                .HasColumnType("numeric(9, 0)")
+                .HasColumnName("doc_num");
+            entity.Property(e => e.GroupNo).HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(3)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode).HasColumnName("magmoat_code");
+            entity.Property(e => e.MohafzatCode).HasColumnName("mohafzat_code");
+            entity.Property(e => e.MontagatCode).HasColumnName("montagat_code");
+            entity.Property(e => e.Mony).HasColumnName("mony");
+            entity.Property(e => e.Mony1).HasColumnName("mony1");
+            entity.Property(e => e.Mony1R).HasColumnName("mony1_r");
+            entity.Property(e => e.Notes)
+                .HasMaxLength(1000)
+                .IsUnicode(false)
+                .HasColumnName("notes");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit).HasColumnName("operating_unit");
+            entity.Property(e => e.PaymentType)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("payment_type");
+            entity.Property(e => e.RegonCode).HasColumnName("regon_code");
+            entity.Property(e => e.Serial).HasColumnName("serial");
+            entity.Property(e => e.Source1)
+                .HasMaxLength(13)
+                .IsUnicode(false)
+                .HasColumnName("source1");
+            entity.Property(e => e.Tahweel).HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode).HasColumnName("wehdat_code");
+        });
+
+        modelBuilder.Entity<VInvoiceBaseCustomer>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_invoice_base_customer");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("account_code");
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(15, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1).HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.AmeelNo1)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("ameel_no1");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(255)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillStatus).HasColumnName("BILL_STATUS");
+            entity.Property(e => e.CompanyCode).HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1).HasColumnName("company_code1");
+            entity.Property(e => e.ContractId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("contract_id");
+            entity.Property(e => e.CostCenter).HasColumnName("COST_CENTER");
+            entity.Property(e => e.Credit).HasColumnName("credit");
+            entity.Property(e => e.CustomerName)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("customer_name");
+            entity.Property(e => e.Debit).HasColumnName("debit");
+            entity.Property(e => e.DocDate)
+                .HasColumnType("datetime")
+                .HasColumnName("doc_date");
+            entity.Property(e => e.DocDestCode).HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocNum)
+                .HasColumnType("numeric(9, 0)")
+                .HasColumnName("doc_num");
+            entity.Property(e => e.GroupNo).HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(3)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode).HasColumnName("magmoat_code");
+            entity.Property(e => e.MohafzatCode).HasColumnName("mohafzat_code");
+            entity.Property(e => e.MontagatCode).HasColumnName("montagat_code");
+            entity.Property(e => e.Mony).HasColumnName("mony");
+            entity.Property(e => e.Mony1).HasColumnName("mony1");
+            entity.Property(e => e.Mony1R).HasColumnName("mony1_r");
+            entity.Property(e => e.Notes)
+                .HasMaxLength(1000)
+                .IsUnicode(false)
+                .HasColumnName("notes");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit).HasColumnName("operating_unit");
+            entity.Property(e => e.PaymentType)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("payment_type");
+            entity.Property(e => e.RegonCode).HasColumnName("regon_code");
+            entity.Property(e => e.Serial).HasColumnName("serial");
+            entity.Property(e => e.Source1)
+                .HasMaxLength(13)
+                .IsUnicode(false)
+                .HasColumnName("source1");
+            entity.Property(e => e.Tahweel).HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode).HasColumnName("wehdat_code");
+        });
+
         modelBuilder.Entity<VLogInformation>(entity =>
         {
             entity
@@ -13049,6 +16204,14 @@ public partial class ApplicationDbContext : DbContext
                 .UseCollation("SQL_Latin1_General_CP1_CI_AS")
                 .HasColumnName("refurenceNumber");
             entity.Property(e => e.RevFlag).HasColumnName("revFlag");
+            entity.Property(e => e.RiquestedBy)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
+            entity.Property(e => e.ServiceId)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
             entity.Property(e => e.ServiceName)
                 .HasMaxLength(500)
                 .IsUnicode(false)
@@ -13082,6 +16245,10 @@ public partial class ApplicationDbContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("membId");
             entity.Property(e => e.MemberId).UseCollation("SQL_Latin1_General_CP1_CI_AS");
+            entity.Property(e => e.MemberName)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("member_name");
             entity.Property(e => e.MerchantRefNum).UseCollation("SQL_Latin1_General_CP1_CI_AS");
             entity.Property(e => e.Notes).UseCollation("SQL_Latin1_General_CP1_CI_AS");
             entity.Property(e => e.PayStatus)
@@ -13294,6 +16461,9 @@ public partial class ApplicationDbContext : DbContext
                 .HasNoKey()
                 .ToView("v_mc_member_consumption");
 
+            entity.Property(e => e.AdjNumber)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_Number");
             entity.Property(e => e.ApprovalDate)
                 .HasColumnType("datetime")
                 .HasColumnName("approval_date");
@@ -14388,6 +17558,102 @@ public partial class ApplicationDbContext : DbContext
                 .HasColumnName("vendor_name");
         });
 
+        modelBuilder.Entity<VPaymentBase>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_payment_base");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(20)
+                .HasColumnName("ACCOUNT_CODE");
+            entity.Property(e => e.AdjDate)
+                .HasColumnType("datetime")
+                .HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(20)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillId).HasColumnName("BILL_ID");
+            entity.Property(e => e.BillType).HasColumnName("BILL_TYPE");
+            entity.Property(e => e.Comments)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("COMMENTS");
+            entity.Property(e => e.CompanyCode).HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1).HasColumnName("company_code1");
+            entity.Property(e => e.CostCenter).HasColumnName("COST_CENTER");
+            entity.Property(e => e.Credit)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("CREDIT");
+            entity.Property(e => e.Debit)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("DEBIT");
+            entity.Property(e => e.DocDestCode).HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.DocType).HasColumnName("DOC_TYPE");
+            entity.Property(e => e.GroupNo).HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode).HasColumnName("magmoat_code");
+            entity.Property(e => e.MohafzatCode).HasColumnName("mohafzat_code");
+            entity.Property(e => e.MontagatCode).HasColumnName("montagat_code");
+            entity.Property(e => e.Mony1)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("mony1");
+            entity.Property(e => e.Mony1R)
+                .HasColumnType("numeric(38, 2)")
+                .HasColumnName("mony1_r");
+            entity.Property(e => e.Notes)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("notes");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit).HasColumnName("operating_unit");
+            entity.Property(e => e.RegonCode).HasColumnName("regon_code");
+            entity.Property(e => e.Serial).HasColumnName("serial");
+            entity.Property(e => e.SortOrder)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("sort_order");
+            entity.Property(e => e.Source1)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("source1");
+            entity.Property(e => e.Tahweel)
+                .HasColumnType("numeric(18, 2)")
+                .HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode).HasColumnName("wehdat_code");
+        });
+
         modelBuilder.Entity<VPendingReason>(entity =>
         {
             entity
@@ -14575,6 +17841,1025 @@ public partial class ApplicationDbContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("Pay_info");
             entity.Property(e => e.XtraValue).HasColumnName("xtra_value");
+        });
+
+        modelBuilder.Entity<VReportAccAmrKabdChequAll>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_report_acc_amr_kabd_chequ_all");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(255)
+                .HasColumnName("ACCOUNT_CODE");
+            entity.Property(e => e.AccountName)
+                .HasMaxLength(250)
+                .HasColumnName("account_name");
+            entity.Property(e => e.AdjDate)
+                .HasColumnType("datetime")
+                .HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjStatus)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("ADJ_STATUS");
+            entity.Property(e => e.AmeelName)
+                .HasMaxLength(250)
+                .HasColumnName("ameel_name");
+            entity.Property(e => e.AmeelNo).HasColumnName("ameel_no");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.Credit)
+                .HasColumnType("numeric(18, 2)")
+                .HasColumnName("CREDIT");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.JeSerial)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("JE_SERIAL");
+            entity.Property(e => e.MoredName)
+                .HasMaxLength(250)
+                .HasColumnName("mored_name");
+            entity.Property(e => e.MoredNo)
+                .HasMaxLength(20)
+                .HasColumnName("mored_no");
+            entity.Property(e => e.MostahDafa)
+                .HasColumnType("numeric(1, 0)")
+                .HasColumnName("mostah_dafa");
+            entity.Property(e => e.MostahDafa1)
+                .HasColumnType("numeric(1, 0)")
+                .HasColumnName("mostah_dafa1");
+            entity.Property(e => e.MostahDafa2)
+                .HasColumnType("numeric(1, 0)")
+                .HasColumnName("mostah_dafa2");
+            entity.Property(e => e.PaidValue)
+                .HasColumnType("numeric(12, 3)")
+                .HasColumnName("PAID_VALUE");
+            entity.Property(e => e.TahweelSandookRaese)
+                .HasColumnType("numeric(1, 0)")
+                .HasColumnName("tahweel_sandook_raese");
+            entity.Property(e => e.ValueI)
+                .HasColumnType("numeric(12, 3)")
+                .HasColumnName("VALUE_I");
+        });
+
+        modelBuilder.Entity<VReportAccAmrSarfKhazna>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_report_acc_amr_sarf_khazna");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(255)
+                .HasColumnName("ACCOUNT_CODE");
+            entity.Property(e => e.AccountName)
+                .HasMaxLength(250)
+                .HasColumnName("account_name");
+            entity.Property(e => e.AdjDate)
+                .HasColumnType("datetime")
+                .HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AdjStatus)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("ADJ_STATUS");
+            entity.Property(e => e.AmeelName)
+                .HasMaxLength(250)
+                .HasColumnName("ameel_name");
+            entity.Property(e => e.AmeelNo).HasColumnName("ameel_no");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.CashDiscount)
+                .HasColumnType("numeric(13, 3)")
+                .HasColumnName("CASH_DISCOUNT");
+            entity.Property(e => e.CboCurrency)
+                .HasMaxLength(150)
+                .IsUnicode(false)
+                .HasColumnName("cboCurrency");
+            entity.Property(e => e.DateTimePicker1).HasColumnName("dateTimePicker1");
+            entity.Property(e => e.Debit)
+                .HasColumnType("numeric(20, 3)")
+                .HasColumnName("DEBIT");
+            entity.Property(e => e.DedTaxes)
+                .HasColumnType("numeric(13, 3)")
+                .HasColumnName("ded_taxes");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.JeSerial)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("JE_SERIAL");
+            entity.Property(e => e.MoredName)
+                .HasMaxLength(250)
+                .HasColumnName("mored_name");
+            entity.Property(e => e.MoredNo)
+                .HasMaxLength(20)
+                .HasColumnName("mored_no");
+            entity.Property(e => e.Note1)
+                .HasMaxLength(596)
+                .HasColumnName("note1");
+            entity.Property(e => e.Notes)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("notes");
+            entity.Property(e => e.PaidValue)
+                .HasColumnType("numeric(12, 3)")
+                .HasColumnName("PAID_VALUE");
+            entity.Property(e => e.SandookK)
+                .HasMaxLength(50)
+                .HasColumnName("sandook_k");
+            entity.Property(e => e.SourceName)
+                .HasMaxLength(50)
+                .HasColumnName("source_name");
+            entity.Property(e => e.Stamps)
+                .HasColumnType("numeric(12, 3)")
+                .HasColumnName("stamps");
+            entity.Property(e => e.ValueA).HasColumnName("value_a");
+            entity.Property(e => e.ValueI)
+                .HasColumnType("numeric(12, 3)")
+                .HasColumnName("VALUE_I");
+        });
+
+        modelBuilder.Entity<VReportAccChartLedgerCore>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_report_acc_chart_ledger_core");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ACCOUNT_CODE");
+            entity.Property(e => e.AdjDate)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillId)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("BILL_ID");
+            entity.Property(e => e.BillType)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("BILL_TYPE");
+            entity.Property(e => e.Comments)
+                .HasMaxLength(500)
+                .IsUnicode(false)
+                .HasColumnName("COMMENTS");
+            entity.Property(e => e.CompanyCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("company_code1");
+            entity.Property(e => e.CostCenter)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("COST_CENTER");
+            entity.Property(e => e.Credit)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("CREDIT");
+            entity.Property(e => e.Debit)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("DEBIT");
+            entity.Property(e => e.DocDestCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(200)
+                .IsUnicode(false)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.DocType)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("DOC_TYPE");
+            entity.Property(e => e.GroupNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("magmoat_code");
+            entity.Property(e => e.MohafzatCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("mohafzat_code");
+            entity.Property(e => e.MontagatCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("montagat_code");
+            entity.Property(e => e.Mony1)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("mony1");
+            entity.Property(e => e.Mony1R)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("mony1_r");
+            entity.Property(e => e.Notes)
+                .HasMaxLength(500)
+                .IsUnicode(false)
+                .HasColumnName("notes");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("operating_unit");
+            entity.Property(e => e.RegonCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("regon_code");
+            entity.Property(e => e.Serial)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("serial");
+            entity.Property(e => e.SourceTable)
+                .HasMaxLength(14)
+                .IsUnicode(false)
+                .HasColumnName("source_table");
+            entity.Property(e => e.Tahweel)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("wehdat_code");
+        });
+
+        modelBuilder.Entity<VReportAccChartLedgerEnriched>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_report_acc_chart_ledger_enriched");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ACCOUNT_CODE");
+            entity.Property(e => e.AccountKhetami)
+                .HasMaxLength(20)
+                .HasColumnName("account_khetami");
+            entity.Property(e => e.AccountName)
+                .HasMaxLength(250)
+                .HasColumnName("account_name");
+            entity.Property(e => e.AdjDate)
+                .HasColumnType("datetime")
+                .HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1).HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AmeelName)
+                .HasMaxLength(250)
+                .HasColumnName("ameel_name");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.Arrange1)
+                .HasMaxLength(3)
+                .HasColumnName("arrange1");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillId)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("BILL_ID");
+            entity.Property(e => e.BillType)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("BILL_TYPE");
+            entity.Property(e => e.Comments)
+                .HasMaxLength(500)
+                .IsUnicode(false)
+                .HasColumnName("COMMENTS");
+            entity.Property(e => e.CompanyCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("company_code1");
+            entity.Property(e => e.CompanyName)
+                .HasMaxLength(50)
+                .HasColumnName("company_name");
+            entity.Property(e => e.CostCenter)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("COST_CENTER");
+            entity.Property(e => e.CostCenterName)
+                .HasMaxLength(50)
+                .HasColumnName("COST_CENTER_name");
+            entity.Property(e => e.Credit)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("CREDIT");
+            entity.Property(e => e.Debit)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("DEBIT");
+            entity.Property(e => e.DocDestCode).HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(200)
+                .IsUnicode(false)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.DocType)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("DOC_TYPE");
+            entity.Property(e => e.GroupName)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("group_name");
+            entity.Property(e => e.GroupNo)
+                .HasMaxLength(3)
+                .HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("magmoat_code");
+            entity.Property(e => e.MagmoatName)
+                .HasMaxLength(50)
+                .HasColumnName("magmoat_name");
+            entity.Property(e => e.MohafzatCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("mohafzat_code");
+            entity.Property(e => e.MohafzatName)
+                .HasMaxLength(50)
+                .HasColumnName("mohafzat_name");
+            entity.Property(e => e.MontagatCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("montagat_code");
+            entity.Property(e => e.MontagatName)
+                .HasMaxLength(50)
+                .HasColumnName("montagat_name");
+            entity.Property(e => e.Mony1)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("mony1");
+            entity.Property(e => e.Mony1R)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("mony1_r");
+            entity.Property(e => e.Notes)
+                .HasMaxLength(500)
+                .IsUnicode(false)
+                .HasColumnName("notes");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit).HasColumnName("operating_unit");
+            entity.Property(e => e.RegonCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("regon_code");
+            entity.Property(e => e.RegonName)
+                .HasMaxLength(50)
+                .HasColumnName("regon_name");
+            entity.Property(e => e.Serial)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("serial");
+            entity.Property(e => e.SourceCode)
+                .HasMaxLength(10)
+                .HasColumnName("source_code");
+            entity.Property(e => e.SourceName)
+                .HasMaxLength(50)
+                .HasColumnName("source_name");
+            entity.Property(e => e.SourceTable)
+                .HasMaxLength(14)
+                .IsUnicode(false)
+                .HasColumnName("source_table");
+            entity.Property(e => e.Tahweel).HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("wehdat_code");
+            entity.Property(e => e.WehdatName)
+                .HasMaxLength(50)
+                .HasColumnName("wehdat_name");
+        });
+
+        modelBuilder.Entity<VReportAccLedgerChart>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_report_acc_ledger_chart");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ACCOUNT_CODE");
+            entity.Property(e => e.AccountKhetami)
+                .HasMaxLength(20)
+                .HasColumnName("account_khetami");
+            entity.Property(e => e.AccountName)
+                .HasMaxLength(250)
+                .HasColumnName("account_name");
+            entity.Property(e => e.AccountName1)
+                .HasMaxLength(250)
+                .HasColumnName("account_name1");
+            entity.Property(e => e.AdjDate)
+                .HasColumnType("datetime")
+                .HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1).HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AmeelName)
+                .HasMaxLength(250)
+                .HasColumnName("ameel_name");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.Arrange1)
+                .HasMaxLength(3)
+                .HasColumnName("arrange1");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillId)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("BILL_ID");
+            entity.Property(e => e.BillType)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("BILL_TYPE");
+            entity.Property(e => e.Code1).HasColumnName("code1");
+            entity.Property(e => e.Comments)
+                .HasMaxLength(500)
+                .IsUnicode(false)
+                .HasColumnName("COMMENTS");
+            entity.Property(e => e.Comments1)
+                .HasMaxLength(500)
+                .IsUnicode(false)
+                .HasColumnName("COMMENTS1");
+            entity.Property(e => e.CompanyCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("company_code1");
+            entity.Property(e => e.CompanyName)
+                .HasMaxLength(50)
+                .HasColumnName("company_name");
+            entity.Property(e => e.CostCenter)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("COST_CENTER");
+            entity.Property(e => e.CostCenterName)
+                .HasMaxLength(50)
+                .HasColumnName("COST_CENTER_name");
+            entity.Property(e => e.Credit)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("CREDIT");
+            entity.Property(e => e.Debit)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("DEBIT");
+            entity.Property(e => e.DocDestCode).HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(200)
+                .IsUnicode(false)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.DocType)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("DOC_TYPE");
+            entity.Property(e => e.GroupName)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("group_name");
+            entity.Property(e => e.GroupNo)
+                .HasMaxLength(3)
+                .HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("magmoat_code");
+            entity.Property(e => e.MagmoatName)
+                .HasMaxLength(50)
+                .HasColumnName("magmoat_name");
+            entity.Property(e => e.MohafzatCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("mohafzat_code");
+            entity.Property(e => e.MohafzatName)
+                .HasMaxLength(50)
+                .HasColumnName("mohafzat_name");
+            entity.Property(e => e.MontagatCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("montagat_code");
+            entity.Property(e => e.MontagatName)
+                .HasMaxLength(50)
+                .HasColumnName("montagat_name");
+            entity.Property(e => e.Mony1)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("mony1");
+            entity.Property(e => e.Mony1R)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("mony1_r");
+            entity.Property(e => e.Name1)
+                .HasMaxLength(90)
+                .IsFixedLength()
+                .HasColumnName("name1");
+            entity.Property(e => e.Notes)
+                .HasMaxLength(500)
+                .IsUnicode(false)
+                .HasColumnName("notes");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit).HasColumnName("operating_unit");
+            entity.Property(e => e.RegonCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("regon_code");
+            entity.Property(e => e.RegonName)
+                .HasMaxLength(50)
+                .HasColumnName("regon_name");
+            entity.Property(e => e.Serial)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("serial");
+            entity.Property(e => e.SourceCode)
+                .HasMaxLength(10)
+                .HasColumnName("source_code");
+            entity.Property(e => e.SourceName)
+                .HasMaxLength(50)
+                .HasColumnName("source_name");
+            entity.Property(e => e.Tahweel).HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("wehdat_code");
+            entity.Property(e => e.WehdatName)
+                .HasMaxLength(50)
+                .HasColumnName("wehdat_name");
+        });
+
+        modelBuilder.Entity<VReportNamozeg41Final>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_report_namozeg_41_Final");
+
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.CVendorClaimTax)
+                .HasColumnType("numeric(12, 3)")
+                .HasColumnName("c_vendor_claim_tax");
+            entity.Property(e => e.ClaimNetValue).HasColumnName("Claim_NetValue");
+            entity.Property(e => e.ClaimType)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("CLAIM_TYPE");
+            entity.Property(e => e.ClaimWorthtax).HasColumnName("Claim_Worthtax");
+            entity.Property(e => e.DocNo1)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("doc_no1");
+            entity.Property(e => e.DocTypeCode).HasColumnName("DOC_TYPE_CODE");
+            entity.Property(e => e.NewTax)
+                .HasColumnType("numeric(12, 3)")
+                .HasColumnName("new_Tax");
+            entity.Property(e => e.PayDate)
+                .HasColumnType("datetime")
+                .HasColumnName("pay_date");
+            entity.Property(e => e.SaRaddtax).HasColumnName("SA_RADDTAX");
+            entity.Property(e => e.SaRcode)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("SA_RCODE");
+            entity.Property(e => e.SaRdate)
+                .HasColumnType("datetime")
+                .HasColumnName("SA_RDATE");
+            entity.Property(e => e.SaTaxarea)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("SA_TAXAREA");
+            entity.Property(e => e.SaTaxplaceid)
+                .HasColumnType("numeric(8, 0)")
+                .HasColumnName("SA_TAXPLACEID");
+            entity.Property(e => e.SpendtypeId).HasColumnName("SPENDTYPE_ID");
+            entity.Property(e => e.StVaddress)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ST_VADDRESS");
+            entity.Property(e => e.StVcode)
+                .HasMaxLength(15)
+                .IsUnicode(false)
+                .HasColumnName("ST_VCODE");
+            entity.Property(e => e.StVcommfile)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ST_VCOMMFILE");
+            entity.Property(e => e.StVnamea)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ST_VNAMEA");
+            entity.Property(e => e.StVtaxfile)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ST_VTAXFILE");
+            entity.Property(e => e.StVtaxid)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ST_VTAXID");
+            entity.Property(e => e.TaxAdjustments).HasColumnName("tax_adjustments");
+            entity.Property(e => e.VendorTax).HasColumnName("vendor_tax");
+        });
+
+        modelBuilder.Entity<VReportTreasuryPaymentChecksAnalysis>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_report_treasury_payment_checks_analysis");
+
+            entity.Property(e => e.AccountName)
+                .HasMaxLength(250)
+                .HasColumnName("account_name");
+            entity.Property(e => e.AccountName1)
+                .HasMaxLength(250)
+                .HasColumnName("account_name1");
+            entity.Property(e => e.AdjDate)
+                .HasColumnType("datetime")
+                .HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AdjStatus)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("ADJ_STATUS");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BankKhaznaNo1)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no1");
+            entity.Property(e => e.CboCurrency)
+                .HasMaxLength(150)
+                .IsUnicode(false)
+                .HasColumnName("cboCurrency");
+            entity.Property(e => e.DateTimePicker1)
+                .HasColumnType("datetime")
+                .HasColumnName("dateTimePicker1");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.JeSerial)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("JE_SERIAL");
+            entity.Property(e => e.Kabd)
+                .HasMaxLength(8)
+                .IsUnicode(false)
+                .HasColumnName("kabd");
+            entity.Property(e => e.Mony1)
+                .HasColumnType("numeric(18, 2)")
+                .HasColumnName("mony1");
+            entity.Property(e => e.Mony2)
+                .HasColumnType("numeric(18, 2)")
+                .HasColumnName("mony2");
+        });
+
+        modelBuilder.Entity<VReportTreasuryReceiptChecksAnalysis>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_report_treasury_receipt_checks_analysis");
+
+            entity.Property(e => e.AccountName)
+                .HasMaxLength(250)
+                .HasColumnName("account_name");
+            entity.Property(e => e.AccountName1)
+                .HasMaxLength(250)
+                .HasColumnName("account_name1");
+            entity.Property(e => e.AdjDate)
+                .HasColumnType("datetime")
+                .HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AdjStatus)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("ADJ_STATUS");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BankKhaznaNo1)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no1");
+            entity.Property(e => e.CboCurrency)
+                .HasMaxLength(150)
+                .IsUnicode(false)
+                .HasColumnName("cboCurrency");
+            entity.Property(e => e.DateTimePicker1)
+                .HasColumnType("datetime")
+                .HasColumnName("dateTimePicker1");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.JeSerial)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("JE_SERIAL");
+            entity.Property(e => e.Kabd)
+                .HasMaxLength(8)
+                .HasColumnName("kabd");
+            entity.Property(e => e.Mony1)
+                .HasColumnType("numeric(18, 2)")
+                .HasColumnName("mony1");
+            entity.Property(e => e.Mony2)
+                .HasColumnType("numeric(18, 2)")
+                .HasColumnName("mony2");
+        });
+
+        modelBuilder.Entity<VReportVwDownPaymentTax>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_report_vw_down_payment_tax");
+
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.ClaimType)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("CLAIM_TYPE");
+            entity.Property(e => e.DedTaxes)
+                .HasColumnType("numeric(12, 3)")
+                .HasColumnName("ded_taxes");
+            entity.Property(e => e.DocNo1)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("doc_no1");
+            entity.Property(e => e.SaBcode)
+                .HasMaxLength(15)
+                .IsUnicode(false)
+                .HasColumnName("SA_BCODE");
+            entity.Property(e => e.StVcode)
+                .HasMaxLength(15)
+                .IsUnicode(false)
+                .HasColumnName("ST_VCODE");
+        });
+
+        modelBuilder.Entity<VReportVwLedgerMinimal>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_report_vw_ledger_minimal");
+
+            entity.Property(e => e.AdjDate)
+                .HasColumnType("datetime")
+                .HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO1");
+        });
+
+        modelBuilder.Entity<VReportVwNamozeg41BackNew>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_report_vw_namozeg_41_back_new");
+
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.CVendorClaimTax)
+                .HasColumnType("numeric(12, 3)")
+                .HasColumnName("c_vendor_claim_tax");
+            entity.Property(e => e.ClaimNetValue).HasColumnName("Claim_NetValue");
+            entity.Property(e => e.ClaimType)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("CLAIM_TYPE");
+            entity.Property(e => e.ClaimWorthtax).HasColumnName("Claim_Worthtax");
+            entity.Property(e => e.DocNo1)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("doc_no1");
+            entity.Property(e => e.DocNo2)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("doc_no2");
+            entity.Property(e => e.DocTypeCode).HasColumnName("DOC_TYPE_CODE");
+            entity.Property(e => e.NewTax)
+                .HasColumnType("numeric(12, 3)")
+                .HasColumnName("new_Tax");
+            entity.Property(e => e.PayDate)
+                .HasColumnType("datetime")
+                .HasColumnName("pay_date");
+            entity.Property(e => e.SaRaddtax).HasColumnName("SA_RADDTAX");
+            entity.Property(e => e.SaRcode)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("SA_RCODE");
+            entity.Property(e => e.SaRdate)
+                .HasColumnType("datetime")
+                .HasColumnName("SA_RDATE");
+            entity.Property(e => e.SaTaxarea)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("SA_TAXAREA");
+            entity.Property(e => e.SaTaxplaceid)
+                .HasColumnType("numeric(8, 0)")
+                .HasColumnName("SA_TAXPLACEID");
+            entity.Property(e => e.SpendtypeId).HasColumnName("SPENDTYPE_ID");
+            entity.Property(e => e.StVaddress)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ST_VADDRESS");
+            entity.Property(e => e.StVcode)
+                .HasMaxLength(15)
+                .IsUnicode(false)
+                .HasColumnName("ST_VCODE");
+            entity.Property(e => e.StVcommfile)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ST_VCOMMFILE");
+            entity.Property(e => e.StVnamea)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ST_VNAMEA");
+            entity.Property(e => e.StVtaxfile)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ST_VTAXFILE");
+            entity.Property(e => e.StVtaxid)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ST_VTAXID");
+            entity.Property(e => e.TaxAdjustments).HasColumnName("tax_adjustments");
+            entity.Property(e => e.VendorTax).HasColumnName("vendor_tax");
+        });
+
+        modelBuilder.Entity<VReportVwPaymentStatus>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_report_vw_payment_status");
+
+            entity.Property(e => e.AdjNo)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasColumnType("numeric(12, 0)")
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AdjStatus)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasColumnName("ADJ_STATUS");
+        });
+
+        modelBuilder.Entity<VReportVwTaxPoliciesSimple>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_report_vw_tax_policies_simple");
+
+            entity.Property(e => e.ExpireDate).HasColumnName("expire_date");
+            entity.Property(e => e.StGccode)
+                .HasColumnType("numeric(4, 0)")
+                .HasColumnName("st_gccode");
+            entity.Property(e => e.Value).HasColumnName("value");
         });
 
         modelBuilder.Entity<VScannedQr>(entity =>
@@ -14978,6 +19263,194 @@ public partial class ApplicationDbContext : DbContext
                 .HasColumnName("unit_sale");
         });
 
+        modelBuilder.Entity<VVendorAllTransaction>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_vendor_all_transactions");
+
+            entity.Property(e => e.Account1)
+                .HasMaxLength(100)
+                .HasColumnName("account1");
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("account_code");
+            entity.Property(e => e.AdjDate).HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasMaxLength(50)
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillId).HasColumnName("BILL_ID");
+            entity.Property(e => e.BillType).HasColumnName("BILL_TYPE");
+            entity.Property(e => e.Comments)
+                .HasMaxLength(500)
+                .HasColumnName("COMMENTS");
+            entity.Property(e => e.CompanyCode).HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1).HasColumnName("company_code1");
+            entity.Property(e => e.ContractId)
+                .HasMaxLength(50)
+                .HasColumnName("contract_id");
+            entity.Property(e => e.CostCenter).HasColumnName("COST_CENTER");
+            entity.Property(e => e.Credit)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("CREDIT");
+            entity.Property(e => e.Debit)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("DEBIT");
+            entity.Property(e => e.DocDestCode).HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(100)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.DocType).HasColumnName("DOC_TYPE");
+            entity.Property(e => e.Expr1).HasMaxLength(500);
+            entity.Property(e => e.GroupNo).HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode).HasColumnName("magmoat_code");
+            entity.Property(e => e.MohafzatCode).HasColumnName("mohafzat_code");
+            entity.Property(e => e.MontagatCode).HasColumnName("montagat_code");
+            entity.Property(e => e.Mony)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("mony");
+            entity.Property(e => e.Mony1)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("mony1");
+            entity.Property(e => e.Mony1R)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("mony1_r");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(10)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit).HasColumnName("operating_unit");
+            entity.Property(e => e.RegonCode).HasColumnName("regon_code");
+            entity.Property(e => e.Serial).HasColumnName("serial");
+            entity.Property(e => e.Source1)
+                .HasMaxLength(100)
+                .HasColumnName("source1");
+            entity.Property(e => e.Tahweel)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode).HasColumnName("wehdat_code");
+        });
+
+        modelBuilder.Entity<VVendorBalance>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_vendor_balance");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("account_code");
+            entity.Property(e => e.AdjDate).HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasMaxLength(50)
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillId).HasColumnName("BILL_ID");
+            entity.Property(e => e.BillType).HasColumnName("BILL_TYPE");
+            entity.Property(e => e.Comments)
+                .HasMaxLength(500)
+                .HasColumnName("COMMENTS");
+            entity.Property(e => e.CompanyCode).HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1).HasColumnName("company_code1");
+            entity.Property(e => e.ContractId)
+                .HasMaxLength(50)
+                .HasColumnName("contract_id");
+            entity.Property(e => e.CostCenter).HasColumnName("COST_CENTER");
+            entity.Property(e => e.Credit)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("CREDIT");
+            entity.Property(e => e.Debit)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("DEBIT");
+            entity.Property(e => e.DocDestCode).HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(100)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.DocType).HasColumnName("DOC_TYPE");
+            entity.Property(e => e.Expr1).HasMaxLength(500);
+            entity.Property(e => e.GroupNo).HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode).HasColumnName("magmoat_code");
+            entity.Property(e => e.MohafzatCode).HasColumnName("mohafzat_code");
+            entity.Property(e => e.MontagatCode).HasColumnName("montagat_code");
+            entity.Property(e => e.Mony)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("mony");
+            entity.Property(e => e.Mony1)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("mony1");
+            entity.Property(e => e.Mony1R)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("mony1_r");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(10)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit).HasColumnName("operating_unit");
+            entity.Property(e => e.RegonCode).HasColumnName("regon_code");
+            entity.Property(e => e.SaCnamea)
+                .HasMaxLength(100)
+                .HasColumnName("sa_cnamea");
+            entity.Property(e => e.Serial).HasColumnName("serial");
+            entity.Property(e => e.Source1)
+                .HasMaxLength(100)
+                .HasColumnName("source1");
+            entity.Property(e => e.Tahweel)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode).HasColumnName("wehdat_code");
+        });
+
         modelBuilder.Entity<VVendorBranch>(entity =>
         {
             entity
@@ -15234,6 +19707,103 @@ public partial class ApplicationDbContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("SUPPLIER_CODE");
+        });
+
+        modelBuilder.Entity<VVendorOpeningBalance>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("v_vendor_opening_balance");
+
+            entity.Property(e => e.AccountCode)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("account_code");
+            entity.Property(e => e.AdjDate).HasColumnName("ADJ_DATE");
+            entity.Property(e => e.AdjNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ADJ_NO");
+            entity.Property(e => e.AdjNo1)
+                .HasMaxLength(50)
+                .HasColumnName("ADJ_NO1");
+            entity.Property(e => e.AmeelNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("ameel_no");
+            entity.Property(e => e.BankKhaznaNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("bank_khazna_no");
+            entity.Property(e => e.BillId)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("BILL_ID");
+            entity.Property(e => e.BillType).HasColumnName("BILL_TYPE");
+            entity.Property(e => e.Comments)
+                .HasMaxLength(500)
+                .HasColumnName("COMMENTS");
+            entity.Property(e => e.CompanyCode).HasColumnName("company_code");
+            entity.Property(e => e.CompanyCode1).HasColumnName("company_code1");
+            entity.Property(e => e.ContractId)
+                .HasMaxLength(50)
+                .HasColumnName("contract_id");
+            entity.Property(e => e.CostCenter).HasColumnName("COST_CENTER");
+            entity.Property(e => e.Credit)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("CREDIT");
+            entity.Property(e => e.Debit)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("DEBIT");
+            entity.Property(e => e.DocDestCode).HasColumnName("doc_dest_CODE");
+            entity.Property(e => e.DocDestName)
+                .HasMaxLength(100)
+                .HasColumnName("doc_dest_name");
+            entity.Property(e => e.DocType).HasColumnName("DOC_TYPE");
+            entity.Property(e => e.Expr1).HasMaxLength(200);
+            entity.Property(e => e.GroupNo).HasColumnName("group_no");
+            entity.Property(e => e.HesapNo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("hesap_no");
+            entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(100)
+                .HasColumnName("LAST_UPDATE_BY");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("LAST_UPDATE_DATE");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .HasColumnName("LAST_UPDATE_FROM");
+            entity.Property(e => e.MagmoatCode).HasColumnName("magmoat_code");
+            entity.Property(e => e.MohafzatCode).HasColumnName("mohafzat_code");
+            entity.Property(e => e.MontagatCode).HasColumnName("montagat_code");
+            entity.Property(e => e.Mony)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("mony");
+            entity.Property(e => e.Mony1)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("mony1");
+            entity.Property(e => e.Mony1R)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("mony1_r");
+            entity.Property(e => e.Omla)
+                .HasMaxLength(10)
+                .HasColumnName("omla");
+            entity.Property(e => e.OperatingUnit).HasColumnName("operating_unit");
+            entity.Property(e => e.RegonCode).HasColumnName("regon_code");
+            entity.Property(e => e.SaCnamea)
+                .HasMaxLength(100)
+                .HasColumnName("sa_cnamea");
+            entity.Property(e => e.Serial).HasColumnName("serial");
+            entity.Property(e => e.Source1)
+                .HasMaxLength(100)
+                .HasColumnName("source1");
+            entity.Property(e => e.Tahweel)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("tahweel");
+            entity.Property(e => e.WehdatCode).HasColumnName("wehdat_code");
         });
 
         modelBuilder.Entity<VVendorPayment>(entity =>
@@ -15828,6 +20398,21 @@ public partial class ApplicationDbContext : DbContext
                 .HasMaxLength(80)
                 .IsUnicode(false)
                 .HasColumnName("vendor_name");
+        });
+
+        modelBuilder.Entity<VendorAgreementHistory>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__vendor_a__3214EC07BEDC579B");
+
+            entity.ToTable("vendor_agreement_history");
+
+            entity.Property(e => e.LastUpDateBy).HasMaxLength(50);
+            entity.Property(e => e.LastUpDateDate).HasColumnType("datetime");
+            entity.Property(e => e.LastUpDateFrom).HasMaxLength(100);
+            entity.Property(e => e.TaxId).HasMaxLength(50);
+            entity.Property(e => e.VendorId)
+                .HasMaxLength(50)
+                .IsUnicode(false);
         });
 
         modelBuilder.Entity<VendorArchieve>(entity =>
@@ -17146,6 +21731,76 @@ public partial class ApplicationDbContext : DbContext
                 .HasConstraintName("FK_vendor_status_monitor_Vendor_General");
         });
 
+        modelBuilder.Entity<VendorTaxesLog>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Vendor_t__3213E83F633CB668");
+
+            entity.ToTable("Vendor_taxes_log");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.ActionId).HasColumnName("action_id");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("last_update_by");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("last_update_date");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("last_update_from");
+            entity.Property(e => e.TaxId).HasColumnName("tax_id");
+
+            entity.HasOne(d => d.Action).WithMany(p => p.VendorTaxesLogs)
+                .HasForeignKey(d => d.ActionId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("Fk_action_vendorlog");
+
+            entity.HasOne(d => d.Tax).WithMany(p => p.VendorTaxesLogs)
+                .HasForeignKey(d => d.TaxId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("Fk_vendorTax_vendorlog");
+        });
+
+        modelBuilder.Entity<VendorTaxis>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Vendor_T__3213E83F881E5D7B");
+
+            entity.ToTable("Vendor_Taxes");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.ActualEndDate)
+                .HasColumnType("datetime")
+                .HasColumnName("actual_end_date");
+            entity.Property(e => e.ActualStartDate)
+                .HasColumnType("datetime")
+                .HasColumnName("actual_start_date");
+            entity.Property(e => e.HasNoTax)
+                .HasDefaultValue(false)
+                .HasColumnName("has_no_tax");
+            entity.Property(e => e.LastUpdateBy)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("last_update_by");
+            entity.Property(e => e.LastUpdateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("last_update_date");
+            entity.Property(e => e.LastUpdateFrom)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("last_update_from");
+            entity.Property(e => e.VendorId)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("vendor_id");
+
+            entity.HasOne(d => d.Vendor).WithMany(p => p.VendorTaxes)
+                .HasForeignKey(d => d.VendorId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("Fk_vendor_General_VendorTax");
+        });
+
         modelBuilder.Entity<VendorTpaTemp>(entity =>
         {
             entity
@@ -17735,6 +22390,30 @@ public partial class ApplicationDbContext : DbContext
                 .HasConstraintName("FK_wafdeen_visits_Vendor_General");
         });
 
+        modelBuilder.Entity<WebCareItem>(entity =>
+        {
+            entity.HasKey(e => e.ItemId);
+
+            entity.ToTable("Web_CareItems");
+
+            entity.Property(e => e.ItemId).HasColumnName("ItemID");
+            entity.Property(e => e.Comment)
+                .HasMaxLength(10)
+                .IsFixedLength();
+            entity.Property(e => e.Enable).HasDefaultValue(true, "DF_Web_CareItems_Enable");
+            entity.Property(e => e.ItemName)
+                .HasMaxLength(400)
+                .IsUnicode(false);
+            entity.Property(e => e.ItemNameAr)
+                .HasMaxLength(400)
+                .IsUnicode(false)
+                .HasColumnName("ItemName_Ar");
+            entity.Property(e => e.ItemNameFr)
+                .HasMaxLength(400)
+                .IsUnicode(false)
+                .HasColumnName("ItemName_Fr");
+        });
+
         modelBuilder.Entity<WebCommonDisease>(entity =>
         {
             entity.HasKey(e => e.DiseaseId).HasName("pk_common_disease");
@@ -17750,6 +22429,22 @@ public partial class ApplicationDbContext : DbContext
                 .HasMaxLength(300)
                 .IsUnicode(false)
                 .HasColumnName("english_name");
+        });
+
+        modelBuilder.Entity<WebCustomerCareItem>(entity =>
+        {
+            entity.HasKey(e => new { e.Customer, e.Item });
+
+            entity.ToTable("Web_CustomerCareItems");
+
+            entity.Property(e => e.Customer)
+                .HasMaxLength(15)
+                .IsUnicode(false);
+
+            entity.HasOne(d => d.ItemNavigation).WithMany(p => p.WebCustomerCareItems)
+                .HasForeignKey(d => d.Item)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Web_CustomerCareItems_Web_CareItems");
         });
 
         modelBuilder.Entity<WebCustomerRequest>(entity =>
@@ -17833,6 +22528,74 @@ public partial class ApplicationDbContext : DbContext
                         j.IndexerProperty<long>("SerialId").HasColumnName("serial_id");
                         j.IndexerProperty<int>("DiseaseId").HasColumnName("disease_id");
                     });
+        });
+
+        modelBuilder.Entity<WebMember>(entity =>
+        {
+            entity.HasKey(e => e.MemberId);
+
+            entity.ToTable("Web_members");
+
+            entity.Property(e => e.MemberId).HasColumnName("MemberID");
+            entity.Property(e => e.Birthdate).HasColumnType("datetime");
+            entity.Property(e => e.CreatedBy).HasMaxLength(128);
+            entity.Property(e => e.CurrencyType)
+                .HasMaxLength(20)
+                .IsUnicode(false);
+            entity.Property(e => e.Customer)
+                .HasMaxLength(15)
+                .IsUnicode(false)
+                .HasColumnName("customer");
+            entity.Property(e => e.EntryDate)
+                .HasDefaultValueSql("(getdate())", "DF_Web_members_EntryDate")
+                .HasColumnType("datetime");
+            entity.Property(e => e.Name)
+                .HasMaxLength(300)
+                .IsUnicode(false);
+            entity.Property(e => e.Phone)
+                .HasMaxLength(20)
+                .IsUnicode(false);
+            entity.Property(e => e.StEmpId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("St_EmpID");
+            entity.Property(e => e.Status)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasDefaultValue("new", "DF_Web_members_Status");
+        });
+
+        modelBuilder.Entity<WebMemberItem>(entity =>
+        {
+            entity.HasKey(e => e.MemberItemId).HasName("PK_Web_MemberItems_1");
+
+            entity.ToTable("Web_MemberItems");
+
+            entity.Property(e => e.MemberItemId).HasColumnName("MemberItemID");
+            entity.Property(e => e.Comment)
+                .HasMaxLength(500)
+                .IsUnicode(false);
+            entity.Property(e => e.CreatedBy).HasMaxLength(128);
+            entity.Property(e => e.Currency)
+                .HasMaxLength(5)
+                .IsUnicode(false);
+            entity.Property(e => e.Customer)
+                .HasMaxLength(15)
+                .IsUnicode(false)
+                .HasColumnName("customer");
+            entity.Property(e => e.Date)
+                .HasColumnType("datetime")
+                .HasColumnName("date");
+            entity.Property(e => e.ResposeBy).HasMaxLength(128);
+            entity.Property(e => e.Status)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("status");
+
+            entity.HasOne(d => d.ItemNavigation).WithMany(p => p.WebMemberItems)
+                .HasForeignKey(d => d.Item)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Web_MemberItems_Web_CareItems");
         });
 
         modelBuilder.Entity<WebMembersRegistration>(entity =>
@@ -18016,6 +22779,29 @@ public partial class ApplicationDbContext : DbContext
                 .HasMaxLength(60)
                 .IsUnicode(false)
                 .UseCollation("Arabic_100_CI_AI")
+                .HasColumnName("customer_name");
+        });
+
+        modelBuilder.Entity<WebVClientNew>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("web_v_client_new");
+
+            entity.Property(e => e.CustomerContractEndDate)
+                .HasColumnType("datetime")
+                .HasColumnName("customer_contract_end_date");
+            entity.Property(e => e.CustomerContractId)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("customer_contract_id");
+            entity.Property(e => e.CustomerContractStartDate)
+                .HasColumnType("datetime")
+                .HasColumnName("customer_contract_start_date");
+            entity.Property(e => e.CustomerId).HasColumnName("customer_id");
+            entity.Property(e => e.CustomerName)
+                .HasMaxLength(60)
+                .IsUnicode(false)
                 .HasColumnName("customer_name");
         });
 

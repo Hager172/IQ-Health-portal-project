@@ -18,4 +18,8 @@ public partial class AcmcPage
     public string? MenueIcon { get; set; }
 
     public bool? MenueControl { get; set; }
+
+    public virtual ICollection<AcmcPrivilege> AcmcPrivileges { get; set; } = new List<AcmcPrivilege>();
+
+    public virtual ICollection<UserManual> UserManuals { get; set; } = new List<UserManual>();
 }

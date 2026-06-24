@@ -28,4 +28,6 @@ public partial class VGetBillsDatum
     public string? Notes { get; set; }
 
     public string? CustomerTaxCard { get; set; }
+
+    public string PatientId { get; set; } = null!;
 }

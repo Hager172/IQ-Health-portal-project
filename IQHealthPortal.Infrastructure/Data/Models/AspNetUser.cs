@@ -57,6 +57,8 @@ public partial class AspNetUser
 
     public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; } = new List<AspNetUserLogin>();
 
+    public virtual ICollection<AssginOrder> AssginOrders { get; set; } = new List<AssginOrder>();
+
     public virtual ICollection<CrmContractExcutor> CrmContractExcutors { get; set; } = new List<CrmContractExcutor>();
 
     public virtual ICollection<CrmcontractsLog> CrmcontractsLogs { get; set; } = new List<CrmcontractsLog>();
@@ -68,6 +70,8 @@ public partial class AspNetUser
     public virtual ICollection<CustomerContract> CustomerContracts { get; set; } = new List<CustomerContract>();
 
     public virtual ICollection<CustomerCoordinatorLog> CustomerCoordinatorLogs { get; set; } = new List<CustomerCoordinatorLog>();
+
+    public virtual ICollection<FollowupMemberscomplaint> FollowupMemberscomplaints { get; set; } = new List<FollowupMemberscomplaint>();
 
     public virtual ICollection<GeneralVisitsUser> GeneralVisitsUsers { get; set; } = new List<GeneralVisitsUser>();
 

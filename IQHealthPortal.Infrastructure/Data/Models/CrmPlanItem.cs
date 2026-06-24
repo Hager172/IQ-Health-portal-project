@@ -55,6 +55,8 @@ public partial class CrmPlanItem
 
     public virtual ICollection<CrmItemCopayment> CrmItemCopayments { get; set; } = new List<CrmItemCopayment>();
 
+    public virtual ICollection<CrmVendorsCopayment> CrmVendorsCopayments { get; set; } = new List<CrmVendorsCopayment>();
+
     public virtual ICollection<CrmplanItemRule> CrmplanItemRules { get; set; } = new List<CrmplanItemRule>();
 
     public virtual CareItem Item { get; set; } = null!;

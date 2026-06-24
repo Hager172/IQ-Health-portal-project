@@ -29,9 +29,17 @@ public partial class CrmCustomerContract
 
     public DateTime LastUpdateDate { get; set; }
 
+    public string? RealContract { get; set; }
+
+    public int? ConvertOfferid { get; set; }
+
+    public string? MedicalNetworkClass { get; set; }
+
     public virtual CustomerContract? ActualContract { get; set; }
 
     public virtual Broker? Broker { get; set; }
+
+    public virtual CrmContractContractType? ConvertOffer { get; set; }
 
     public virtual ICollection<CrmContractClass> CrmContractClasses { get; set; } = new List<CrmContractClass>();
 

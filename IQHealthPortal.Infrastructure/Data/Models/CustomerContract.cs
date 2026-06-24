@@ -99,6 +99,8 @@ public partial class CustomerContract
 
     public virtual ICollection<CustomerCoordinatorLog> CustomerCoordinatorLogs { get; set; } = new List<CustomerCoordinatorLog>();
 
+    public virtual ICollection<CustomersContractMaster> CustomersContractMasters { get; set; } = new List<CustomersContractMaster>();
+
     public virtual AspNetUser? Excuter { get; set; }
 
     public virtual ICollection<MemberPlan> MemberPlans { get; set; } = new List<MemberPlan>();

@@ -31,6 +31,8 @@ public partial class CustomerComplaint
 
     public string? MemberId { get; set; }
 
+    public virtual ICollection<ComplaintReply> ComplaintReplies { get; set; } = new List<ComplaintReply>();
+
     public virtual Customer Customer { get; set; } = null!;
 
     public virtual Member? Member { get; set; }

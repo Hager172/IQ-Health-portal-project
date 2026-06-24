@@ -20,4 +20,6 @@ public partial class UserManual
     public string LastUpdateFrom { get; set; } = null!;
 
     public DateTime LastUpdateDate { get; set; }
+
+    public virtual AcmcPage Page { get; set; } = null!;
 }

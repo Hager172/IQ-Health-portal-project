@@ -103,6 +103,10 @@ public partial class Approval
 
     public virtual ICollection<MembersComplaint> MembersComplaints { get; set; } = new List<MembersComplaint>();
 
+    public virtual ICollection<ParallelApproval> ParallelApprovalApprovalid1Navigations { get; set; } = new List<ParallelApproval>();
+
+    public virtual ICollection<ParallelApproval> ParallelApprovalApprovalid2Navigations { get; set; } = new List<ParallelApproval>();
+
     public virtual Approval? ParentApprovalNavigation { get; set; }
 
     public virtual ContractPlan? PlanCodeNavigation { get; set; }

@@ -5,6 +5,8 @@ namespace IQHealthPortal.Infrastructure.Data.Models;
 
 public partial class VClientsWorklist
 {
+    public string ContractId { get; set; } = null!;
+
     public long Code { get; set; }
 
     public string Member { get; set; } = null!;

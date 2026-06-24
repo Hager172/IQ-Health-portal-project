@@ -37,6 +37,8 @@ public partial class VMashPaymentsMc
 
     public string? MemberId { get; set; }
 
+    public string? MemberName { get; set; }
+
     public DateTime? ValidFrom { get; set; }
 
     public DateTime? ValidTo { get; set; }

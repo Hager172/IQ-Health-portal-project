@@ -45,6 +45,10 @@ public partial class ContractPlan
 
     public virtual ICollection<PlanItem> PlanItems { get; set; } = new List<PlanItem>();
 
+    public virtual ICollection<PlanSharedItemRule> PlanSharedItemRules { get; set; } = new List<PlanSharedItemRule>();
+
+    public virtual ICollection<PlanSharedItem> PlanSharedItems { get; set; } = new List<PlanSharedItem>();
+
     public virtual Residence? Residence { get; set; }
 
     public virtual ICollection<SchApproval> SchApprovals { get; set; } = new List<SchApproval>();

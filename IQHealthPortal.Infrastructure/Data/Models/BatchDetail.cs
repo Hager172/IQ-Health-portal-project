@@ -85,9 +85,13 @@ public partial class BatchDetail
 
     public virtual Batch Batch { get; set; } = null!;
 
+    public virtual BatchesCheckBalance? BatchesCheckBalance { get; set; }
+
     public virtual ICollection<BatchesPrivateNote> BatchesPrivateNotes { get; set; } = new List<BatchesPrivateNote>();
 
     public virtual VendorGeneral? CashVendorNavigation { get; set; }
+
+    public virtual ICollection<CheckBalanceBugReport> CheckBalanceBugReports { get; set; } = new List<CheckBalanceBugReport>();
 
     public virtual ContractActivity? ContractActivity1 { get; set; }
 
